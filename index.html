@@ -32,6 +32,15 @@
     </div>
   </header>
 
+  <section class="anuncios oculto" id="seccion-anuncios" aria-live="polite">
+    <button type="button" class="anuncios__flecha anuncios__flecha--izquierda" id="anuncios-anterior" aria-label="Anuncio anterior">‹</button>
+    <div class="anuncios__slide" id="anuncios-slide">
+      <!-- Se llena con js/services/anunciosService.js (via orquestarServicios). La sección queda oculta si el servicio falla. -->
+    </div>
+    <button type="button" class="anuncios__flecha anuncios__flecha--derecha" id="anuncios-siguiente" aria-label="Anuncio siguiente">›</button>
+    <div class="anuncios__indicadores" id="anuncios-indicadores"></div>
+  </section>
+
   <div class="barra-busqueda">
     <input
       type="text"
@@ -44,10 +53,6 @@
       <option value="todas" data-i18n="todas">Todas las categorías</option>
     </select>
   </div>
-
-  <section class="anuncios oculto" id="seccion-anuncios" aria-live="polite">
-    <!-- Se llena con js/services/anunciosService.js (via orquestarServicios). Oculta si el servicio falla. -->
-  </section>
 
   <main class="contenedor" id="contenedor-peliculas">
     <!-- Las tarjetas se generan dinámicamente desde peliculas.json (ver js/main.js) -->

@@ -24,12 +24,14 @@ python3 -m http.server 8123
 
 ```
 index.html          Maquetación: header (logo + título, favoritos, idioma),
-                     barra de búsqueda/filtro, banner de anuncios, grid de
-                     películas, modal (con panel flotante de reseñas al
+                     banner de anuncios / carrusel, barra de búsqueda/filtro,
+                     grid de películas, modal (con panel flotante de reseñas al
                      abrir una película), footer.
 styles.css           Todo el CSS del proyecto.
 peliculas.json       Fuente de datos (30 películas).
+resenas.json         Reseñas mock (187 items), fetched por resenasService.js.
 posters/             Pósters de cada película (.webp).
+banners/             Imágenes de fondo del carrusel de anuncios (.webp, 1600x500).
 images/              Logo y logotipo de texto del header.
 js/
   core/              Módulos originales, sin cambios de lógica:
@@ -44,7 +46,8 @@ js/
   services/          Tres "backends" simulados, consumidos en paralelo:
     catalogoService.js   Envuelve data.js (nunca falla).
     resenasService.js    Reseñas mock por película, con fallo aleatorio simulado.
-    anunciosService.js   Anuncios mock, con fallo aleatorio simulado.
+    anunciosService.js   Anuncios mock (carrusel/hero banner, ver banners/),
+                         con fallo aleatorio simulado.
   cache/
     filtroCache.js   Closure con caché privado: filtra por género con
                      una simulación de latencia solo en la primera

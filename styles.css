@@ -149,34 +149,125 @@ body.sin-scroll {
   border-color: var(--color-primario);
 }
 
-/* Anuncios promocionales */
+/* Anuncios promocionales: hero banner / carrusel */
 .anuncios {
+  position: relative;
+  min-height: 260px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  padding: 1rem 2rem;
-  background-color: var(--color-superficie);
   border-bottom: 1px solid #2a2a3a;
+  overflow: hidden;
+  background-color: var(--color-superficie);
 }
 
-.anuncios__item {
+.anuncios__slide {
   flex: 1;
-  min-width: 220px;
-  padding: 0.75rem 1rem;
-  border-radius: var(--radio);
-  border: 1px solid var(--color-primario);
-  background-color: var(--color-fondo);
+  display: flex;
+  align-items: flex-end;
+  background-size: cover;
+  background-position: center;
+  padding: 2rem 3.75rem;
+}
+
+.anuncios__contenido {
+  max-width: 480px;
+  color: #fff;
 }
 
 .anuncios__titulo {
-  font-size: 0.95rem;
-  color: var(--color-primario);
-  margin-bottom: 0.25rem;
+  font-size: 1.6rem;
+  margin-bottom: 0.4rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85);
 }
 
 .anuncios__texto {
-  font-size: 0.85rem;
-  color: var(--color-texto-secundario);
+  font-size: 0.95rem;
+  margin-bottom: 1.1rem;
+  color: #e6e6ec;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.85);
+}
+
+.anuncios__cta {
+  background-color: var(--color-primario);
+  color: #fff;
+  border: none;
+  padding: 0.65rem 1.35rem;
+  border-radius: var(--radio);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.anuncios__cta:hover {
+  background-color: #ff5a68;
+  transform: translateY(-2px);
+}
+
+.anuncios__flecha {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(20, 20, 28, 0.6);
+  color: #fff;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.anuncios__flecha:hover {
+  background-color: var(--color-primario);
+}
+
+.anuncios__flecha--izquierda {
+  left: 1rem;
+}
+
+.anuncios__flecha--derecha {
+  right: 1rem;
+}
+
+.anuncios__indicadores {
+  position: absolute;
+  bottom: 0.85rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  gap: 0.4rem;
+}
+
+.anuncios__punto {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.anuncios__punto:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.anuncios__punto.activo {
+  background-color: var(--color-primario);
+  transform: scale(1.15);
+}
+
+.anuncios--unico .anuncios__flecha,
+.anuncios--unico .anuncios__indicadores {
+  display: none;
 }
 
 /* Grid de películas */
@@ -557,7 +648,21 @@ body.sin-scroll {
   }
 
   .anuncios {
-    padding: 1rem 1.5rem;
+    min-height: 200px;
+  }
+
+  .anuncios__slide {
+    padding: 1.25rem 3.25rem;
+  }
+
+  .anuncios__titulo {
+    font-size: 1.25rem;
+  }
+
+  .anuncios__flecha {
+    width: 1.9rem;
+    height: 1.9rem;
+    font-size: 1.1rem;
   }
 
   .modal-overlay {

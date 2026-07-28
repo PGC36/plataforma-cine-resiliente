@@ -21,9 +21,9 @@ python3 -m http.server 8123
 
 ```
 index.html        Maquetación completa: header (logo + título, contador favoritos, idioma),
-                   barra-busqueda (buscador + filtro de categoría, fuera del header),
-                   banner de anuncios (#seccion-anuncios, oculto si el servicio falla),
-                   contenedor de cards (vacío, se llena por JS),
+                   banner de anuncios / carrusel (#seccion-anuncios, oculto si el
+                   servicio falla), barra-busqueda (buscador + filtro de categoría,
+                   debajo del banner), contenedor de cards (vacío, se llena por JS),
                    modal + panel flotante de reseñas (#modal-resenas, al lado del
                    modal, oculto si el servicio falló o la película no tiene reseñas),
                    footer.
@@ -32,6 +32,10 @@ peliculas.json     Fuente de datos. Un array "peliculas" con 30 items.
 resenas.json       Reseñas mock. Un array "resenas" con 187 items ({ peliculaId,
                    autor, comentario, puntuacion }), fetched por resenasService.js.
 posters/           Pósters propios de cada película, en formato .webp.
+banners/           Imágenes de fondo del carrusel de anuncios (.webp, 1600x500),
+                   una por promo (SemanaCineClasico, EstrenosCienciaFiccion,
+                   MaratonDeTerror) + _ejemplo-placeholder.webp (referencia de
+                   tamaño/convención, no se usa en el código).
 js/
   core/            Módulos originales, no se reescriben:
     data.js          fetch() de peliculas.json.
@@ -52,8 +56,11 @@ js/
                          modal. Falla con probabilidad aleatoria simulada, o de
                          forma forzada vía ?forzarFallo=resenas (o "todos") —
                          en ese caso ni siquiera llega a pedir el JSON.
-    anunciosService.js   Anuncios mock. Mismo patrón que resenasService.js,
-                         con ?forzarFallo=anuncios (o "todos"), independiente entre sí.
+    anunciosService.js   3 anuncios mock ({ titulo, texto, imagenFondo, textoCta }),
+                         cada uno con su imagen en banners/. Mismo patrón de fallo
+                         que resenasService.js, con ?forzarFallo=anuncios (o "todos"),
+                         independiente entre sí. Se consumen como carrusel, no como
+                         lista fija (ver flujo y convenciones más abajo).
   cache/
     filtroCache.js   crearFiltroPeliculas(peliculas) devuelve un objeto con
                      filtrarPorGenero(genero), que encapsula un caché privado
@@ -161,6 +168,9 @@ Eventos disparados por el usuario y su efecto:
 - **Estética "flotante" de las reseñas del modal**: `#modal-resenas` en sí es transparente (sin fondo/borde/sombra) — el efecto visual vive en cada `.modal-resenas__item`: sombra propia, rotación leve alternada (impar/par, enderezada al hover) y animación de entrada (`@keyframes resena-flota` en `styles.css`) con delay escalonado por índice, reutilizando `calcularRetrasoEntrada()` de `animaciones.js` (mismo helper que ya usan las cards del grid, no se creó uno nuevo). Si se agregan más reseñas mock, no hace falta tocar el CSS ni el JS: el `nth-child` y el índice del `.map()` en `main.js` escalan solos.
 - **Scrollbar de `#modal-resenas` con la paleta del sitio**: por defecto el navegador dibuja el scroll con los colores del sistema (gris claro), que desentona contra el dark theme. Se sobreescribe con `scrollbar-width`/`scrollbar-color` (Firefox) y los pseudo-elementos `::-webkit-scrollbar*` (Chrome/Edge/Safari): pista transparente y "thumb" en `--color-primario` (con un tono más claro al hover). Si se agrega scroll a otro contenedor nuevo, replicar este mismo patrón en vez de dejar el scrollbar por defecto del navegador.
 - **Caché de género por closure (`cache/filtroCache.js`)**: el caché se indexa por la categoría canónica en español (`pelicula.categoria`), nunca por el texto que muestra el `<select>` (que cambia con el idioma: "Acción" vs "Action"). Esto es intencional — cachear por el string del select rompería el caché al cambiar de idioma. Si se toca este archivo, mantener esa indirección (mapa `categoria`/`categoriaEn` → clave canónica).
+- **Anuncios como hero banner / carrusel, no como lista de recuadros**: `#seccion-anuncios` muestra un slide grande a la vez (imagen de fondo + degradado + título/texto/CTA), con flechas y puntos indicadores, en vez de mostrar todos los anuncios juntos compitiendo por atención. `main.js` mantiene el estado (`anuncios`, `indiceAnuncioActual`) y hace autoplay cada 6s (`reiniciarAutoplayAnuncios`), que se reinicia con cada interacción manual. Si se agrega un cuarto anuncio, no hace falta tocar el JS ni el CSS — el `.map()` de los indicadores y la navegación circular escalan solos.
+- **Padding del slide de anuncios pensado para las flechas**: `.anuncios__slide` tiene `padding: 2rem 3.75rem` (y `1.25rem 3.25rem` en el media query de 768px) a propósito — un padding menor hace que el título/CTA quede debajo de `.anuncios__flecha--izquierda` (bug real que pasó: con `padding: 2rem` uniforme, la flecha de 2.25rem de ancho posicionada a `left: 1rem` tapaba la "M" de los títulos). Si se cambia el tamaño de las flechas, recalcular este padding para que siga habiendo espacio libre entre el borde de la flecha y el contenido.
+- **Imágenes de `banners/` sin texto horneado**: las imágenes de fondo del carrusel (`banners/*.webp`) son solo arte visual — el título, texto y CTA de cada anuncio los pone `main.js` con HTML/CSS encima, nunca están escritos dentro de la imagen. Esto permite traducir o cambiar el copy sin regenerar el arte. `banners/_ejemplo-placeholder.webp` es la única excepción (tiene texto "PLACEHOLDER" a propósito) y no está referenciado desde ningún `service` — es solo documentación visual de la dimensión/convención (1600×500) para cuando se agregue una promo nueva sin arte todavía.
 - **Sin doble filtrado por categoría**: `main.js` siempre le pasa `"todas"` como categoría a `filtrarPeliculas()` de `filtros.js`, porque el filtro por género ya lo resolvió `filtroCache.js` antes. No cambiar esto sin ajustar también `filtroCache.js` — si ambos filtran por categoría, se duplica trabajo (aunque el resultado final sea el mismo).
 - **`.oculto` usa `!important` a propósito**: es la utilidad genérica para "ocultar del todo" (`#seccion-anuncios`, `#modal-resenas`). Sin `!important`, cualquier regla futura que declare `display` sobre ese mismo elemento (como `.anuncios { display: flex; }` o `.modal-resenas { display: flex; }`) le gana a `.oculto` por orden de aparición en el archivo aunque tengan la misma especificidad — eso pasó realmente: con `#modal-resenas` sin reseñas, quedaba como caja vacía ocupando espacio en el `flex` del `#modal-overlay` y corría el modal hacia la izquierda en vez de dejarlo centrado. Si se agrega un nuevo elemento que se oculte con `.oculto` y también declare su propio `display`, no hace falta nada más — `!important` ya lo cubre.
 

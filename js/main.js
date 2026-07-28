@@ -12,11 +12,20 @@ const buscador = document.getElementById("buscador");
 const filtroCategoria = document.getElementById("filtro-categoria");
 const botonIdioma = document.getElementById("boton-idioma");
 const seccionAnuncios = document.getElementById("seccion-anuncios");
+const anunciosSlide = document.getElementById("anuncios-slide");
+const anunciosAnterior = document.getElementById("anuncios-anterior");
+const anunciosSiguiente = document.getElementById("anuncios-siguiente");
+const anunciosIndicadores = document.getElementById("anuncios-indicadores");
 const modalResenas = document.getElementById("modal-resenas");
+
+const INTERVALO_AUTOPLAY_MS = 6000;
 
 let peliculas = [];
 let filtroPeliculas = null;
 let resenas = null;
+let anuncios = [];
+let indiceAnuncioActual = 0;
+let temporizadorAutoplayAnuncios = null;
 let temporizadorBusqueda = null;
 
 function aplicarFiltrosConDelay() {
@@ -62,19 +71,49 @@ function manejarCambioIdioma() {
   aplicarFiltros();
 }
 
-function renderizarAnuncios(anuncios) {
-  if (!anuncios) return;
+function pintarSlideAnuncioActual() {
+  const anuncio = anuncios[indiceAnuncioActual];
 
-  seccionAnuncios.innerHTML = anuncios
-    .map(
-      (anuncio) => `
-        <article class="anuncios__item">
-          <h3 class="anuncios__titulo">${anuncio.titulo}</h3>
-          <p class="anuncios__texto">${anuncio.texto}</p>
-        </article>
-      `
-    )
+  anunciosSlide.style.backgroundImage = `linear-gradient(90deg, rgba(20,20,28,0.92), rgba(20,20,28,0.35)), url("${anuncio.imagenFondo}")`;
+  anunciosSlide.innerHTML = `
+    <div class="anuncios__contenido">
+      <h3 class="anuncios__titulo">${anuncio.titulo}</h3>
+      <p class="anuncios__texto">${anuncio.texto}</p>
+      <button type="button" class="anuncios__cta">${anuncio.textoCta}</button>
+    </div>
+  `;
+
+  anunciosIndicadores.querySelectorAll(".anuncios__punto").forEach((punto, indice) => {
+    punto.classList.toggle("activo", indice === indiceAnuncioActual);
+  });
+}
+
+function reiniciarAutoplayAnuncios() {
+  clearInterval(temporizadorAutoplayAnuncios);
+  if (anuncios.length > 1) {
+    temporizadorAutoplayAnuncios = setInterval(() => irAAnuncio(indiceAnuncioActual + 1), INTERVALO_AUTOPLAY_MS);
+  }
+}
+
+function irAAnuncio(indice) {
+  indiceAnuncioActual = (indice + anuncios.length) % anuncios.length;
+  pintarSlideAnuncioActual();
+  reiniciarAutoplayAnuncios();
+}
+
+function renderizarAnuncios(datos) {
+  if (!datos || datos.length === 0) return;
+
+  anuncios = datos;
+  indiceAnuncioActual = 0;
+
+  anunciosIndicadores.innerHTML = anuncios
+    .map((_, indice) => `<button type="button" class="anuncios__punto" data-indice="${indice}" aria-label="Ir al anuncio ${indice + 1}"></button>`)
     .join("");
+
+  seccionAnuncios.classList.toggle("anuncios--unico", anuncios.length <= 1);
+  pintarSlideAnuncioActual();
+  reiniciarAutoplayAnuncios();
   seccionAnuncios.classList.remove("oculto");
 }
 
@@ -108,6 +147,12 @@ async function iniciar() {
   buscador.addEventListener("input", aplicarFiltrosConDelay);
   filtroCategoria.addEventListener("change", aplicarFiltros);
   botonIdioma.addEventListener("click", manejarCambioIdioma);
+  anunciosAnterior.addEventListener("click", () => irAAnuncio(indiceAnuncioActual - 1));
+  anunciosSiguiente.addEventListener("click", () => irAAnuncio(indiceAnuncioActual + 1));
+  anunciosIndicadores.addEventListener("click", (evento) => {
+    const punto = evento.target.closest(".anuncios__punto");
+    if (punto) irAAnuncio(Number(punto.dataset.indice));
+  });
 
   try {
     const resultado = await orquestarServicios();
