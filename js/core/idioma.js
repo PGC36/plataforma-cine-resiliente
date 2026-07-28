@@ -11,7 +11,7 @@ const traducciones = {
     duracion: "Duración:",
     calificacion: "Calificación:",
     min: "min",
-    footer: "Catálogo de películas — Proyecto DOM",
+    footer: "Catálogo de películas — CapyFilms",
     error: "No se pudieron cargar las películas.",
   },
   en: {
@@ -24,7 +24,7 @@ const traducciones = {
     duracion: "Duration:",
     calificacion: "Rating:",
     min: "min",
-    footer: "Movie catalog — DOM Project",
+    footer: "Movie catalog — CapyFilms",
     error: "Movies could not be loaded.",
   },
 };
