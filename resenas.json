@@ -1,0 +1,1126 @@
+{
+  "resenas": [
+    {
+      "peliculaId": 1,
+      "autor": "Federico L.",
+      "comentario": "Una historia simple pero muy bien contada.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 1,
+      "autor": "Ezequiel T.",
+      "comentario": "La actuación protagónica es lo mejor de todo el film.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 1,
+      "autor": "Antonella S.",
+      "comentario": "Vale la pena solo por la escena final.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 1,
+      "autor": "Catalina S.",
+      "comentario": "Una historia simple pero muy bien contada.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 1,
+      "autor": "Gonzalo X.",
+      "comentario": "Una de esas películas que mejora en un segundo visionado.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 1,
+      "autor": "Abril J.",
+      "comentario": "Se siente repetitiva hacia el final, pero vale la pena.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 1,
+      "autor": "Victoria M.",
+      "comentario": "No entendí bien el final, pero la fotografía es espectacular.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 1,
+      "autor": "Ignacio B.",
+      "comentario": "Una historia simple pero muy bien contada.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 1,
+      "autor": "Sol M.",
+      "comentario": "Mejor de lo que recordaba, la volví a ver después de años.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 1,
+      "autor": "Guadalupe F.",
+      "comentario": "No entendí bien el final, pero la fotografía es espectacular.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 1,
+      "autor": "Santiago Z.",
+      "comentario": "Un poco previsible, aunque bien ejecutada.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 1,
+      "autor": "Josefina G.",
+      "comentario": "La volvería a ver ahora mismo sin pensarlo.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 1,
+      "autor": "Nicolás U.",
+      "comentario": "El ritmo es perfecto, no se hace larga en ningún momento.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 2,
+      "autor": "Julián P.",
+      "comentario": "No es para todos los gustos, pero a mí me encantó.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 2,
+      "autor": "Valentina K.",
+      "comentario": "Vale la pena solo por la escena final.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 2,
+      "autor": "Santiago Z.",
+      "comentario": "Esperaba mucho más después de tanta recomendación.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 2,
+      "autor": "Delfina R.",
+      "comentario": "El ritmo se siente un poco lento en el segundo acto, pero el final compensa.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 2,
+      "autor": "Marcela R.",
+      "comentario": "Un poco previsible, aunque bien ejecutada.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 2,
+      "autor": "Nicolás U.",
+      "comentario": "Le falta un poco de ritmo, pero la fotografía es hermosa.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 2,
+      "autor": "Maximiliano O.",
+      "comentario": "Un clásico que todo cinéfilo debería tener en su lista.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 2,
+      "autor": "Catalina S.",
+      "comentario": "Una sorpresa total, no esperaba que me gustara tanto.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 2,
+      "autor": "Renata D.",
+      "comentario": "Un poco previsible, aunque bien ejecutada.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 2,
+      "autor": "Bruno V.",
+      "comentario": "Se siente repetitiva hacia el final, pero vale la pena.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 2,
+      "autor": "Emiliano P.",
+      "comentario": "Mejor de lo que recordaba, la volví a ver después de años.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 2,
+      "autor": "Leandro V.",
+      "comentario": "Un clásico que todo cinéfilo debería tener en su lista.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 2,
+      "autor": "Martina A.",
+      "comentario": "No entendí el hype, la verdad me pareció floja.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 2,
+      "autor": "Federico L.",
+      "comentario": "Una película que hay que ver al menos una vez en la vida.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 2,
+      "autor": "Ignacio B.",
+      "comentario": "Esperaba mucho más después de tanta recomendación.",
+      "puntuacion": 2
+    },
+    {
+      "peliculaId": 3,
+      "autor": "Antonella S.",
+      "comentario": "La actuación protagónica es lo mejor de todo el film.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 3,
+      "autor": "Damián O.",
+      "comentario": "Sin dudas de las mejores del género.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 3,
+      "autor": "Nadia G.",
+      "comentario": "El guion tiene un par de baches, pero el elenco lo sostiene todo.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 3,
+      "autor": "Micaela Y.",
+      "comentario": "Un guion redondo, no le sobra ni le falta nada.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 3,
+      "autor": "Abril J.",
+      "comentario": "No es para todos los gustos, pero a mí me encantó.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 3,
+      "autor": "Victoria M.",
+      "comentario": "La fotografía por momentos parece un cuadro.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 3,
+      "autor": "Maximiliano O.",
+      "comentario": "La volvería a ver ahora mismo sin pensarlo.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 3,
+      "autor": "Lucía W.",
+      "comentario": "No entendí bien el final, pero la fotografía es espectacular.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 3,
+      "autor": "Delfina R.",
+      "comentario": "El elenco está impecable de principio a fin.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 4,
+      "autor": "Bautista H.",
+      "comentario": "Perfecta para ver un fin de semana de lluvia.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 4,
+      "autor": "Sol M.",
+      "comentario": "No entendí el hype, la verdad me pareció floja.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 4,
+      "autor": "Florencia I.",
+      "comentario": "La actuación protagónica es lo mejor de todo el film.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 4,
+      "autor": "Valentina K.",
+      "comentario": "De las pocas películas que me sacaron una lágrima.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 4,
+      "autor": "Catalina S.",
+      "comentario": "De las pocas películas que me sacaron una lágrima.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 5,
+      "autor": "Ezequiel T.",
+      "comentario": "El guion tiene un par de baches, pero el elenco lo sostiene todo.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 5,
+      "autor": "Maximiliano O.",
+      "comentario": "La volvería a ver ahora mismo sin pensarlo.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 5,
+      "autor": "Bautista H.",
+      "comentario": "Un poco previsible, aunque bien ejecutada.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 5,
+      "autor": "Guadalupe F.",
+      "comentario": "Un poco previsible, aunque bien ejecutada.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 5,
+      "autor": "Nicolás U.",
+      "comentario": "No entendí el hype, la verdad me pareció floja.",
+      "puntuacion": 2
+    },
+    {
+      "peliculaId": 5,
+      "autor": "Florencia I.",
+      "comentario": "Los efectos envejecieron sorprendentemente bien.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 5,
+      "autor": "Franco Q.",
+      "comentario": "Perfecta para ver un fin de semana de lluvia.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 5,
+      "autor": "Matías E.",
+      "comentario": "El elenco está impecable de principio a fin.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 5,
+      "autor": "Victoria M.",
+      "comentario": "Se siente repetitiva hacia el final, pero vale la pena.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 6,
+      "autor": "Agustín C.",
+      "comentario": "Le falta un poco de ritmo, pero la fotografía es hermosa.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 6,
+      "autor": "Lucía W.",
+      "comentario": "No es para todos los gustos, pero a mí me encantó.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 6,
+      "autor": "Renata D.",
+      "comentario": "El guion tiene un par de baches, pero el elenco lo sostiene todo.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 6,
+      "autor": "Victoria M.",
+      "comentario": "Se me hizo larga y el final no cierra del todo.",
+      "puntuacion": 2
+    },
+    {
+      "peliculaId": 6,
+      "autor": "Damián O.",
+      "comentario": "El elenco está impecable de principio a fin.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 6,
+      "autor": "Milagros D.",
+      "comentario": "El guion tiene un par de baches, pero el elenco lo sostiene todo.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 7,
+      "autor": "Ezequiel T.",
+      "comentario": "El elenco está impecable de principio a fin.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 7,
+      "autor": "Facundo L.",
+      "comentario": "Un poco previsible, aunque bien ejecutada.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 7,
+      "autor": "Valentina K.",
+      "comentario": "Mejor de lo que recordaba, la volví a ver después de años.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 7,
+      "autor": "Leandro V.",
+      "comentario": "La fotografía por momentos parece un cuadro.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 7,
+      "autor": "Martina A.",
+      "comentario": "El ritmo es perfecto, no se hace larga en ningún momento.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 7,
+      "autor": "Josefina G.",
+      "comentario": "Una de esas películas que mejora en un segundo visionado.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 7,
+      "autor": "Agustín C.",
+      "comentario": "No entendí bien el final, pero la fotografía es espectacular.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 8,
+      "autor": "Valentina K.",
+      "comentario": "Se siente repetitiva hacia el final, pero vale la pena.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 8,
+      "autor": "Abril J.",
+      "comentario": "Le falta un poco de ritmo, pero la fotografía es hermosa.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 9,
+      "autor": "Bruno V.",
+      "comentario": "Tiene buenos momentos pero en general no me convenció.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 9,
+      "autor": "Ignacio B.",
+      "comentario": "Un poco previsible, aunque bien ejecutada.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 9,
+      "autor": "Franco Q.",
+      "comentario": "Un poco previsible, aunque bien ejecutada.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 9,
+      "autor": "Martina A.",
+      "comentario": "Tiene un tramo medio flojo, pero se recupera para el cierre.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 9,
+      "autor": "Facundo L.",
+      "comentario": "Sin dudas de las mejores del género.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 9,
+      "autor": "Antonella S.",
+      "comentario": "Un poco previsible, aunque bien ejecutada.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 9,
+      "autor": "Gonzalo X.",
+      "comentario": "Se siente repetitiva hacia el final, pero vale la pena.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 9,
+      "autor": "Delfina R.",
+      "comentario": "Perfecta para ver un fin de semana de lluvia.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 9,
+      "autor": "Valentina K.",
+      "comentario": "El elenco está impecable de principio a fin.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 11,
+      "autor": "Bautista H.",
+      "comentario": "Vale la pena solo por la escena final.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 11,
+      "autor": "Josefina G.",
+      "comentario": "Esperaba más, pero no está mal para pasar la tarde.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 11,
+      "autor": "Valentina K.",
+      "comentario": "Vale la pena solo por la escena final.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 11,
+      "autor": "Emiliano P.",
+      "comentario": "Una película que hay que ver al menos una vez en la vida.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 11,
+      "autor": "Martina A.",
+      "comentario": "Esperaba más, pero no está mal para pasar la tarde.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 11,
+      "autor": "Nadia G.",
+      "comentario": "Una sorpresa total, no esperaba que me gustara tanto.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 11,
+      "autor": "Gonzalo X.",
+      "comentario": "La volvería a ver ahora mismo sin pensarlo.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 11,
+      "autor": "Damián O.",
+      "comentario": "Vale la pena solo por la escena final.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 11,
+      "autor": "Ezequiel T.",
+      "comentario": "No es para todos los gustos, pero a mí me encantó.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 12,
+      "autor": "Tomás H.",
+      "comentario": "Mejor de lo que recordaba, la volví a ver después de años.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 12,
+      "autor": "Antonella S.",
+      "comentario": "Sin dudas de las mejores del género.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 12,
+      "autor": "Renata D.",
+      "comentario": "Se siente repetitiva hacia el final, pero vale la pena.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 12,
+      "autor": "Micaela Y.",
+      "comentario": "No entendí bien el final, pero la fotografía es espectacular.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 12,
+      "autor": "Franco Q.",
+      "comentario": "Le falta un poco de ritmo, pero la fotografía es hermosa.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 12,
+      "autor": "Catalina S.",
+      "comentario": "Una historia simple pero muy bien contada.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 12,
+      "autor": "Gonzalo X.",
+      "comentario": "El elenco está impecable de principio a fin.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 12,
+      "autor": "Santiago Z.",
+      "comentario": "Tiene un tramo medio flojo, pero se recupera para el cierre.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 13,
+      "autor": "Julián P.",
+      "comentario": "Mejor de lo que recordaba, la volví a ver después de años.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 13,
+      "autor": "Agustín C.",
+      "comentario": "La fotografía por momentos parece un cuadro.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 13,
+      "autor": "Catalina S.",
+      "comentario": "Sin dudas de las mejores del género.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 13,
+      "autor": "Santiago Z.",
+      "comentario": "Tiene un tramo medio flojo, pero se recupera para el cierre.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 13,
+      "autor": "Valentina K.",
+      "comentario": "No entendí bien el final, pero la fotografía es espectacular.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 13,
+      "autor": "Carla F.",
+      "comentario": "Sin dudas de las mejores del género.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 13,
+      "autor": "Martina A.",
+      "comentario": "Le falta un poco de ritmo, pero la fotografía es hermosa.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 13,
+      "autor": "Sol M.",
+      "comentario": "Una historia simple pero muy bien contada.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 13,
+      "autor": "Guadalupe F.",
+      "comentario": "Esperaba mucho más después de tanta recomendación.",
+      "puntuacion": 2
+    },
+    {
+      "peliculaId": 14,
+      "autor": "Julián P.",
+      "comentario": "Tiene un tramo medio flojo, pero se recupera para el cierre.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 14,
+      "autor": "Tomás H.",
+      "comentario": "Se siente repetitiva hacia el final, pero vale la pena.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 14,
+      "autor": "Facundo L.",
+      "comentario": "El elenco está impecable de principio a fin.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 14,
+      "autor": "Emiliano P.",
+      "comentario": "Esperaba mucho más después de tanta recomendación.",
+      "puntuacion": 2
+    },
+    {
+      "peliculaId": 15,
+      "autor": "Santiago Z.",
+      "comentario": "Un clásico que todo cinéfilo debería tener en su lista.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 15,
+      "autor": "Carla F.",
+      "comentario": "Un guion redondo, no le sobra ni le falta nada.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 15,
+      "autor": "Emiliano P.",
+      "comentario": "Perfecta para ver un fin de semana de lluvia.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 15,
+      "autor": "Antonella S.",
+      "comentario": "Tiene un tramo medio flojo, pero se recupera para el cierre.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 15,
+      "autor": "Ignacio B.",
+      "comentario": "Se siente repetitiva hacia el final, pero vale la pena.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 15,
+      "autor": "Bruno V.",
+      "comentario": "Mejor de lo que recordaba, la volví a ver después de años.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 15,
+      "autor": "Victoria M.",
+      "comentario": "Sin dudas de las mejores del género.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 15,
+      "autor": "Rocío A.",
+      "comentario": "Se me hizo larga y el final no cierra del todo.",
+      "puntuacion": 2
+    },
+    {
+      "peliculaId": 15,
+      "autor": "Josefina G.",
+      "comentario": "Perfecta para ver un fin de semana de lluvia.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 16,
+      "autor": "Carla F.",
+      "comentario": "El elenco está impecable de principio a fin.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 16,
+      "autor": "Federico L.",
+      "comentario": "Le falta un poco de ritmo, pero la fotografía es hermosa.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 16,
+      "autor": "Agustín C.",
+      "comentario": "Se siente repetitiva hacia el final, pero vale la pena.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 16,
+      "autor": "Guadalupe F.",
+      "comentario": "No entendí el hype, la verdad me pareció floja.",
+      "puntuacion": 2
+    },
+    {
+      "peliculaId": 16,
+      "autor": "Bruno V.",
+      "comentario": "Una sorpresa total, no esperaba que me gustara tanto.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 17,
+      "autor": "Tomás H.",
+      "comentario": "Se me hizo larga y el final no cierra del todo.",
+      "puntuacion": 2
+    },
+    {
+      "peliculaId": 17,
+      "autor": "Bruno V.",
+      "comentario": "Esperaba mucho más después de tanta recomendación.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 17,
+      "autor": "Florencia I.",
+      "comentario": "No es para todos los gustos, pero a mí me encantó.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 17,
+      "autor": "Nicolás U.",
+      "comentario": "Se me hizo larga y el final no cierra del todo.",
+      "puntuacion": 2
+    },
+    {
+      "peliculaId": 17,
+      "autor": "Bautista H.",
+      "comentario": "Vale la pena solo por la escena final.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 17,
+      "autor": "Facundo L.",
+      "comentario": "Se me hizo larga y el final no cierra del todo.",
+      "puntuacion": 2
+    },
+    {
+      "peliculaId": 17,
+      "autor": "Leandro V.",
+      "comentario": "La fotografía por momentos parece un cuadro.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 17,
+      "autor": "Renata D.",
+      "comentario": "Esperaba mucho más después de tanta recomendación.",
+      "puntuacion": 2
+    },
+    {
+      "peliculaId": 17,
+      "autor": "Santiago Z.",
+      "comentario": "Perfecta para ver un fin de semana de lluvia.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 17,
+      "autor": "Josefina G.",
+      "comentario": "Un guion redondo, no le sobra ni le falta nada.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 17,
+      "autor": "Nadia G.",
+      "comentario": "Un guion redondo, no le sobra ni le falta nada.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 18,
+      "autor": "Carla F.",
+      "comentario": "Vale la pena solo por la escena final.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 18,
+      "autor": "Federico L.",
+      "comentario": "Un poco previsible, aunque bien ejecutada.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 18,
+      "autor": "Valentina K.",
+      "comentario": "Tiene buenos momentos pero en general no me convenció.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 18,
+      "autor": "Lucía W.",
+      "comentario": "Una de esas películas que mejora en un segundo visionado.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 18,
+      "autor": "Ignacio B.",
+      "comentario": "Se siente repetitiva hacia el final, pero vale la pena.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 18,
+      "autor": "Bruno V.",
+      "comentario": "No es para todos los gustos, pero a mí me encantó.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 20,
+      "autor": "Facundo L.",
+      "comentario": "Una historia simple pero muy bien contada.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 20,
+      "autor": "Bautista H.",
+      "comentario": "La fotografía por momentos parece un cuadro.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 20,
+      "autor": "Rocío A.",
+      "comentario": "Perfecta para ver un fin de semana de lluvia.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 20,
+      "autor": "Franco Q.",
+      "comentario": "Tiene buenos momentos pero en general no me convenció.",
+      "puntuacion": 2
+    },
+    {
+      "peliculaId": 20,
+      "autor": "Ramiro T.",
+      "comentario": "Una historia simple pero muy bien contada.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 20,
+      "autor": "Marcela R.",
+      "comentario": "Perfecta para ver un fin de semana de lluvia.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 20,
+      "autor": "Catalina S.",
+      "comentario": "Tiene buenos momentos pero en general no me convenció.",
+      "puntuacion": 2
+    },
+    {
+      "peliculaId": 20,
+      "autor": "Abril J.",
+      "comentario": "La actuación protagónica es lo mejor de todo el film.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 20,
+      "autor": "Joaquín B.",
+      "comentario": "Se siente repetitiva hacia el final, pero vale la pena.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 21,
+      "autor": "Emiliano P.",
+      "comentario": "Vale la pena solo por la escena final.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 21,
+      "autor": "Santiago Z.",
+      "comentario": "Los efectos envejecieron sorprendentemente bien.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 21,
+      "autor": "Ramiro T.",
+      "comentario": "Una sorpresa total, no esperaba que me gustara tanto.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 21,
+      "autor": "Ezequiel T.",
+      "comentario": "Una historia simple pero muy bien contada.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 21,
+      "autor": "Bautista H.",
+      "comentario": "Tiene un tramo medio flojo, pero se recupera para el cierre.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 21,
+      "autor": "Agustín C.",
+      "comentario": "Un poco previsible, aunque bien ejecutada.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 21,
+      "autor": "Marcela R.",
+      "comentario": "Se me hizo larga y el final no cierra del todo.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 22,
+      "autor": "Martina A.",
+      "comentario": "Una historia simple pero muy bien contada.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 23,
+      "autor": "Florencia I.",
+      "comentario": "Una película que hay que ver al menos una vez en la vida.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 23,
+      "autor": "Leandro V.",
+      "comentario": "La banda sonora se queda en la cabeza mucho después de terminar de verla.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 23,
+      "autor": "Federico L.",
+      "comentario": "Una de esas películas que mejora en un segundo visionado.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 23,
+      "autor": "Matías E.",
+      "comentario": "Una historia simple pero muy bien contada.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 23,
+      "autor": "Micaela Y.",
+      "comentario": "La volvería a ver ahora mismo sin pensarlo.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 23,
+      "autor": "Agustín C.",
+      "comentario": "La actuación protagónica es lo mejor de todo el film.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 23,
+      "autor": "Martina A.",
+      "comentario": "Una película que hay que ver al menos una vez en la vida.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 23,
+      "autor": "Guadalupe F.",
+      "comentario": "Tiene buenos momentos pero en general no me convenció.",
+      "puntuacion": 2
+    },
+    {
+      "peliculaId": 23,
+      "autor": "Ignacio B.",
+      "comentario": "Tiene un tramo medio flojo, pero se recupera para el cierre.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 24,
+      "autor": "Santiago Z.",
+      "comentario": "Una de esas películas que mejora en un segundo visionado.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 24,
+      "autor": "Emiliano P.",
+      "comentario": "Una historia simple pero muy bien contada.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 24,
+      "autor": "Marcela R.",
+      "comentario": "El ritmo es perfecto, no se hace larga en ningún momento.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 24,
+      "autor": "Martina A.",
+      "comentario": "Los efectos envejecieron sorprendentemente bien.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 24,
+      "autor": "Victoria M.",
+      "comentario": "La fotografía por momentos parece un cuadro.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 24,
+      "autor": "Maximiliano O.",
+      "comentario": "Esperaba mucho más después de tanta recomendación.",
+      "puntuacion": 2
+    },
+    {
+      "peliculaId": 24,
+      "autor": "Nadia G.",
+      "comentario": "De las pocas películas que me sacaron una lágrima.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 24,
+      "autor": "Antonella S.",
+      "comentario": "Un guion redondo, no le sobra ni le falta nada.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 28,
+      "autor": "Valentina K.",
+      "comentario": "El elenco está impecable de principio a fin.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 28,
+      "autor": "Josefina G.",
+      "comentario": "La actuación protagónica es lo mejor de todo el film.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 28,
+      "autor": "Agustín C.",
+      "comentario": "La actuación protagónica es lo mejor de todo el film.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 28,
+      "autor": "Tomás H.",
+      "comentario": "La fotografía por momentos parece un cuadro.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 28,
+      "autor": "Martina A.",
+      "comentario": "No es para todos los gustos, pero a mí me encantó.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 28,
+      "autor": "Bautista H.",
+      "comentario": "De las pocas películas que me sacaron una lágrima.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 28,
+      "autor": "Joaquín B.",
+      "comentario": "Los efectos envejecieron sorprendentemente bien.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 28,
+      "autor": "Ezequiel T.",
+      "comentario": "Tiene un tramo medio flojo, pero se recupera para el cierre.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 28,
+      "autor": "Guadalupe F.",
+      "comentario": "El ritmo se siente un poco lento en el segundo acto, pero el final compensa.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 29,
+      "autor": "Victoria M.",
+      "comentario": "No es para todos los gustos, pero a mí me encantó.",
+      "puntuacion": 3
+    },
+    {
+      "peliculaId": 29,
+      "autor": "Guadalupe F.",
+      "comentario": "Una película que hay que ver al menos una vez en la vida.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 29,
+      "autor": "Bautista H.",
+      "comentario": "La volvería a ver ahora mismo sin pensarlo.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 29,
+      "autor": "Josefina G.",
+      "comentario": "Los efectos envejecieron sorprendentemente bien.",
+      "puntuacion": 4
+    },
+    {
+      "peliculaId": 29,
+      "autor": "Florencia I.",
+      "comentario": "Vale la pena solo por la escena final.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 30,
+      "autor": "Marcela R.",
+      "comentario": "Una de esas películas que mejora en un segundo visionado.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 30,
+      "autor": "Renata D.",
+      "comentario": "Perfecta para ver un fin de semana de lluvia.",
+      "puntuacion": 5
+    },
+    {
+      "peliculaId": 30,
+      "autor": "Emiliano P.",
+      "comentario": "Una historia simple pero muy bien contada.",
+      "puntuacion": 5
+    }
+  ]
+}

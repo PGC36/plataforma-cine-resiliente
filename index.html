@@ -45,6 +45,10 @@
     </select>
   </div>
 
+  <section class="anuncios oculto" id="seccion-anuncios" aria-live="polite">
+    <!-- Se llena con js/services/anunciosService.js (via orquestarServicios). Oculta si el servicio falla. -->
+  </section>
+
   <main class="contenedor" id="contenedor-peliculas">
     <!-- Las tarjetas se generan dinámicamente desde peliculas.json (ver js/main.js) -->
   </main>
@@ -72,6 +76,10 @@
         <li><strong data-i18n="calificacion">Calificación:</strong> ⭐ <span id="modal-calificacion"></span></li>
       </ul>
     </div>
+
+    <aside class="modal-resenas oculto" id="modal-resenas" aria-live="polite">
+      <!-- Reseñas de la película abierta (js/services/resenasService.js). Oculto si el servicio falló o no hay reseñas para esta película. -->
+    </aside>
   </div>
 </body>
 </html>
