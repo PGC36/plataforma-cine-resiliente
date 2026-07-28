@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CapyFilms</title>
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="stylesheet" href="styles.css" />
+  <script type="module" src="js/main.js" defer></script>
+</head>
+<body>
+  <header class="header">
+    <div class="header__marca">
+      <img src="images/logo.png" alt="Logo Capy Films" class="header__logo" />
+      <h1 class="header__titulo">
+        <object data="images/titleText.png" type="image/png" class="header__titulo-imagen" aria-label="Capy Films">Capy Films</object>
+      </h1>
+    </div>
+    <div class="header__filtros">
+      <div class="contador-favoritos" id="contador-favoritos">
+        <span class="contador-favoritos__icono">♥</span>
+        <span class="contador-favoritos__numero" id="contador-favoritos-numero">0</span>
+      </div>
+      <button
+        type="button"
+        id="boton-idioma"
+        class="filtros__boton-idioma"
+        aria-label="Cambiar idioma"
+      >
+        EN
+      </button>
+    </div>
+  </header>
+
+  <div class="barra-busqueda">
+    <input
+      type="text"
+      id="buscador"
+      class="filtros__input"
+      placeholder="Buscar película..."
+      data-i18n-placeholder="buscar"
+    />
+    <select id="filtro-categoria" class="filtros__select">
+      <option value="todas" data-i18n="todas">Todas las categorías</option>
+    </select>
+  </div>
+
+  <main class="contenedor" id="contenedor-peliculas">
+    <!-- Las tarjetas se generan dinámicamente desde peliculas.json (ver js/main.js) -->
+  </main>
+
+  <footer class="footer">
+    <p data-i18n="footer">Catálogo de películas — CapyFilms</p>
+  </footer>
+
+  <div class="modal-overlay" id="modal-overlay">
+    <div
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-titulo"
+    >
+      <button class="modal__cerrar" id="modal-cerrar" aria-label="Cerrar" data-i18n-aria="cerrar">✕</button>
+      <img class="modal__imagen" id="modal-imagen" src="" alt="" />
+      <div class="modal__categoria" id="modal-categoria">Categoría</div>
+      <h2 class="modal__titulo" id="modal-titulo">Título de la película</h2>
+      <p class="modal__descripcion" id="modal-descripcion"></p>
+      <ul class="modal__detalles">
+        <li><strong data-i18n="anio">Año:</strong> <span id="modal-anio"></span></li>
+        <li><strong data-i18n="director">Director:</strong> <span id="modal-director"></span></li>
+        <li><strong data-i18n="duracion">Duración:</strong> <span id="modal-duracion"></span> <span data-i18n="min">min</span></li>
+        <li><strong data-i18n="calificacion">Calificación:</strong> ⭐ <span id="modal-calificacion"></span></li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
