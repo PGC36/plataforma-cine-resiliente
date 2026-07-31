@@ -1,4 +1,4 @@
-import { mapReviewsDtoToEntities } from "../mappers/reviewMapper.js";
+import { mapReviewsDtoToEntities } from "../mappers/Review.Mapper.js";
 import type { Review } from "../entities/Review.js";
 import type { ReviewDTO } from "../dtos/Review.DTO.js";
 import type { ReviewsResponseDTO } from "../dtos/ReviewsResponse.DTO.js";

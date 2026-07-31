@@ -88,10 +88,10 @@ Todos los nombres de archivo `.ts` bajo `src/` (salvo `main.ts`, `data.ts`, `dom
 | `core/favoritos.ts` | `core/favorites.ts` |
 | `core/filtros.ts` | `core/filters.ts` |
 | `core/idioma.ts` | `core/language.ts` |
-| `services/anunciosService.ts` | `services/advertisementsService.ts` |
-| `services/catalogoService.ts` | `services/catalogService.ts` |
-| `services/resenasService.ts` | `services/reviewsService.ts` |
-| `cache/filtroCache.ts` | `cache/filterCache.ts` |
+| `services/anunciosService.ts` | `services/Advertisements.Service.ts` |
+| `services/catalogoService.ts` | `services/Catalog.Service.ts` |
+| `services/resenasService.ts` | `services/Reviews.Service.ts` |
+| `cache/filtroCache.ts` | `cache/Filter.Cache.ts` |
 | `orquestador/orquestarServicios.ts` | `orquestador/orchestrateServices.ts` |
 | `entities/Anuncio.ts` | `entities/Advertisement.ts` |
 | `entities/Pelicula.ts` | `entities/Movie.ts` |
@@ -101,11 +101,11 @@ Todos los nombres de archivo `.ts` bajo `src/` (salvo `main.ts`, `data.ts`, `dom
 | `dtos/Resena.DTO.ts` | `dtos/Review.DTO.ts` |
 | `dtos/PeliculasResponse.DTO.ts` | `dtos/MoviesResponse.DTO.ts` |
 | `dtos/ResenasResponse.DTO.ts` | `dtos/ReviewsResponse.DTO.ts` |
-| `mappers/anuncioMapper.ts` | `mappers/advertisementMapper.ts` |
-| `mappers/peliculaMapper.ts` | `mappers/movieMapper.ts` |
-| `mappers/resenaMapper.ts` | `mappers/reviewMapper.ts` |
+| `mappers/anuncioMapper.ts` | `mappers/Advertisement.Mapper.ts` |
+| `mappers/peliculaMapper.ts` | `mappers/Movie.Mapper.ts` |
+| `mappers/resenaMapper.ts` | `mappers/Review.Mapper.ts` |
 
-Alcance deliberadamente limitado a **nombres de archivo**: las carpetas contenedoras (`core/`, `services/`, `cache/`, `orquestador/`, `entities/`, `dtos/`, `mappers/`) y todos los identificadores internos (funciones, variables, interfaces exportadas como `PeliculaDTO`, `crearFiltroPeliculas`, `obtenerAnuncios`, etc.) se mantuvieron en español, sin tocar, respetando la convención de `AGENTS.md` ("nombres de variables, funciones y comentarios en español"). Como consecuencia, hay archivos cuyo nombre está en inglés pero cuyo contenido sigue en español (p. ej. `movieMapper.ts` exporta `mapPeliculaDtoToEntity`) — es intencional, no una inconsistencia a corregir.
+Alcance deliberadamente limitado a **nombres de archivo**: las carpetas contenedoras (`core/`, `services/`, `cache/`, `orquestador/`, `entities/`, `dtos/`, `mappers/`) y todos los identificadores internos (funciones, variables, interfaces exportadas como `PeliculaDTO`, `crearFiltroPeliculas`, `obtenerAnuncios`, etc.) se mantuvieron en español, sin tocar, respetando la convención de `AGENTS.md` ("nombres de variables, funciones y comentarios en español"). Como consecuencia, hay archivos cuyo nombre está en inglés pero cuyo contenido sigue en español (p. ej. `Movie.Mapper.ts` exporta `mapPeliculaDtoToEntity`) — es intencional, no una inconsistencia a corregir.
 
 Todos los `import` que referenciaban los nombres viejos se actualizaron (verificado con grep, sin referencias colgantes).
 
@@ -135,7 +135,7 @@ Reemplaza el alcance de la sección 8 (que había quedado limitado a nombres de 
 | `comentario` | `comment` |
 | `puntuacion` | `rating` |
 
-**DTOs/Entities/Mappers**: como ahora los DTOs reflejan el JSON (ya en inglés), DTO y Entity terminan con los mismos nombres de campo — `MovieDTO`/`Movie`, `ReviewDTO`/`Review`, `AdvertisementDTO`/`Advertisement` — y los mappers (`movieMapper.ts`, `reviewMapper.ts`, `advertisementMapper.ts`) pasaron a ser prácticamente 1:1, salvo el fallback de `movieMapper.ts` (`titleEn ?? title`, etc.) que se mantuvo.
+**DTOs/Entities/Mappers**: como ahora los DTOs reflejan el JSON (ya en inglés), DTO y Entity terminan con los mismos nombres de campo — `MovieDTO`/`Movie`, `ReviewDTO`/`Review`, `AdvertisementDTO`/`Advertisement` — y los mappers (`Movie.Mapper.ts`, `Review.Mapper.ts`, `Advertisement.Mapper.ts`) pasaron a ser prácticamente 1:1, salvo el fallback de `Movie.Mapper.ts` (`titleEn ?? title`, etc.) que se mantuvo.
 
 **Identificadores de código**: todas las funciones/variables se tradujeron (`obtenerCatalogo`→`getCatalog`, `orquestarServicios`→`orchestrateServices`, `crearFiltroPeliculas`→`createMovieFilter`, `renderizarPeliculas`→`renderMovies`, `traducirPelicula`→`translateMovie`, `abrirModal`/`cerrarModal`→`openModal`/`closeModal`, etc.), incluyendo la carpeta `orquestador/` → `orchestrator/` (única carpeta que quedaba en español). El diccionario de `core/language.ts` tradujo sus **claves** (`buscar`→`search`, `todas`→`all`, `anio`→`year`, `duracion`→`duration`, `calificacion`→`rating`, `cerrar`→`close`, `favorito`→`favorite`) manteniendo los **valores** en español/inglés según corresponda (contenido, no identificadores). Las claves de `localStorage` también se tradujeron (`idioma-preferido`→`preferred-language`, `peliculas-favoritas`→`favorite-movies`) — esto invalida cualquier preferencia/favorito guardado por un navegador con la versión anterior.
 
@@ -143,8 +143,22 @@ Reemplaza el alcance de la sección 8 (que había quedado limitado a nombres de 
 
 **HTML/CSS**: todos los `id`/clase de `index.html` y `styles.css` se tradujeron en conjunto con sus referencias en TS (verificado con un script que cruza clases usadas vs. definidas en `styles.css`, sin huérfanas). Ejemplos: `.tarjeta`→`.card`, `.anuncios`→`.ads` (bloque BEM `ads__slide`, `ads__dot`, etc.), `.modal-resenas`→`.modal-reviews`, `.oculto`→`.hidden`, `.activo`→`.active`, `sin-scroll`→`no-scroll`, `#contenedor-peliculas`→`#movies-container`, `#buscador`→`#search-input`, `#filtro-categoria`→`#category-filter`, `#boton-idioma`→`#language-button`, `#modal-titulo`→`#modal-title` (y el resto de los campos del modal). Los `@keyframes` también: `tarjeta-aparece`→`card-appears`, `favorito-pop`→`favorite-pop`, `resena-flota`→`review-float`.
 
-Se encontró y borró un archivo huérfano (`src/cache/filtroCache.ts`, con el nombre e identificadores viejos) que había quedado duplicado junto al `filterCache.ts` correcto — no estaba importado por nadie, pero convivía en el filesystem.
+Se encontró y borró un archivo huérfano (`src/cache/filtroCache.ts`, con el nombre e identificadores viejos) que había quedado duplicado junto al `Filter.Cache.ts` correcto — no estaba importado por nadie, pero convivía en el filesystem.
 
-## Nota sobre docs existentes
+## 10. Nombres de mappers/cache/services alineados al patrón punto-separado de los DTOs
 
-`AGENTS.md`, `MODULOS.md` y `README.md` todavía documentan la versión en español (nombres de archivo, campos de datos, el query param `forzarFallo`, "no hay build ni dependencias") — con este cambio quedaron significativamente desactualizados, más allá de lo que ya se señalaba en migraciones anteriores. No se editaron porque no fue parte de lo pedido; conviene actualizarlos (o reescribirlos) en un commit aparte para que no queden desalineados con el estado real del proyecto.
+Los DTOs ya usaban el patrón `Nombre.SUFIJO.ts` (`Movie.DTO.ts`, `Review.DTO.ts`, etc. — ver §8). Se extendió el mismo patrón a `mappers/`, `cache/` y `services/`, separando la palabra base y el sufijo con un punto:
+
+| Antes | Ahora |
+|---|---|
+| `mappers/movieMapper.ts` | `mappers/Movie.Mapper.ts` |
+| `mappers/reviewMapper.ts` | `mappers/Review.Mapper.ts` |
+| `mappers/advertisementMapper.ts` | `mappers/Advertisement.Mapper.ts` |
+| `cache/filterCache.ts` | `cache/Filter.Cache.ts` |
+| `services/catalogService.ts` | `services/Catalog.Service.ts` |
+| `services/reviewsService.ts` | `services/Reviews.Service.ts` |
+| `services/advertisementsService.ts` | `services/Advertisements.Service.ts` |
+
+Igual que en §8, solo cambió el nombre de archivo — las funciones/tipos exportados (`mapMovieDtoToEntity`, `createMovieFilter`, `getCatalog`, etc.) no se tocaron. Se actualizaron todos los `import` y tres comentarios sueltos que mencionaban los nombres viejos (`Movie.DTO.ts`, `Advertisement.DTO.ts`, dos en `index.html`), verificado con grep sin referencias colgantes. `orchestrator/orchestrateServices.ts` y `main.ts` quedaron sin cambiar de nombre (no siguen el patrón DTO porque no son "entidad + sufijo", son el único orquestador y el único entry point respectivamente).
+
+`AGENTS.md`, `MODULOS.md` y `README.md` se actualizaron para reflejar estos nombres (y, en la misma pasada, todo lo de §9) — ya no están desalineados con el estado real del proyecto.

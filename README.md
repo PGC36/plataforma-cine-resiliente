@@ -34,7 +34,7 @@ index.html           Maquetación: header (logo + título, favoritos, idioma),
                       abrir una película), footer.
 styles.css            Todo el CSS del proyecto.
 movies.json           Fuente de datos (30 películas, claves en inglés).
-reviews.json          Reseñas mock (187 items), fetched por reviewsService.ts.
+reviews.json          Reseñas mock (187 items), fetched por Reviews.Service.ts.
 posters/              Pósters de cada película (.webp).
 banners/              Imágenes de fondo del carrusel de anuncios (.webp, 1600x500).
 images/               Logo y logotipo de texto del header.
@@ -49,17 +49,17 @@ src/
     modal.ts            Abre/cierra el modal de detalle.
     favorites.ts        Favoritos en localStorage.
     filters.ts          Búsqueda por texto y filtro por categoría (sobre la
-                        lista ya resuelta por género, ver cache/filterCache.ts).
+                        lista ya resuelta por género, ver cache/Filter.Cache.ts).
     language.ts         Diccionario ES/EN y traducción de datos.
     animations.ts       Retraso de entrada de las cards y pop de favoritos.
     dom.ts               Helper para tipar getElementById.
   services/           Tres "backends" simulados, consumidos en paralelo:
-    catalogService.ts          Envuelve data.ts + mapper (nunca falla).
-    reviewsService.ts          Reseñas mock por película, con fallo simulado.
-    advertisementsService.ts   Anuncios mock (carrusel/hero banner, ver banners/),
+    Catalog.Service.ts          Envuelve data.ts + mapper (nunca falla).
+    Reviews.Service.ts          Reseñas mock por película, con fallo simulado.
+    Advertisements.Service.ts   Anuncios mock (carrusel/hero banner, ver banners/),
                                con fallo simulado.
   cache/
-    filterCache.ts      Closure con caché privado: filtra por género con
+    Filter.Cache.ts      Closure con caché privado: filtra por género con
                         una simulación de latencia solo en la primera
                         consulta de cada género; las siguientes leen del
                         caché sin volver a disparar la promesa.

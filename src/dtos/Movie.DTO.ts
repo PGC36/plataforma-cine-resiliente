@@ -1,6 +1,6 @@
 /**
  * Raw shape of each movie as it comes from movies.json,
- * before going through mappers/movieMapper.ts.
+ * before going through mappers/Movie.Mapper.ts.
  */
 export interface MovieDTO {
   id: number;

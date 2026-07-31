@@ -6,8 +6,8 @@ import { getLanguage, setLanguage, applyLanguage, getTranslation } from "./core/
 import { animateFavorite, calculateEntryDelay } from "./core/animations.js";
 import { getElement } from "./core/dom.js";
 import { orchestrateServices } from "./orchestrator/orchestrateServices.js";
-import { createMovieFilter } from "./cache/filterCache.js";
-import type { MovieFilter } from "./cache/filterCache.js";
+import { createMovieFilter } from "./cache/Filter.Cache.js";
+import type { MovieFilter } from "./cache/Filter.Cache.js";
 import type { Movie } from "./entities/Movie.js";
 import type { Review } from "./entities/Review.js";
 import type { Advertisement } from "./entities/Advertisement.js";

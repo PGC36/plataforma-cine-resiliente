@@ -1,6 +1,6 @@
-import { getCatalog } from "../services/catalogService.js";
-import { getReviews } from "../services/reviewsService.js";
-import { getAdvertisements } from "../services/advertisementsService.js";
+import { getCatalog } from "../services/Catalog.Service.js";
+import { getReviews } from "../services/Reviews.Service.js";
+import { getAdvertisements } from "../services/Advertisements.Service.js";
 import type { Movie } from "../entities/Movie.js";
 import type { Review } from "../entities/Review.js";
 import type { Advertisement } from "../entities/Advertisement.js";

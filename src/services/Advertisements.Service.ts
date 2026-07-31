@@ -1,4 +1,4 @@
-import { mapAdvertisementsDtoToEntities } from "../mappers/advertisementMapper.js";
+import { mapAdvertisementsDtoToEntities } from "../mappers/Advertisement.Mapper.js";
 import type { Advertisement } from "../entities/Advertisement.js";
 import type { AdvertisementDTO } from "../dtos/Advertisement.DTO.js";
 

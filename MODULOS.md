@@ -28,7 +28,7 @@ Interfaces puras, sin lógica. Es lo único que ven `core/`, `services/`, `cache
 - **Exports:** `interface ReviewDTO`, `interface ReviewsResponseDTO { reviews: ReviewDTO[] }`.
 
 ### `Advertisement.DTO.ts`
-- **Responsabilidad:** modelar el mock de `advertisementsService.ts` tal como está hardcodeado (no viene de un `.json`).
+- **Responsabilidad:** modelar el mock de `Advertisements.Service.ts` tal como está hardcodeado (no viene de un `.json`).
 - **Exports:** `interface AdvertisementDTO`.
 
 ---
@@ -37,15 +37,15 @@ Interfaces puras, sin lógica. Es lo único que ven `core/`, `services/`, `cache
 
 Sin DOM, sin `fetch`, sin side effects. Se llaman desde `services/`, nunca desde `core/`/`main.ts` directamente.
 
-### `movieMapper.ts`
+### `Movie.Mapper.ts`
 - **Exports:** `mapMovieDtoToEntity(dto: MovieDTO): Movie`, `mapMoviesDtoToEntities(dtos: MovieDTO[]): Movie[]`.
 - **Lógica:** copia campo a campo; si falta `titleEn`/`categoryEn`/`descriptionEn` en el DTO, cae al valor por defecto (`dto.titleEn ?? dto.title`, etc.) en vez de propagar `undefined`.
 
-### `reviewMapper.ts`
+### `Review.Mapper.ts`
 - **Exports:** `mapReviewDtoToEntity(dto: ReviewDTO): Review`, `mapReviewsDtoToEntities(dtos: ReviewDTO[]): Review[]`.
 - **Lógica:** copia directa, sin fallback (todos los campos de `ReviewDTO` son obligatorios).
 
-### `advertisementMapper.ts`
+### `Advertisement.Mapper.ts`
 - **Exports:** `mapAdvertisementDtoToEntity(dto: AdvertisementDTO): Advertisement`, `mapAdvertisementsDtoToEntities(dtos: AdvertisementDTO[]): Advertisement[]`.
 - **Lógica:** copia directa.
 
@@ -55,14 +55,14 @@ Sin DOM, sin `fetch`, sin side effects. Se llaman desde `services/`, nunca desde
 
 ### `data.ts`
 - **Responsabilidad:** `fetch()` de `movies.json`.
-- **Exports:** `getMovies(): Promise<MovieDTO[]>` — lanza error si la respuesta no es `ok`. Devuelve DTOs crudos, sin mapear (el mapeo lo hace `catalogService.ts`).
+- **Exports:** `getMovies(): Promise<MovieDTO[]>` — lanza error si la respuesta no es `ok`. Devuelve DTOs crudos, sin mapear (el mapeo lo hace `Catalog.Service.ts`).
 - **Imports:** `MovieDTO`, `MoviesResponseDTO` (`../dtos/`).
 
 ### `render.ts`
 - **Responsabilidad:** construir las cards del DOM a partir de una lista de películas.
 - **Exports:** `renderMovies(movies: Movie[], container: HTMLElement): void`.
 - **Imports:** `isFavorite` (`favorites.ts`), `getTranslation`/`translateMovie` (`language.ts`), `calculateEntryDelay` (`animations.ts`), `Movie` (`../entities/`).
-- **Nota:** traduce cada película en el momento de pintar (`translateMovie`), no antes — por eso el caché de género (`cache/filterCache.ts`) puede guardar objetos sin traducir sin que se rompa nada.
+- **Nota:** traduce cada película en el momento de pintar (`translateMovie`), no antes — por eso el caché de género (`cache/Filter.Cache.ts`) puede guardar objetos sin traducir sin que se rompa nada.
 
 ### `modal.ts`
 - **Responsabilidad:** abrir/cerrar el modal de detalle y rellenarlo con los `data-*` de una card.
@@ -78,7 +78,7 @@ Sin DOM, sin `fetch`, sin side effects. Se llaman desde `services/`, nunca desde
 - **Responsabilidad:** poblar el `<select>` de categorías y filtrar por texto + categoría.
 - **Exports:** `populateCategories(movies, selectElement)`, `filterMovies(movies, text, category)`.
 - **Imports:** `translateMovie` (`language.ts`), `Movie` (`../entities/`).
-- **Nota de integración:** `main.ts` siempre le pasa `"all"` como `category`, porque el filtro por género real ya lo resolvió `cache/filterCache.ts` antes de llegar acá — evita el doble filtrado (ver sección de la caché más abajo).
+- **Nota de integración:** `main.ts` siempre le pasa `"all"` como `category`, porque el filtro por género real ya lo resolvió `cache/Filter.Cache.ts` antes de llegar acá — evita el doble filtrado (ver sección de la caché más abajo).
 
 ### `language.ts`
 - **Responsabilidad:** diccionario ES/EN y traducción de textos estáticos y de datos.
@@ -103,25 +103,25 @@ Sin DOM, sin `fetch`, sin side effects. Se llaman desde `services/`, nunca desde
 
 Cada uno hace: obtener datos crudos → mapear DTO→Entity → resolver/rechazar con `Entity[]`.
 
-### `catalogService.ts`
-- **Responsabilidad:** exponer el catálogo con la misma interfaz que los otros dos servicios, delegando en `data.ts` + `movieMapper.ts`. Nunca falla a propósito.
+### `Catalog.Service.ts`
+- **Responsabilidad:** exponer el catálogo con la misma interfaz que los otros dos servicios, delegando en `data.ts` + `Movie.Mapper.ts`. Nunca falla a propósito.
 - **Exports:** `getCatalog(): Promise<Movie[]>`.
-- **Imports:** `getMovies` (`../core/data.ts`), `mapMoviesDtoToEntities` (`../mappers/movieMapper.ts`), `Movie` (`../entities/`).
+- **Imports:** `getMovies` (`../core/data.ts`), `mapMoviesDtoToEntities` (`../mappers/Movie.Mapper.ts`), `Movie` (`../entities/`).
 - **Lógica:** wrapper directo, sin `try/catch` propio — si el `fetch` real falla, el rechazo se propaga tal cual.
 
-### `reviewsService.ts`
+### `Reviews.Service.ts`
 - **Responsabilidad:** simular un servicio externo de reseñas de usuarios, con fallo aleatorio o forzado.
 - **Exports:** `getReviews(): Promise<Review[]>`.
-- **Imports:** `mapReviewsDtoToEntities` (`../mappers/reviewMapper.ts`), `Review`/`ReviewDTO`/`ReviewsResponseDTO`. Hace su propio `fetch()` de `reviews.json`, igual que `core/data.ts` hace con `movies.json`.
+- **Imports:** `mapReviewsDtoToEntities` (`../mappers/Review.Mapper.ts`), `Review`/`ReviewDTO`/`ReviewsResponseDTO`. Hace su propio `fetch()` de `reviews.json`, igual que `core/data.ts` hace con `movies.json`.
 - **Parámetros de simulación:** `DELAY_MS = 700`, `PROBABILITY_OF_FAILURE = 0` (dejado en `0` a propósito; subir el valor para volver a ver fallos aleatorios). Primero se cumple el delay/fallo simulado (`setTimeout`); solo si no le tocó fallar, recién ahí dispara el `fetch()` real de `reviews.json`.
 - **Fallo forzado:** `?forceFail=reviews` o `?forceFail=all` en la URL saltea el `Math.random()` y siempre rechaza (sin llegar a pedir el JSON).
 - **Fuente de datos (`reviews.json`, raíz del proyecto):** `{ "reviews": [{ movieId, author, comment, rating }, ...] }`, 187 reseñas repartidas sobre las 30 películas de `movies.json` con esta distribución (pedida explícitamente, no arbitraria): 3 películas (10%) con más de 10 reseñas — incluye Matrix (id 2) con 15, a propósito para poder demostrar el scroll de `#modal-reviews` —, 9 (30%) con exactamente 9, 9 (30%) entre 5 y 8, 4 (15%, redondeando 4.5 hacia abajo) entre 1 y 4, y 5 (15%, redondeando hacia arriba) sin ninguna reseña. `main.ts` consume el array completo tal cual y filtra por `movieId` recién al abrir el modal de una película. Si se agregan películas nuevas a `movies.json`, `reviews.json` no se actualiza solo — hay que sumarle sus reseñas a mano (o dejarla en el bucket "sin reseñas" si no aplica).
 
-### `advertisementsService.ts`
+### `Advertisements.Service.ts`
 - **Responsabilidad:** simular el servicio de anuncios promocionales, mismo patrón que reviews pero independiente (para que no fallen/resuelvan en sincronía).
 - **Exports:** `getAdvertisements(): Promise<Advertisement[]>`.
-- **Imports:** `mapAdvertisementsDtoToEntities` (`../mappers/advertisementMapper.ts`), `Advertisement`/`AdvertisementDTO`.
-- **Parámetros de simulación:** `DELAY_MS = 500`, `PROBABILITY_OF_FAILURE = 0`, independiente de `reviewsService.ts`.
+- **Imports:** `mapAdvertisementsDtoToEntities` (`../mappers/Advertisement.Mapper.ts`), `Advertisement`/`AdvertisementDTO`.
+- **Parámetros de simulación:** `DELAY_MS = 500`, `PROBABILITY_OF_FAILURE = 0`, independiente de `Reviews.Service.ts`.
 - **Fallo forzado:** `?forceFail=advertisements` o `?forceFail=all`.
 - **Mock:** 3 anuncios (`title`, `text`, `backgroundImage`, `ctaText`) — el copy (`Semana del Cine Clásico`, etc.) se mantiene en español a propósito, es contenido — cada uno con su imagen de fondo en `banners/` (`SemanaCineClasico.webp`, `EstrenosCienciaFiccion.webp`, `MaratonDeTerror.webp`) y su propio texto de botón. Se consumen desde `main.ts` como un carrusel (ver más abajo), no como una lista fija.
 
@@ -131,14 +131,14 @@ Cada uno hace: obtener datos crudos → mapear DTO→Entity → resolver/rechaza
 
 - **Responsabilidad:** disparar los tres servicios en paralelo con `Promise.allSettled` y devolver un resultado consolidado.
 - **Exports:** `orchestrateServices(): Promise<OrchestrationResult>` donde `OrchestrationResult = { movies: Movie[], reviews: Review[] | null, advertisements: Advertisement[] | null }`.
-- **Imports:** `getCatalog` (`../services/catalogService.ts`), `getReviews` (`../services/reviewsService.ts`), `getAdvertisements` (`../services/advertisementsService.ts`).
+- **Imports:** `getCatalog` (`../services/Catalog.Service.ts`), `getReviews` (`../services/Reviews.Service.ts`), `getAdvertisements` (`../services/Advertisements.Service.ts`).
 - **Lógica:**
   - Si `catalog` rechaza → propaga el error (fatal; lo atrapa el `catch` de `start()` en `main.ts`).
   - Si `reviews`/`advertisements` rechazan → se devuelven como `null` (con `console.warn` del motivo), sin romper el resto del flujo.
 
 ---
 
-## `src/cache/filterCache.ts`
+## `src/cache/Filter.Cache.ts`
 
 - **Responsabilidad:** filtrar películas por género con un caché privado por closure, para no repetir la simulación de latencia en géneros ya consultados.
 - **Exports:** `createMovieFilter(movies: Movie[]): MovieFilter` donde `MovieFilter = { filterByGenre(genre): Promise<Movie[]> }`.
@@ -156,7 +156,7 @@ Cada uno hace: obtener datos crudos → mapear DTO→Entity → resolver/rechaza
 
 - **Responsabilidad:** único punto de entrada; orquesta `orchestrateServices()`, crea el filtro de género, conecta todos los eventos delegados y arma el panel de reseñas del modal.
 - **No exporta nada** (se autoejecuta con `start()` al final del archivo).
-- **Imports:** todos los `core/*` necesarios (incluye `calculateEntryDelay` de `animations.ts`, reutilizado para el delay escalonado de las reseñas), `orchestrateServices` (`./orchestrator/orchestrateServices.ts`), `createMovieFilter` (`./cache/filterCache.ts`).
+- **Imports:** todos los `core/*` necesarios (incluye `calculateEntryDelay` de `animations.ts`, reutilizado para el delay escalonado de las reseñas), `orchestrateServices` (`./orchestrator/orchestrateServices.ts`), `createMovieFilter` (`./cache/Filter.Cache.ts`).
 - **Flujo relevante:**
   - `start()`: llama a `orchestrateServices()`, guarda `movies` y `reviews` (esta última puede quedar en `null` si el servicio falló), crea `movieFilter = createMovieFilter(movies)`, renderiza catálogo + banner de anuncios (solo si `advertisements` no es `null`).
   - **Carrusel de anuncios:** `renderAds(data)` no pinta una lista fija — guarda `data` en la variable de módulo `advertisements`, arma los puntos indicadores (`#ads-dots`) y pinta el primer slide (`paintCurrentAdSlide()`), que setea `adsSlide.style.backgroundImage` (degradado + `backgroundImage` del anuncio) y el HTML del título/texto/CTA. `goToAd(index)` navega circularmente (`(index + advertisements.length) % advertisements.length`) y reinicia el autoplay; `restartAdsAutoplay()` limpia el `setInterval` anterior y arma uno nuevo cada `AUTOPLAY_INTERVAL_MS` (6000ms) — solo si hay más de un anuncio. Las flechas (`#ads-prev`/`#ads-next`) y el click delegado en `#ads-dots` llaman a `goToAd()`. Si solo hay un anuncio, se agrega la clase `ads--single` para ocultar flechas/indicadores por CSS.
