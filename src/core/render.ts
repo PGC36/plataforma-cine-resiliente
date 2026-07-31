@@ -1,19 +1,20 @@
-import { esFavorito } from "./favoritos.js";
-import { obtenerTraduccion, traducirPelicula } from "./idioma.js";
-import { calcularRetrasoEntrada } from "./animaciones.js";
+import { esFavorito } from "./favorites.js";
+import { obtenerTraduccion, traducirPelicula } from "./language.js";
+import { calcularRetrasoEntrada } from "./animations.js";
+import type { Pelicula } from "../entities/Movie.js";
 
-function crearTarjeta(peliculaOriginal, indice) {
+function crearTarjeta(peliculaOriginal: Pelicula, indice: number): HTMLElement {
   const pelicula = traducirPelicula(peliculaOriginal);
   const articulo = document.createElement("article");
   articulo.className = "tarjeta";
   articulo.style.animationDelay = calcularRetrasoEntrada(indice);
-  articulo.dataset.id = pelicula.id;
+  articulo.dataset.id = String(pelicula.id);
   articulo.dataset.titulo = pelicula.titulo;
-  articulo.dataset.anio = pelicula.anio;
+  articulo.dataset.anio = String(pelicula.anio);
   articulo.dataset.director = pelicula.director;
   articulo.dataset.categoria = pelicula.categoria;
-  articulo.dataset.duracion = pelicula.duracion;
-  articulo.dataset.calificacion = pelicula.calificacion;
+  articulo.dataset.duracion = String(pelicula.duracion);
+  articulo.dataset.calificacion = String(pelicula.calificacion);
   articulo.dataset.descripcion = pelicula.descripcion;
   articulo.dataset.imagen = pelicula.imagen;
 
@@ -31,7 +32,7 @@ function crearTarjeta(peliculaOriginal, indice) {
   return articulo;
 }
 
-export function renderizarPeliculas(peliculas, contenedor) {
+export function renderizarPeliculas(peliculas: Pelicula[], contenedor: HTMLElement): void {
   contenedor.innerHTML = "";
   const fragmento = document.createDocumentFragment();
   peliculas.forEach((pelicula, indice) => fragmento.appendChild(crearTarjeta(pelicula, indice)));

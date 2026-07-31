@@ -1,43 +1,49 @@
 import { renderizarPeliculas } from "./core/render.js";
 import { abrirModal, inicializarModal } from "./core/modal.js";
-import { alternarFavorito, actualizarContadorFavoritos } from "./core/favoritos.js";
-import { poblarCategorias, filtrarPeliculas } from "./core/filtros.js";
-import { obtenerIdioma, establecerIdioma, aplicarIdioma, obtenerTraduccion } from "./core/idioma.js";
-import { animarFavorito, calcularRetrasoEntrada } from "./core/animaciones.js";
-import { orquestarServicios } from "./orquestador/orquestarServicios.js";
-import { crearFiltroPeliculas } from "./cache/filtroCache.js";
+import { alternarFavorito, actualizarContadorFavoritos } from "./core/favorites.js";
+import { poblarCategorias, filtrarPeliculas } from "./core/filters.js";
+import { obtenerIdioma, establecerIdioma, aplicarIdioma, obtenerTraduccion } from "./core/language.js";
+import { animarFavorito, calcularRetrasoEntrada } from "./core/animations.js";
+import { obtenerElemento } from "./core/dom.js";
+import { orquestarServicios } from "./orquestador/orchestrateServices.js";
+import { crearFiltroPeliculas } from "./cache/filterCache.js";
+import type { FiltroPeliculas } from "./cache/filterCache.js";
+import type { Pelicula } from "./entities/Movie.js";
+import type { Resena } from "./entities/Review.js";
+import type { Anuncio } from "./entities/Advertisement.js";
 
-const contenedor = document.getElementById("contenedor-peliculas");
-const buscador = document.getElementById("buscador");
-const filtroCategoria = document.getElementById("filtro-categoria");
-const botonIdioma = document.getElementById("boton-idioma");
-const seccionAnuncios = document.getElementById("seccion-anuncios");
-const anunciosSlide = document.getElementById("anuncios-slide");
-const anunciosAnterior = document.getElementById("anuncios-anterior");
-const anunciosSiguiente = document.getElementById("anuncios-siguiente");
-const anunciosIndicadores = document.getElementById("anuncios-indicadores");
-const modalResenas = document.getElementById("modal-resenas");
+const contenedor = obtenerElemento("contenedor-peliculas");
+const buscador = obtenerElemento<HTMLInputElement>("buscador");
+const filtroCategoria = obtenerElemento<HTMLSelectElement>("filtro-categoria");
+const botonIdioma = obtenerElemento("boton-idioma");
+const seccionAnuncios = obtenerElemento("seccion-anuncios");
+const anunciosSlide = obtenerElemento("anuncios-slide");
+const anunciosAnterior = obtenerElemento("anuncios-anterior");
+const anunciosSiguiente = obtenerElemento("anuncios-siguiente");
+const anunciosIndicadores = obtenerElemento("anuncios-indicadores");
+const modalResenas = obtenerElemento("modal-resenas");
 
 const INTERVALO_AUTOPLAY_MS = 6000;
 
-let peliculas = [];
-let filtroPeliculas = null;
-let resenas = null;
-let anuncios = [];
+let peliculas: Pelicula[] = [];
+let filtroPeliculas: FiltroPeliculas | null = null;
+let resenas: Resena[] | null = null;
+let anuncios: Anuncio[] = [];
 let indiceAnuncioActual = 0;
-let temporizadorAutoplayAnuncios = null;
-let temporizadorBusqueda = null;
+let temporizadorAutoplayAnuncios: number | undefined;
+let temporizadorBusqueda: number | undefined;
 
-function aplicarFiltrosConDelay() {
+function aplicarFiltrosConDelay(): void {
   clearTimeout(temporizadorBusqueda);
   temporizadorBusqueda = setTimeout(aplicarFiltros, 300);
 }
 
-function manejarClickEnContenedor(evento) {
-  const tarjeta = evento.target.closest(".tarjeta");
+function manejarClickEnContenedor(evento: MouseEvent): void {
+  const objetivo = evento.target as HTMLElement;
+  const tarjeta = objetivo.closest<HTMLElement>(".tarjeta");
   if (!tarjeta) return;
 
-  const botonFavorito = evento.target.closest(".tarjeta__favorito");
+  const botonFavorito = objetivo.closest<HTMLElement>(".tarjeta__favorito");
 
   if (botonFavorito) {
     const esFavoritoAhora = alternarFavorito(Number(tarjeta.dataset.id));
@@ -51,7 +57,9 @@ function manejarClickEnContenedor(evento) {
   renderizarResenasModal(Number(tarjeta.dataset.id));
 }
 
-async function aplicarFiltros() {
+async function aplicarFiltros(): Promise<void> {
+  if (!filtroPeliculas) return;
+
   filtroCategoria.disabled = true;
   try {
     const peliculasDelGenero = await filtroPeliculas.filtrarPorGenero(filtroCategoria.value);
@@ -62,7 +70,7 @@ async function aplicarFiltros() {
   }
 }
 
-function manejarCambioIdioma() {
+function manejarCambioIdioma(): void {
   const nuevoIdioma = obtenerIdioma() === "es" ? "en" : "es";
   establecerIdioma(nuevoIdioma);
   aplicarIdioma();
@@ -71,8 +79,9 @@ function manejarCambioIdioma() {
   aplicarFiltros();
 }
 
-function pintarSlideAnuncioActual() {
+function pintarSlideAnuncioActual(): void {
   const anuncio = anuncios[indiceAnuncioActual];
+  if (!anuncio) return;
 
   anunciosSlide.style.backgroundImage = `linear-gradient(90deg, rgba(20,20,28,0.92), rgba(20,20,28,0.35)), url("${anuncio.imagenFondo}")`;
   anunciosSlide.innerHTML = `
@@ -88,20 +97,20 @@ function pintarSlideAnuncioActual() {
   });
 }
 
-function reiniciarAutoplayAnuncios() {
+function reiniciarAutoplayAnuncios(): void {
   clearInterval(temporizadorAutoplayAnuncios);
   if (anuncios.length > 1) {
     temporizadorAutoplayAnuncios = setInterval(() => irAAnuncio(indiceAnuncioActual + 1), INTERVALO_AUTOPLAY_MS);
   }
 }
 
-function irAAnuncio(indice) {
+function irAAnuncio(indice: number): void {
   indiceAnuncioActual = (indice + anuncios.length) % anuncios.length;
   pintarSlideAnuncioActual();
   reiniciarAutoplayAnuncios();
 }
 
-function renderizarAnuncios(datos) {
+function renderizarAnuncios(datos: Anuncio[] | null): void {
   if (!datos || datos.length === 0) return;
 
   anuncios = datos;
@@ -117,7 +126,7 @@ function renderizarAnuncios(datos) {
   seccionAnuncios.classList.remove("oculto");
 }
 
-function renderizarResenasModal(peliculaId) {
+function renderizarResenasModal(peliculaId: number): void {
   modalResenas.classList.add("oculto");
   modalResenas.innerHTML = "";
 
@@ -139,7 +148,7 @@ function renderizarResenasModal(peliculaId) {
   modalResenas.classList.remove("oculto");
 }
 
-async function iniciar() {
+async function iniciar(): Promise<void> {
   aplicarIdioma();
   inicializarModal();
   actualizarContadorFavoritos();
@@ -150,7 +159,8 @@ async function iniciar() {
   anunciosAnterior.addEventListener("click", () => irAAnuncio(indiceAnuncioActual - 1));
   anunciosSiguiente.addEventListener("click", () => irAAnuncio(indiceAnuncioActual + 1));
   anunciosIndicadores.addEventListener("click", (evento) => {
-    const punto = evento.target.closest(".anuncios__punto");
+    const objetivo = evento.target as HTMLElement;
+    const punto = objetivo.closest<HTMLElement>(".anuncios__punto");
     if (punto) irAAnuncio(Number(punto.dataset.indice));
   });
 

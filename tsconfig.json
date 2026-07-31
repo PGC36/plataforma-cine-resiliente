@@ -1,0 +1,40 @@
+{
+  // Visit https://aka.ms/tsconfig to read more about this file
+  "compilerOptions": {
+    // File Layout
+    // Fuente .ts bajo src/ (src/core/, src/services/, src/cache/, src/orquestador/,
+    // src/entities/, src/dtos/, src/mappers/, src/main.ts); salida compilada a dist/,
+    // con la misma estructura interna (sin el prefijo src/).
+    "rootDir": "src",
+    "outDir": "dist",
+
+    // Environment Settings
+    // See also https://aka.ms/tsconfig/module
+    "module": "nodenext",
+    "target": "esnext",
+    "types": [],
+    // Sitio estático sin Node en runtime: no hace falta @types/node,
+    // el "lib" DOM se incluye por default (fetch, localStorage, HTMLElement, etc).
+
+    // Other Outputs
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+
+    // Stricter Typechecking Options
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+
+    // Requeridas por la consigna del laboratorio
+    "strict": true,
+    "noImplicitAny": true,
+    "noEmitOnError": true,
+
+    // Recommended Options
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "noUncheckedSideEffectImports": true,
+    "moduleDetection": "force",
+    "skipLibCheck": true,
+  }
+}

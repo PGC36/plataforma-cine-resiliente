@@ -1,8 +1,17 @@
-import { obtenerCatalogo } from "../services/catalogoService.js";
-import { obtenerResenas } from "../services/resenasService.js";
-import { obtenerAnuncios } from "../services/anunciosService.js";
+import { obtenerCatalogo } from "../services/catalogService.js";
+import { obtenerResenas } from "../services/reviewsService.js";
+import { obtenerAnuncios } from "../services/advertisementsService.js";
+import type { Pelicula } from "../entities/Movie.js";
+import type { Resena } from "../entities/Review.js";
+import type { Anuncio } from "../entities/Advertisement.js";
 
-export async function orquestarServicios() {
+export interface ResultadoOrquestacion {
+  peliculas: Pelicula[];
+  resenas: Resena[] | null;
+  anuncios: Anuncio[] | null;
+}
+
+export async function orquestarServicios(): Promise<ResultadoOrquestacion> {
   const [resCatalogo, resResenas, resAnuncios] = await Promise.allSettled([
     obtenerCatalogo(),
     obtenerResenas(),

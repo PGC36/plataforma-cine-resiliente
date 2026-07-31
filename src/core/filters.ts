@@ -1,6 +1,7 @@
-import { traducirPelicula } from "./idioma.js";
+import { traducirPelicula } from "./language.js";
+import type { Pelicula } from "../entities/Movie.js";
 
-export function poblarCategorias(peliculas, selectElemento) {
+export function poblarCategorias(peliculas: Pelicula[], selectElemento: HTMLSelectElement): void {
   selectElemento
     .querySelectorAll("option:not([value='todas'])")
     .forEach((opcion) => opcion.remove());
@@ -17,7 +18,7 @@ export function poblarCategorias(peliculas, selectElemento) {
   });
 }
 
-export function filtrarPeliculas(peliculas, texto, categoria) {
+export function filtrarPeliculas(peliculas: Pelicula[], texto: string, categoria: string): Pelicula[] {
   const textoNormalizado = texto.trim().toLowerCase();
 
   return peliculas.filter((peliculaOriginal) => {
