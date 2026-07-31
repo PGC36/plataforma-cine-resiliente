@@ -1,0 +1,1126 @@
+{
+  "reviews": [
+    {
+      "movieId": 1,
+      "author": "Federico L.",
+      "comment": "Una historia simple pero muy bien contada.",
+      "rating": 5
+    },
+    {
+      "movieId": 1,
+      "author": "Ezequiel T.",
+      "comment": "La actuación protagónica es lo mejor de todo el film.",
+      "rating": 5
+    },
+    {
+      "movieId": 1,
+      "author": "Antonella S.",
+      "comment": "Vale la pena solo por la escena final.",
+      "rating": 4
+    },
+    {
+      "movieId": 1,
+      "author": "Catalina S.",
+      "comment": "Una historia simple pero muy bien contada.",
+      "rating": 5
+    },
+    {
+      "movieId": 1,
+      "author": "Gonzalo X.",
+      "comment": "Una de esas películas que mejora en un segundo visionado.",
+      "rating": 4
+    },
+    {
+      "movieId": 1,
+      "author": "Abril J.",
+      "comment": "Se siente repetitiva hacia el final, pero vale la pena.",
+      "rating": 3
+    },
+    {
+      "movieId": 1,
+      "author": "Victoria M.",
+      "comment": "No entendí bien el final, pero la fotografía es espectacular.",
+      "rating": 3
+    },
+    {
+      "movieId": 1,
+      "author": "Ignacio B.",
+      "comment": "Una historia simple pero muy bien contada.",
+      "rating": 4
+    },
+    {
+      "movieId": 1,
+      "author": "Sol M.",
+      "comment": "Mejor de lo que recordaba, la volví a ver después de años.",
+      "rating": 5
+    },
+    {
+      "movieId": 1,
+      "author": "Guadalupe F.",
+      "comment": "No entendí bien el final, pero la fotografía es espectacular.",
+      "rating": 4
+    },
+    {
+      "movieId": 1,
+      "author": "Santiago Z.",
+      "comment": "Un poco previsible, aunque bien ejecutada.",
+      "rating": 4
+    },
+    {
+      "movieId": 1,
+      "author": "Josefina G.",
+      "comment": "La volvería a ver ahora mismo sin pensarlo.",
+      "rating": 5
+    },
+    {
+      "movieId": 1,
+      "author": "Nicolás U.",
+      "comment": "El ritmo es perfecto, no se hace larga en ningún momento.",
+      "rating": 4
+    },
+    {
+      "movieId": 2,
+      "author": "Julián P.",
+      "comment": "No es para todos los gustos, pero a mí me encantó.",
+      "rating": 4
+    },
+    {
+      "movieId": 2,
+      "author": "Valentina K.",
+      "comment": "Vale la pena solo por la escena final.",
+      "rating": 5
+    },
+    {
+      "movieId": 2,
+      "author": "Santiago Z.",
+      "comment": "Esperaba mucho más después de tanta recomendación.",
+      "rating": 3
+    },
+    {
+      "movieId": 2,
+      "author": "Delfina R.",
+      "comment": "El ritmo se siente un poco lento en el segundo acto, pero el final compensa.",
+      "rating": 4
+    },
+    {
+      "movieId": 2,
+      "author": "Marcela R.",
+      "comment": "Un poco previsible, aunque bien ejecutada.",
+      "rating": 3
+    },
+    {
+      "movieId": 2,
+      "author": "Nicolás U.",
+      "comment": "Le falta un poco de ritmo, pero la fotografía es hermosa.",
+      "rating": 3
+    },
+    {
+      "movieId": 2,
+      "author": "Maximiliano O.",
+      "comment": "Un clásico que todo cinéfilo debería tener en su lista.",
+      "rating": 5
+    },
+    {
+      "movieId": 2,
+      "author": "Catalina S.",
+      "comment": "Una sorpresa total, no esperaba que me gustara tanto.",
+      "rating": 5
+    },
+    {
+      "movieId": 2,
+      "author": "Renata D.",
+      "comment": "Un poco previsible, aunque bien ejecutada.",
+      "rating": 3
+    },
+    {
+      "movieId": 2,
+      "author": "Bruno V.",
+      "comment": "Se siente repetitiva hacia el final, pero vale la pena.",
+      "rating": 4
+    },
+    {
+      "movieId": 2,
+      "author": "Emiliano P.",
+      "comment": "Mejor de lo que recordaba, la volví a ver después de años.",
+      "rating": 4
+    },
+    {
+      "movieId": 2,
+      "author": "Leandro V.",
+      "comment": "Un clásico que todo cinéfilo debería tener en su lista.",
+      "rating": 5
+    },
+    {
+      "movieId": 2,
+      "author": "Martina A.",
+      "comment": "No entendí el hype, la verdad me pareció floja.",
+      "rating": 3
+    },
+    {
+      "movieId": 2,
+      "author": "Federico L.",
+      "comment": "Una película que hay que ver al menos una vez en la vida.",
+      "rating": 4
+    },
+    {
+      "movieId": 2,
+      "author": "Ignacio B.",
+      "comment": "Esperaba mucho más después de tanta recomendación.",
+      "rating": 2
+    },
+    {
+      "movieId": 3,
+      "author": "Antonella S.",
+      "comment": "La actuación protagónica es lo mejor de todo el film.",
+      "rating": 5
+    },
+    {
+      "movieId": 3,
+      "author": "Damián O.",
+      "comment": "Sin dudas de las mejores del género.",
+      "rating": 5
+    },
+    {
+      "movieId": 3,
+      "author": "Nadia G.",
+      "comment": "El guion tiene un par de baches, pero el elenco lo sostiene todo.",
+      "rating": 4
+    },
+    {
+      "movieId": 3,
+      "author": "Micaela Y.",
+      "comment": "Un guion redondo, no le sobra ni le falta nada.",
+      "rating": 4
+    },
+    {
+      "movieId": 3,
+      "author": "Abril J.",
+      "comment": "No es para todos los gustos, pero a mí me encantó.",
+      "rating": 3
+    },
+    {
+      "movieId": 3,
+      "author": "Victoria M.",
+      "comment": "La fotografía por momentos parece un cuadro.",
+      "rating": 5
+    },
+    {
+      "movieId": 3,
+      "author": "Maximiliano O.",
+      "comment": "La volvería a ver ahora mismo sin pensarlo.",
+      "rating": 4
+    },
+    {
+      "movieId": 3,
+      "author": "Lucía W.",
+      "comment": "No entendí bien el final, pero la fotografía es espectacular.",
+      "rating": 3
+    },
+    {
+      "movieId": 3,
+      "author": "Delfina R.",
+      "comment": "El elenco está impecable de principio a fin.",
+      "rating": 4
+    },
+    {
+      "movieId": 4,
+      "author": "Bautista H.",
+      "comment": "Perfecta para ver un fin de semana de lluvia.",
+      "rating": 4
+    },
+    {
+      "movieId": 4,
+      "author": "Sol M.",
+      "comment": "No entendí el hype, la verdad me pareció floja.",
+      "rating": 3
+    },
+    {
+      "movieId": 4,
+      "author": "Florencia I.",
+      "comment": "La actuación protagónica es lo mejor de todo el film.",
+      "rating": 5
+    },
+    {
+      "movieId": 4,
+      "author": "Valentina K.",
+      "comment": "De las pocas películas que me sacaron una lágrima.",
+      "rating": 4
+    },
+    {
+      "movieId": 4,
+      "author": "Catalina S.",
+      "comment": "De las pocas películas que me sacaron una lágrima.",
+      "rating": 4
+    },
+    {
+      "movieId": 5,
+      "author": "Ezequiel T.",
+      "comment": "El guion tiene un par de baches, pero el elenco lo sostiene todo.",
+      "rating": 3
+    },
+    {
+      "movieId": 5,
+      "author": "Maximiliano O.",
+      "comment": "La volvería a ver ahora mismo sin pensarlo.",
+      "rating": 5
+    },
+    {
+      "movieId": 5,
+      "author": "Bautista H.",
+      "comment": "Un poco previsible, aunque bien ejecutada.",
+      "rating": 3
+    },
+    {
+      "movieId": 5,
+      "author": "Guadalupe F.",
+      "comment": "Un poco previsible, aunque bien ejecutada.",
+      "rating": 3
+    },
+    {
+      "movieId": 5,
+      "author": "Nicolás U.",
+      "comment": "No entendí el hype, la verdad me pareció floja.",
+      "rating": 2
+    },
+    {
+      "movieId": 5,
+      "author": "Florencia I.",
+      "comment": "Los efectos envejecieron sorprendentemente bien.",
+      "rating": 5
+    },
+    {
+      "movieId": 5,
+      "author": "Franco Q.",
+      "comment": "Perfecta para ver un fin de semana de lluvia.",
+      "rating": 5
+    },
+    {
+      "movieId": 5,
+      "author": "Matías E.",
+      "comment": "El elenco está impecable de principio a fin.",
+      "rating": 4
+    },
+    {
+      "movieId": 5,
+      "author": "Victoria M.",
+      "comment": "Se siente repetitiva hacia el final, pero vale la pena.",
+      "rating": 4
+    },
+    {
+      "movieId": 6,
+      "author": "Agustín C.",
+      "comment": "Le falta un poco de ritmo, pero la fotografía es hermosa.",
+      "rating": 4
+    },
+    {
+      "movieId": 6,
+      "author": "Lucía W.",
+      "comment": "No es para todos los gustos, pero a mí me encantó.",
+      "rating": 4
+    },
+    {
+      "movieId": 6,
+      "author": "Renata D.",
+      "comment": "El guion tiene un par de baches, pero el elenco lo sostiene todo.",
+      "rating": 3
+    },
+    {
+      "movieId": 6,
+      "author": "Victoria M.",
+      "comment": "Se me hizo larga y el final no cierra del todo.",
+      "rating": 2
+    },
+    {
+      "movieId": 6,
+      "author": "Damián O.",
+      "comment": "El elenco está impecable de principio a fin.",
+      "rating": 5
+    },
+    {
+      "movieId": 6,
+      "author": "Milagros D.",
+      "comment": "El guion tiene un par de baches, pero el elenco lo sostiene todo.",
+      "rating": 3
+    },
+    {
+      "movieId": 7,
+      "author": "Ezequiel T.",
+      "comment": "El elenco está impecable de principio a fin.",
+      "rating": 5
+    },
+    {
+      "movieId": 7,
+      "author": "Facundo L.",
+      "comment": "Un poco previsible, aunque bien ejecutada.",
+      "rating": 3
+    },
+    {
+      "movieId": 7,
+      "author": "Valentina K.",
+      "comment": "Mejor de lo que recordaba, la volví a ver después de años.",
+      "rating": 5
+    },
+    {
+      "movieId": 7,
+      "author": "Leandro V.",
+      "comment": "La fotografía por momentos parece un cuadro.",
+      "rating": 4
+    },
+    {
+      "movieId": 7,
+      "author": "Martina A.",
+      "comment": "El ritmo es perfecto, no se hace larga en ningún momento.",
+      "rating": 4
+    },
+    {
+      "movieId": 7,
+      "author": "Josefina G.",
+      "comment": "Una de esas películas que mejora en un segundo visionado.",
+      "rating": 5
+    },
+    {
+      "movieId": 7,
+      "author": "Agustín C.",
+      "comment": "No entendí bien el final, pero la fotografía es espectacular.",
+      "rating": 4
+    },
+    {
+      "movieId": 8,
+      "author": "Valentina K.",
+      "comment": "Se siente repetitiva hacia el final, pero vale la pena.",
+      "rating": 4
+    },
+    {
+      "movieId": 8,
+      "author": "Abril J.",
+      "comment": "Le falta un poco de ritmo, pero la fotografía es hermosa.",
+      "rating": 3
+    },
+    {
+      "movieId": 9,
+      "author": "Bruno V.",
+      "comment": "Tiene buenos momentos pero en general no me convenció.",
+      "rating": 3
+    },
+    {
+      "movieId": 9,
+      "author": "Ignacio B.",
+      "comment": "Un poco previsible, aunque bien ejecutada.",
+      "rating": 3
+    },
+    {
+      "movieId": 9,
+      "author": "Franco Q.",
+      "comment": "Un poco previsible, aunque bien ejecutada.",
+      "rating": 3
+    },
+    {
+      "movieId": 9,
+      "author": "Martina A.",
+      "comment": "Tiene un tramo medio flojo, pero se recupera para el cierre.",
+      "rating": 3
+    },
+    {
+      "movieId": 9,
+      "author": "Facundo L.",
+      "comment": "Sin dudas de las mejores del género.",
+      "rating": 5
+    },
+    {
+      "movieId": 9,
+      "author": "Antonella S.",
+      "comment": "Un poco previsible, aunque bien ejecutada.",
+      "rating": 3
+    },
+    {
+      "movieId": 9,
+      "author": "Gonzalo X.",
+      "comment": "Se siente repetitiva hacia el final, pero vale la pena.",
+      "rating": 3
+    },
+    {
+      "movieId": 9,
+      "author": "Delfina R.",
+      "comment": "Perfecta para ver un fin de semana de lluvia.",
+      "rating": 4
+    },
+    {
+      "movieId": 9,
+      "author": "Valentina K.",
+      "comment": "El elenco está impecable de principio a fin.",
+      "rating": 5
+    },
+    {
+      "movieId": 11,
+      "author": "Bautista H.",
+      "comment": "Vale la pena solo por la escena final.",
+      "rating": 4
+    },
+    {
+      "movieId": 11,
+      "author": "Josefina G.",
+      "comment": "Esperaba más, pero no está mal para pasar la tarde.",
+      "rating": 4
+    },
+    {
+      "movieId": 11,
+      "author": "Valentina K.",
+      "comment": "Vale la pena solo por la escena final.",
+      "rating": 5
+    },
+    {
+      "movieId": 11,
+      "author": "Emiliano P.",
+      "comment": "Una película que hay que ver al menos una vez en la vida.",
+      "rating": 4
+    },
+    {
+      "movieId": 11,
+      "author": "Martina A.",
+      "comment": "Esperaba más, pero no está mal para pasar la tarde.",
+      "rating": 3
+    },
+    {
+      "movieId": 11,
+      "author": "Nadia G.",
+      "comment": "Una sorpresa total, no esperaba que me gustara tanto.",
+      "rating": 5
+    },
+    {
+      "movieId": 11,
+      "author": "Gonzalo X.",
+      "comment": "La volvería a ver ahora mismo sin pensarlo.",
+      "rating": 5
+    },
+    {
+      "movieId": 11,
+      "author": "Damián O.",
+      "comment": "Vale la pena solo por la escena final.",
+      "rating": 5
+    },
+    {
+      "movieId": 11,
+      "author": "Ezequiel T.",
+      "comment": "No es para todos los gustos, pero a mí me encantó.",
+      "rating": 3
+    },
+    {
+      "movieId": 12,
+      "author": "Tomás H.",
+      "comment": "Mejor de lo que recordaba, la volví a ver después de años.",
+      "rating": 4
+    },
+    {
+      "movieId": 12,
+      "author": "Antonella S.",
+      "comment": "Sin dudas de las mejores del género.",
+      "rating": 4
+    },
+    {
+      "movieId": 12,
+      "author": "Renata D.",
+      "comment": "Se siente repetitiva hacia el final, pero vale la pena.",
+      "rating": 4
+    },
+    {
+      "movieId": 12,
+      "author": "Micaela Y.",
+      "comment": "No entendí bien el final, pero la fotografía es espectacular.",
+      "rating": 4
+    },
+    {
+      "movieId": 12,
+      "author": "Franco Q.",
+      "comment": "Le falta un poco de ritmo, pero la fotografía es hermosa.",
+      "rating": 4
+    },
+    {
+      "movieId": 12,
+      "author": "Catalina S.",
+      "comment": "Una historia simple pero muy bien contada.",
+      "rating": 4
+    },
+    {
+      "movieId": 12,
+      "author": "Gonzalo X.",
+      "comment": "El elenco está impecable de principio a fin.",
+      "rating": 4
+    },
+    {
+      "movieId": 12,
+      "author": "Santiago Z.",
+      "comment": "Tiene un tramo medio flojo, pero se recupera para el cierre.",
+      "rating": 3
+    },
+    {
+      "movieId": 13,
+      "author": "Julián P.",
+      "comment": "Mejor de lo que recordaba, la volví a ver después de años.",
+      "rating": 4
+    },
+    {
+      "movieId": 13,
+      "author": "Agustín C.",
+      "comment": "La fotografía por momentos parece un cuadro.",
+      "rating": 5
+    },
+    {
+      "movieId": 13,
+      "author": "Catalina S.",
+      "comment": "Sin dudas de las mejores del género.",
+      "rating": 5
+    },
+    {
+      "movieId": 13,
+      "author": "Santiago Z.",
+      "comment": "Tiene un tramo medio flojo, pero se recupera para el cierre.",
+      "rating": 3
+    },
+    {
+      "movieId": 13,
+      "author": "Valentina K.",
+      "comment": "No entendí bien el final, pero la fotografía es espectacular.",
+      "rating": 3
+    },
+    {
+      "movieId": 13,
+      "author": "Carla F.",
+      "comment": "Sin dudas de las mejores del género.",
+      "rating": 5
+    },
+    {
+      "movieId": 13,
+      "author": "Martina A.",
+      "comment": "Le falta un poco de ritmo, pero la fotografía es hermosa.",
+      "rating": 3
+    },
+    {
+      "movieId": 13,
+      "author": "Sol M.",
+      "comment": "Una historia simple pero muy bien contada.",
+      "rating": 5
+    },
+    {
+      "movieId": 13,
+      "author": "Guadalupe F.",
+      "comment": "Esperaba mucho más después de tanta recomendación.",
+      "rating": 2
+    },
+    {
+      "movieId": 14,
+      "author": "Julián P.",
+      "comment": "Tiene un tramo medio flojo, pero se recupera para el cierre.",
+      "rating": 3
+    },
+    {
+      "movieId": 14,
+      "author": "Tomás H.",
+      "comment": "Se siente repetitiva hacia el final, pero vale la pena.",
+      "rating": 3
+    },
+    {
+      "movieId": 14,
+      "author": "Facundo L.",
+      "comment": "El elenco está impecable de principio a fin.",
+      "rating": 4
+    },
+    {
+      "movieId": 14,
+      "author": "Emiliano P.",
+      "comment": "Esperaba mucho más después de tanta recomendación.",
+      "rating": 2
+    },
+    {
+      "movieId": 15,
+      "author": "Santiago Z.",
+      "comment": "Un clásico que todo cinéfilo debería tener en su lista.",
+      "rating": 4
+    },
+    {
+      "movieId": 15,
+      "author": "Carla F.",
+      "comment": "Un guion redondo, no le sobra ni le falta nada.",
+      "rating": 5
+    },
+    {
+      "movieId": 15,
+      "author": "Emiliano P.",
+      "comment": "Perfecta para ver un fin de semana de lluvia.",
+      "rating": 5
+    },
+    {
+      "movieId": 15,
+      "author": "Antonella S.",
+      "comment": "Tiene un tramo medio flojo, pero se recupera para el cierre.",
+      "rating": 3
+    },
+    {
+      "movieId": 15,
+      "author": "Ignacio B.",
+      "comment": "Se siente repetitiva hacia el final, pero vale la pena.",
+      "rating": 4
+    },
+    {
+      "movieId": 15,
+      "author": "Bruno V.",
+      "comment": "Mejor de lo que recordaba, la volví a ver después de años.",
+      "rating": 5
+    },
+    {
+      "movieId": 15,
+      "author": "Victoria M.",
+      "comment": "Sin dudas de las mejores del género.",
+      "rating": 4
+    },
+    {
+      "movieId": 15,
+      "author": "Rocío A.",
+      "comment": "Se me hizo larga y el final no cierra del todo.",
+      "rating": 2
+    },
+    {
+      "movieId": 15,
+      "author": "Josefina G.",
+      "comment": "Perfecta para ver un fin de semana de lluvia.",
+      "rating": 5
+    },
+    {
+      "movieId": 16,
+      "author": "Carla F.",
+      "comment": "El elenco está impecable de principio a fin.",
+      "rating": 4
+    },
+    {
+      "movieId": 16,
+      "author": "Federico L.",
+      "comment": "Le falta un poco de ritmo, pero la fotografía es hermosa.",
+      "rating": 3
+    },
+    {
+      "movieId": 16,
+      "author": "Agustín C.",
+      "comment": "Se siente repetitiva hacia el final, pero vale la pena.",
+      "rating": 4
+    },
+    {
+      "movieId": 16,
+      "author": "Guadalupe F.",
+      "comment": "No entendí el hype, la verdad me pareció floja.",
+      "rating": 2
+    },
+    {
+      "movieId": 16,
+      "author": "Bruno V.",
+      "comment": "Una sorpresa total, no esperaba que me gustara tanto.",
+      "rating": 5
+    },
+    {
+      "movieId": 17,
+      "author": "Tomás H.",
+      "comment": "Se me hizo larga y el final no cierra del todo.",
+      "rating": 2
+    },
+    {
+      "movieId": 17,
+      "author": "Bruno V.",
+      "comment": "Esperaba mucho más después de tanta recomendación.",
+      "rating": 3
+    },
+    {
+      "movieId": 17,
+      "author": "Florencia I.",
+      "comment": "No es para todos los gustos, pero a mí me encantó.",
+      "rating": 3
+    },
+    {
+      "movieId": 17,
+      "author": "Nicolás U.",
+      "comment": "Se me hizo larga y el final no cierra del todo.",
+      "rating": 2
+    },
+    {
+      "movieId": 17,
+      "author": "Bautista H.",
+      "comment": "Vale la pena solo por la escena final.",
+      "rating": 4
+    },
+    {
+      "movieId": 17,
+      "author": "Facundo L.",
+      "comment": "Se me hizo larga y el final no cierra del todo.",
+      "rating": 2
+    },
+    {
+      "movieId": 17,
+      "author": "Leandro V.",
+      "comment": "La fotografía por momentos parece un cuadro.",
+      "rating": 5
+    },
+    {
+      "movieId": 17,
+      "author": "Renata D.",
+      "comment": "Esperaba mucho más después de tanta recomendación.",
+      "rating": 2
+    },
+    {
+      "movieId": 17,
+      "author": "Santiago Z.",
+      "comment": "Perfecta para ver un fin de semana de lluvia.",
+      "rating": 5
+    },
+    {
+      "movieId": 17,
+      "author": "Josefina G.",
+      "comment": "Un guion redondo, no le sobra ni le falta nada.",
+      "rating": 4
+    },
+    {
+      "movieId": 17,
+      "author": "Nadia G.",
+      "comment": "Un guion redondo, no le sobra ni le falta nada.",
+      "rating": 5
+    },
+    {
+      "movieId": 18,
+      "author": "Carla F.",
+      "comment": "Vale la pena solo por la escena final.",
+      "rating": 4
+    },
+    {
+      "movieId": 18,
+      "author": "Federico L.",
+      "comment": "Un poco previsible, aunque bien ejecutada.",
+      "rating": 3
+    },
+    {
+      "movieId": 18,
+      "author": "Valentina K.",
+      "comment": "Tiene buenos momentos pero en general no me convenció.",
+      "rating": 3
+    },
+    {
+      "movieId": 18,
+      "author": "Lucía W.",
+      "comment": "Una de esas películas que mejora en un segundo visionado.",
+      "rating": 4
+    },
+    {
+      "movieId": 18,
+      "author": "Ignacio B.",
+      "comment": "Se siente repetitiva hacia el final, pero vale la pena.",
+      "rating": 3
+    },
+    {
+      "movieId": 18,
+      "author": "Bruno V.",
+      "comment": "No es para todos los gustos, pero a mí me encantó.",
+      "rating": 3
+    },
+    {
+      "movieId": 20,
+      "author": "Facundo L.",
+      "comment": "Una historia simple pero muy bien contada.",
+      "rating": 5
+    },
+    {
+      "movieId": 20,
+      "author": "Bautista H.",
+      "comment": "La fotografía por momentos parece un cuadro.",
+      "rating": 5
+    },
+    {
+      "movieId": 20,
+      "author": "Rocío A.",
+      "comment": "Perfecta para ver un fin de semana de lluvia.",
+      "rating": 4
+    },
+    {
+      "movieId": 20,
+      "author": "Franco Q.",
+      "comment": "Tiene buenos momentos pero en general no me convenció.",
+      "rating": 2
+    },
+    {
+      "movieId": 20,
+      "author": "Ramiro T.",
+      "comment": "Una historia simple pero muy bien contada.",
+      "rating": 5
+    },
+    {
+      "movieId": 20,
+      "author": "Marcela R.",
+      "comment": "Perfecta para ver un fin de semana de lluvia.",
+      "rating": 4
+    },
+    {
+      "movieId": 20,
+      "author": "Catalina S.",
+      "comment": "Tiene buenos momentos pero en general no me convenció.",
+      "rating": 2
+    },
+    {
+      "movieId": 20,
+      "author": "Abril J.",
+      "comment": "La actuación protagónica es lo mejor de todo el film.",
+      "rating": 5
+    },
+    {
+      "movieId": 20,
+      "author": "Joaquín B.",
+      "comment": "Se siente repetitiva hacia el final, pero vale la pena.",
+      "rating": 3
+    },
+    {
+      "movieId": 21,
+      "author": "Emiliano P.",
+      "comment": "Vale la pena solo por la escena final.",
+      "rating": 4
+    },
+    {
+      "movieId": 21,
+      "author": "Santiago Z.",
+      "comment": "Los efectos envejecieron sorprendentemente bien.",
+      "rating": 5
+    },
+    {
+      "movieId": 21,
+      "author": "Ramiro T.",
+      "comment": "Una sorpresa total, no esperaba que me gustara tanto.",
+      "rating": 5
+    },
+    {
+      "movieId": 21,
+      "author": "Ezequiel T.",
+      "comment": "Una historia simple pero muy bien contada.",
+      "rating": 4
+    },
+    {
+      "movieId": 21,
+      "author": "Bautista H.",
+      "comment": "Tiene un tramo medio flojo, pero se recupera para el cierre.",
+      "rating": 3
+    },
+    {
+      "movieId": 21,
+      "author": "Agustín C.",
+      "comment": "Un poco previsible, aunque bien ejecutada.",
+      "rating": 3
+    },
+    {
+      "movieId": 21,
+      "author": "Marcela R.",
+      "comment": "Se me hizo larga y el final no cierra del todo.",
+      "rating": 3
+    },
+    {
+      "movieId": 22,
+      "author": "Martina A.",
+      "comment": "Una historia simple pero muy bien contada.",
+      "rating": 4
+    },
+    {
+      "movieId": 23,
+      "author": "Florencia I.",
+      "comment": "Una película que hay que ver al menos una vez en la vida.",
+      "rating": 4
+    },
+    {
+      "movieId": 23,
+      "author": "Leandro V.",
+      "comment": "La banda sonora se queda en la cabeza mucho después de terminar de verla.",
+      "rating": 5
+    },
+    {
+      "movieId": 23,
+      "author": "Federico L.",
+      "comment": "Una de esas películas que mejora en un segundo visionado.",
+      "rating": 5
+    },
+    {
+      "movieId": 23,
+      "author": "Matías E.",
+      "comment": "Una historia simple pero muy bien contada.",
+      "rating": 5
+    },
+    {
+      "movieId": 23,
+      "author": "Micaela Y.",
+      "comment": "La volvería a ver ahora mismo sin pensarlo.",
+      "rating": 5
+    },
+    {
+      "movieId": 23,
+      "author": "Agustín C.",
+      "comment": "La actuación protagónica es lo mejor de todo el film.",
+      "rating": 5
+    },
+    {
+      "movieId": 23,
+      "author": "Martina A.",
+      "comment": "Una película que hay que ver al menos una vez en la vida.",
+      "rating": 4
+    },
+    {
+      "movieId": 23,
+      "author": "Guadalupe F.",
+      "comment": "Tiene buenos momentos pero en general no me convenció.",
+      "rating": 2
+    },
+    {
+      "movieId": 23,
+      "author": "Ignacio B.",
+      "comment": "Tiene un tramo medio flojo, pero se recupera para el cierre.",
+      "rating": 4
+    },
+    {
+      "movieId": 24,
+      "author": "Santiago Z.",
+      "comment": "Una de esas películas que mejora en un segundo visionado.",
+      "rating": 4
+    },
+    {
+      "movieId": 24,
+      "author": "Emiliano P.",
+      "comment": "Una historia simple pero muy bien contada.",
+      "rating": 4
+    },
+    {
+      "movieId": 24,
+      "author": "Marcela R.",
+      "comment": "El ritmo es perfecto, no se hace larga en ningún momento.",
+      "rating": 5
+    },
+    {
+      "movieId": 24,
+      "author": "Martina A.",
+      "comment": "Los efectos envejecieron sorprendentemente bien.",
+      "rating": 5
+    },
+    {
+      "movieId": 24,
+      "author": "Victoria M.",
+      "comment": "La fotografía por momentos parece un cuadro.",
+      "rating": 4
+    },
+    {
+      "movieId": 24,
+      "author": "Maximiliano O.",
+      "comment": "Esperaba mucho más después de tanta recomendación.",
+      "rating": 2
+    },
+    {
+      "movieId": 24,
+      "author": "Nadia G.",
+      "comment": "De las pocas películas que me sacaron una lágrima.",
+      "rating": 4
+    },
+    {
+      "movieId": 24,
+      "author": "Antonella S.",
+      "comment": "Un guion redondo, no le sobra ni le falta nada.",
+      "rating": 4
+    },
+    {
+      "movieId": 28,
+      "author": "Valentina K.",
+      "comment": "El elenco está impecable de principio a fin.",
+      "rating": 5
+    },
+    {
+      "movieId": 28,
+      "author": "Josefina G.",
+      "comment": "La actuación protagónica es lo mejor de todo el film.",
+      "rating": 4
+    },
+    {
+      "movieId": 28,
+      "author": "Agustín C.",
+      "comment": "La actuación protagónica es lo mejor de todo el film.",
+      "rating": 4
+    },
+    {
+      "movieId": 28,
+      "author": "Tomás H.",
+      "comment": "La fotografía por momentos parece un cuadro.",
+      "rating": 5
+    },
+    {
+      "movieId": 28,
+      "author": "Martina A.",
+      "comment": "No es para todos los gustos, pero a mí me encantó.",
+      "rating": 3
+    },
+    {
+      "movieId": 28,
+      "author": "Bautista H.",
+      "comment": "De las pocas películas que me sacaron una lágrima.",
+      "rating": 4
+    },
+    {
+      "movieId": 28,
+      "author": "Joaquín B.",
+      "comment": "Los efectos envejecieron sorprendentemente bien.",
+      "rating": 5
+    },
+    {
+      "movieId": 28,
+      "author": "Ezequiel T.",
+      "comment": "Tiene un tramo medio flojo, pero se recupera para el cierre.",
+      "rating": 4
+    },
+    {
+      "movieId": 28,
+      "author": "Guadalupe F.",
+      "comment": "El ritmo se siente un poco lento en el segundo acto, pero el final compensa.",
+      "rating": 3
+    },
+    {
+      "movieId": 29,
+      "author": "Victoria M.",
+      "comment": "No es para todos los gustos, pero a mí me encantó.",
+      "rating": 3
+    },
+    {
+      "movieId": 29,
+      "author": "Guadalupe F.",
+      "comment": "Una película que hay que ver al menos una vez en la vida.",
+      "rating": 5
+    },
+    {
+      "movieId": 29,
+      "author": "Bautista H.",
+      "comment": "La volvería a ver ahora mismo sin pensarlo.",
+      "rating": 5
+    },
+    {
+      "movieId": 29,
+      "author": "Josefina G.",
+      "comment": "Los efectos envejecieron sorprendentemente bien.",
+      "rating": 4
+    },
+    {
+      "movieId": 29,
+      "author": "Florencia I.",
+      "comment": "Vale la pena solo por la escena final.",
+      "rating": 5
+    },
+    {
+      "movieId": 30,
+      "author": "Marcela R.",
+      "comment": "Una de esas películas que mejora en un segundo visionado.",
+      "rating": 5
+    },
+    {
+      "movieId": 30,
+      "author": "Renata D.",
+      "comment": "Perfecta para ver un fin de semana de lluvia.",
+      "rating": 5
+    },
+    {
+      "movieId": 30,
+      "author": "Emiliano P.",
+      "comment": "Una historia simple pero muy bien contada.",
+      "rating": 5
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # Capy Films 🎬
 
-Catálogo de películas hecho en HTML, CSS y JavaScript vanilla (sin frameworks, sin build).
+Catálogo de películas hecho en HTML, CSS y TypeScript (sin frameworks, sin bundler — solo `tsc` para compilar).
 
 ## Características
 
@@ -10,60 +10,70 @@ Catálogo de películas hecho en HTML, CSS y JavaScript vanilla (sin frameworks,
 - Favoritos persistidos en `localStorage`.
 - Selector de idioma Español / Inglés.
 - Pósters propios en formato `.webp`, mostrados completos (sin recortar) tanto en las cards como en el modal.
+- Arquitectura en capas (DTO → mapper → entity) que sanea los datos crudos antes de que lleguen a la UI.
 
 ## Cómo correrlo
 
-El JS usa módulos ES (`<script type="module">`) y `fetch()`, así que el sitio **debe servirse por HTTP** (no abrir `index.html` directamente con `file://`):
+Hay un paso de compilación con TypeScript (`tsc`), sin bundler — necesita Node/npm solo para eso:
 
 ```bash
+npm install          # una vez, instala typescript
+npx tsc               # compila src/*.ts → dist/*.js (o: npm run build)
 python3 -m http.server 8123
 # abrir http://localhost:8123
 ```
 
+`index.html` carga `dist/main.js` como módulo ES (`<script type="module">`) y usa `fetch()`, así que el sitio **debe servirse por HTTP** (no abrir `index.html` directamente con `file://`). Hay que recompilar (`npx tsc`) después de cada cambio en `src/`.
+
 ## Estructura del proyecto
 
 ```
-index.html          Maquetación: header (logo + título, favoritos, idioma),
-                     banner de anuncios / carrusel, barra de búsqueda/filtro,
-                     grid de películas, modal (con panel flotante de reseñas al
-                     abrir una película), footer.
-styles.css           Todo el CSS del proyecto.
-peliculas.json       Fuente de datos (30 películas).
-resenas.json         Reseñas mock (187 items), fetched por resenasService.js.
-posters/             Pósters de cada película (.webp).
-banners/             Imágenes de fondo del carrusel de anuncios (.webp, 1600x500).
-images/              Logo y logotipo de texto del header.
-js/
-  core/              Módulos originales, sin cambios de lógica:
-    data.js          fetch() de peliculas.json.
-    render.js        Construye las cards del DOM.
-    modal.js         Abre/cierra el modal de detalle.
-    favoritos.js     Favoritos en localStorage.
-    filtros.js       Búsqueda por texto y filtro por categoría (sobre la
-                     lista ya resuelta por género, ver cache/filtroCache.js).
-    idioma.js        Diccionario ES/EN y traducción de datos.
-    animaciones.js   Retraso de entrada de las cards y pop de favoritos.
-  services/          Tres "backends" simulados, consumidos en paralelo:
-    catalogoService.js   Envuelve data.js (nunca falla).
-    resenasService.js    Reseñas mock por película, con fallo aleatorio simulado.
-    anunciosService.js   Anuncios mock (carrusel/hero banner, ver banners/),
-                         con fallo aleatorio simulado.
+index.html           Maquetación: header (logo + título, favoritos, idioma),
+                      banner de anuncios / carrusel, barra de búsqueda/filtro,
+                      grid de películas, modal (con panel flotante de reseñas al
+                      abrir una película), footer.
+styles.css            Todo el CSS del proyecto.
+movies.json           Fuente de datos (30 películas, claves en inglés).
+reviews.json          Reseñas mock (187 items), fetched por reviewsService.ts.
+posters/              Pósters de cada película (.webp).
+banners/              Imágenes de fondo del carrusel de anuncios (.webp, 1600x500).
+images/               Logo y logotipo de texto del header.
+tsconfig.json         Config de TypeScript (rootDir "src", outDir "dist", strict).
+src/
+  entities/           Modelo de dominio: Movie, Review, Advertisement.
+  dtos/               Forma cruda de cada endpoint antes de mapear.
+  mappers/            Funciones puras DTO → Entity.
+  core/               Módulos originales, sin cambios de lógica:
+    data.ts             fetch() de movies.json.
+    render.ts           Construye las cards del DOM.
+    modal.ts            Abre/cierra el modal de detalle.
+    favorites.ts        Favoritos en localStorage.
+    filters.ts          Búsqueda por texto y filtro por categoría (sobre la
+                        lista ya resuelta por género, ver cache/filterCache.ts).
+    language.ts         Diccionario ES/EN y traducción de datos.
+    animations.ts       Retraso de entrada de las cards y pop de favoritos.
+    dom.ts               Helper para tipar getElementById.
+  services/           Tres "backends" simulados, consumidos en paralelo:
+    catalogService.ts          Envuelve data.ts + mapper (nunca falla).
+    reviewsService.ts          Reseñas mock por película, con fallo simulado.
+    advertisementsService.ts   Anuncios mock (carrusel/hero banner, ver banners/),
+                               con fallo simulado.
   cache/
-    filtroCache.js   Closure con caché privado: filtra por género con
-                     una simulación de latencia solo en la primera
-                     consulta de cada género; las siguientes leen del
-                     caché sin volver a disparar la promesa.
-  orquestador/
-    orquestarServicios.js   Dispara los tres servicios con
-                     Promise.allSettled; el catálogo es obligatorio,
-                     reseñas y anuncios son opcionales (si fallan, la
-                     UI sigue funcionando sin ellos).
-  main.js            Orquestador de la app: arranca orquestarServicios(),
-                     crea el filtro por género y conecta los eventos.
+    filterCache.ts      Closure con caché privado: filtra por género con
+                        una simulación de latencia solo en la primera
+                        consulta de cada género; las siguientes leen del
+                        caché sin volver a disparar la promesa.
+  orchestrator/
+    orchestrateServices.ts   Dispara los tres servicios con
+                        Promise.allSettled; el catálogo es obligatorio,
+                        reseñas y anuncios son opcionales (si fallan, la
+                        UI sigue funcionando sin ellos).
+  main.ts              Punto de entrada de la app: arranca orchestrateServices(),
+                        crea el filtro por género y conecta los eventos.
 ```
 
-Para forzar en vivo el fallo de un servicio secundario (útil para demostrarlo sin depender del azar), agregar `?forzarFallo=resenas`, `?forzarFallo=anuncios` o `?forzarFallo=todos` a la URL.
+Para forzar en vivo el fallo de un servicio secundario (útil para demostrarlo sin depender del azar), agregar `?forceFail=reviews`, `?forceFail=advertisements` o `?forceFail=all` a la URL.
 
 ## Contribuir
 
-Para más detalle sobre convenciones del proyecto (formato de imágenes, estructura de `peliculas.json`, flujo entre módulos, etc.), ver [AGENTS.md](./AGENTS.md). Para el detalle archivo por archivo de cada módulo y servicio (responsabilidad, exports, imports), ver [MODULOS.md](./MODULOS.md).
+Para más detalle sobre convenciones del proyecto (formato de imágenes, estructura de `movies.json`, flujo entre módulos, etc.), ver [AGENTS.md](./AGENTS.md). Para el detalle archivo por archivo de cada módulo y servicio (responsabilidad, exports, imports), ver [MODULOS.md](./MODULOS.md). Para el historial de la migración de JS vanilla a TypeScript, ver [MIGRACION-TYPESCRIPT.md](./MIGRACION-TYPESCRIPT.md).

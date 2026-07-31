@@ -1,30 +1,30 @@
-import { traducirPelicula } from "./language.js";
-import type { Pelicula } from "../entities/Movie.js";
+import { translateMovie } from "./language.js";
+import type { Movie } from "../entities/Movie.js";
 
-export function poblarCategorias(peliculas: Pelicula[], selectElemento: HTMLSelectElement): void {
-  selectElemento
-    .querySelectorAll("option:not([value='todas'])")
-    .forEach((opcion) => opcion.remove());
+export function populateCategories(movies: Movie[], selectElement: HTMLSelectElement): void {
+  selectElement
+    .querySelectorAll("option:not([value='all'])")
+    .forEach((option) => option.remove());
 
-  const categorias = [
-    ...new Set(peliculas.map((pelicula) => traducirPelicula(pelicula).categoria)),
+  const categories = [
+    ...new Set(movies.map((movie) => translateMovie(movie).category)),
   ].sort();
 
-  categorias.forEach((categoria) => {
-    const opcion = document.createElement("option");
-    opcion.value = categoria;
-    opcion.textContent = categoria;
-    selectElemento.appendChild(opcion);
+  categories.forEach((category) => {
+    const option = document.createElement("option");
+    option.value = category;
+    option.textContent = category;
+    selectElement.appendChild(option);
   });
 }
 
-export function filtrarPeliculas(peliculas: Pelicula[], texto: string, categoria: string): Pelicula[] {
-  const textoNormalizado = texto.trim().toLowerCase();
+export function filterMovies(movies: Movie[], text: string, category: string): Movie[] {
+  const normalizedText = text.trim().toLowerCase();
 
-  return peliculas.filter((peliculaOriginal) => {
-    const pelicula = traducirPelicula(peliculaOriginal);
-    const coincideTexto = pelicula.titulo.toLowerCase().includes(textoNormalizado);
-    const coincideCategoria = categoria === "todas" || pelicula.categoria === categoria;
-    return coincideTexto && coincideCategoria;
+  return movies.filter((originalMovie) => {
+    const movie = translateMovie(originalMovie);
+    const matchesText = movie.title.toLowerCase().includes(normalizedText);
+    const matchesCategory = category === "all" || movie.category === category;
+    return matchesText && matchesCategory;
   });
 }

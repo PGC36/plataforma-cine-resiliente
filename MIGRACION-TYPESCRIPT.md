@@ -109,6 +109,42 @@ Alcance deliberadamente limitado a **nombres de archivo**: las carpetas contened
 
 Todos los `import` que referenciaban los nombres viejos se actualizaron (verificado con grep, sin referencias colgantes).
 
+## 9. Traducción completa de identificadores, HTML, CSS y datos a inglés
+
+Reemplaza el alcance de la sección 8 (que había quedado limitado a nombres de archivo): ahora también se tradujeron **identificadores, HTML, CSS y los propios datos** (`peliculas.json`/`resenas.json` → `movies.json`/`reviews.json`, con las claves en inglés). Se mantuvo sin tocar únicamente el **contenido visible** — títulos/descripciones de películas, comentarios de reseñas, copy de los anuncios, y los valores del diccionario `es`/`en` de `core/language.ts` — porque es contenido, no código.
+
+**Datos** (`movies.json`, `reviews.json`, generados con `jq` a partir de los `.json` viejos, verificando con Python que los valores quedaran idénticos y solo cambiaran las claves — los `.json` viejos en español se borraron):
+
+| Antes (`peliculas.json`) | Ahora (`movies.json`) |
+|---|---|
+| `peliculas` (raíz) | `movies` |
+| `titulo` / `tituloEn` | `title` / `titleEn` |
+| `anio` | `year` |
+| `categoria` / `categoriaEn` | `category` / `categoryEn` |
+| `duracion` | `duration` |
+| `calificacion` | `rating` |
+| `descripcion` / `descripcionEn` | `description` / `descriptionEn` |
+| `imagen` | `image` |
+| `id`, `director` | sin cambios |
+
+| Antes (`resenas.json`) | Ahora (`reviews.json`) |
+|---|---|
+| `resenas` (raíz) | `reviews` |
+| `peliculaId` | `movieId` |
+| `autor` | `author` |
+| `comentario` | `comment` |
+| `puntuacion` | `rating` |
+
+**DTOs/Entities/Mappers**: como ahora los DTOs reflejan el JSON (ya en inglés), DTO y Entity terminan con los mismos nombres de campo — `MovieDTO`/`Movie`, `ReviewDTO`/`Review`, `AdvertisementDTO`/`Advertisement` — y los mappers (`movieMapper.ts`, `reviewMapper.ts`, `advertisementMapper.ts`) pasaron a ser prácticamente 1:1, salvo el fallback de `movieMapper.ts` (`titleEn ?? title`, etc.) que se mantuvo.
+
+**Identificadores de código**: todas las funciones/variables se tradujeron (`obtenerCatalogo`→`getCatalog`, `orquestarServicios`→`orchestrateServices`, `crearFiltroPeliculas`→`createMovieFilter`, `renderizarPeliculas`→`renderMovies`, `traducirPelicula`→`translateMovie`, `abrirModal`/`cerrarModal`→`openModal`/`closeModal`, etc.), incluyendo la carpeta `orquestador/` → `orchestrator/` (única carpeta que quedaba en español). El diccionario de `core/language.ts` tradujo sus **claves** (`buscar`→`search`, `todas`→`all`, `anio`→`year`, `duracion`→`duration`, `calificacion`→`rating`, `cerrar`→`close`, `favorito`→`favorite`) manteniendo los **valores** en español/inglés según corresponda (contenido, no identificadores). Las claves de `localStorage` también se tradujeron (`idioma-preferido`→`preferred-language`, `peliculas-favoritas`→`favorite-movies`) — esto invalida cualquier preferencia/favorito guardado por un navegador con la versión anterior.
+
+**Cambio de comportamiento a tener en cuenta**: el query param de fallo forzado pasó de `?forzarFallo=resenas|anuncios|todos` a **`?forceFail=reviews|advertisements|all`**. Si tenías un link o una demo guardada con el parámetro viejo, hay que actualizarlo.
+
+**HTML/CSS**: todos los `id`/clase de `index.html` y `styles.css` se tradujeron en conjunto con sus referencias en TS (verificado con un script que cruza clases usadas vs. definidas en `styles.css`, sin huérfanas). Ejemplos: `.tarjeta`→`.card`, `.anuncios`→`.ads` (bloque BEM `ads__slide`, `ads__dot`, etc.), `.modal-resenas`→`.modal-reviews`, `.oculto`→`.hidden`, `.activo`→`.active`, `sin-scroll`→`no-scroll`, `#contenedor-peliculas`→`#movies-container`, `#buscador`→`#search-input`, `#filtro-categoria`→`#category-filter`, `#boton-idioma`→`#language-button`, `#modal-titulo`→`#modal-title` (y el resto de los campos del modal). Los `@keyframes` también: `tarjeta-aparece`→`card-appears`, `favorito-pop`→`favorite-pop`, `resena-flota`→`review-float`.
+
+Se encontró y borró un archivo huérfano (`src/cache/filtroCache.ts`, con el nombre e identificadores viejos) que había quedado duplicado junto al `filterCache.ts` correcto — no estaba importado por nadie, pero convivía en el filesystem.
+
 ## Nota sobre docs existentes
 
-`AGENTS.md` y `README.md` todavía dicen "no hay build ni dependencias" — eso ya no es cierto después de esta migración (hay un paso de compilación con `tsc` antes de servir). No se editaron en este cambio porque no fue parte de lo pedido; conviene actualizarlos en un commit aparte para que no queden desalineados con el estado real del proyecto.
+`AGENTS.md`, `MODULOS.md` y `README.md` todavía documentan la versión en español (nombres de archivo, campos de datos, el query param `forzarFallo`, "no hay build ni dependencias") — con este cambio quedaron significativamente desactualizados, más allá de lo que ya se señalaba en migraciones anteriores. No se editaron porque no fue parte de lo pedido; conviene actualizarlos (o reescribirlos) en un commit aparte para que no queden desalineados con el estado real del proyecto.

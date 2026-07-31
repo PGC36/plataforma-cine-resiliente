@@ -22,14 +22,14 @@ body {
   flex-direction: column;
 }
 
-body.sin-scroll {
+body.no-scroll {
   overflow: hidden;
 }
 
-.oculto {
-  /* !important a propósito: es una utilidad de "forzar ocultar" y debe ganar
-     sin importar el orden en el archivo frente a otras reglas que también
-     declaren `display` (ej. .anuncios, .modal-resenas son flex containers). */
+.hidden {
+  /* !important on purpose: this is a "force hide" utility and must win
+     regardless of file order against other rules that also declare
+     `display` (e.g. .ads, .modal-reviews are flex containers). */
   display: none !important;
 }
 
@@ -45,7 +45,7 @@ body.sin-scroll {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
-.header__marca {
+.header__brand {
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -56,12 +56,12 @@ body.sin-scroll {
   width: auto;
 }
 
-.header__titulo {
+.header__title {
   font-size: 1.5rem;
   line-height: 0;
 }
 
-.header__titulo-imagen {
+.header__title-image {
   display: block;
   height: 28px;
   width: auto;
@@ -72,13 +72,13 @@ body.sin-scroll {
   filter: invert(1);
 }
 
-.header__filtros {
+.header__filters {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
 }
 
-.contador-favoritos {
+.favorites-counter {
   display: flex;
   align-items: center;
   gap: 0.4rem;
@@ -89,15 +89,15 @@ body.sin-scroll {
   font-size: 0.95rem;
 }
 
-.contador-favoritos__icono {
+.favorites-counter__icon {
   color: var(--color-primario);
 }
 
-.contador-favoritos__numero {
+.favorites-counter__number {
   font-weight: 600;
 }
 
-.barra-busqueda {
+.search-bar {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
@@ -106,8 +106,8 @@ body.sin-scroll {
   border-bottom: 1px solid #2a2a3a;
 }
 
-.filtros__input,
-.filtros__select {
+.filters__input,
+.filters__select {
   padding: 0.5rem 0.75rem;
   border-radius: var(--radio);
   border: 1px solid #33334a;
@@ -116,22 +116,22 @@ body.sin-scroll {
   font-size: 0.95rem;
 }
 
-.filtros__input {
+.filters__input {
   flex: 1;
   min-width: 200px;
 }
 
-.filtros__input:focus,
-.filtros__select:focus {
+.filters__input:focus,
+.filters__select:focus {
   outline: 2px solid var(--color-primario);
 }
 
-.filtros__select:disabled {
+.filters__select:disabled {
   opacity: 0.6;
   cursor: wait;
 }
 
-.filtros__boton-idioma {
+.filters__language-button {
   padding: 0.5rem 0.9rem;
   border-radius: var(--radio);
   border: 1px solid #33334a;
@@ -143,14 +143,14 @@ body.sin-scroll {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.filtros__boton-idioma:hover {
+.filters__language-button:hover {
   background-color: var(--color-primario);
   color: #fff;
   border-color: var(--color-primario);
 }
 
-/* Anuncios promocionales: hero banner / carrusel */
-.anuncios {
+/* Promotional ads: hero banner / carousel */
+.ads {
   position: relative;
   min-height: 260px;
   display: flex;
@@ -159,7 +159,7 @@ body.sin-scroll {
   background-color: var(--color-superficie);
 }
 
-.anuncios__slide {
+.ads__slide {
   flex: 1;
   display: flex;
   align-items: flex-end;
@@ -168,25 +168,25 @@ body.sin-scroll {
   padding: 2rem 3.75rem;
 }
 
-.anuncios__contenido {
+.ads__content {
   max-width: 480px;
   color: #fff;
 }
 
-.anuncios__titulo {
+.ads__title {
   font-size: 1.6rem;
   margin-bottom: 0.4rem;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85);
 }
 
-.anuncios__texto {
+.ads__text {
   font-size: 0.95rem;
   margin-bottom: 1.1rem;
   color: #e6e6ec;
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.85);
 }
 
-.anuncios__cta {
+.ads__cta {
   background-color: var(--color-primario);
   color: #fff;
   border: none;
@@ -198,12 +198,12 @@ body.sin-scroll {
   transition: background-color 0.2s ease, transform 0.15s ease;
 }
 
-.anuncios__cta:hover {
+.ads__cta:hover {
   background-color: #ff5a68;
   transform: translateY(-2px);
 }
 
-.anuncios__flecha {
+.ads__arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -223,19 +223,19 @@ body.sin-scroll {
   transition: background-color 0.2s ease;
 }
 
-.anuncios__flecha:hover {
+.ads__arrow:hover {
   background-color: var(--color-primario);
 }
 
-.anuncios__flecha--izquierda {
+.ads__arrow--left {
   left: 1rem;
 }
 
-.anuncios__flecha--derecha {
+.ads__arrow--right {
   right: 1rem;
 }
 
-.anuncios__indicadores {
+.ads__dots {
   position: absolute;
   bottom: 0.85rem;
   left: 50%;
@@ -245,7 +245,7 @@ body.sin-scroll {
   gap: 0.4rem;
 }
 
-.anuncios__punto {
+.ads__dot {
   width: 8px;
   height: 8px;
   padding: 0;
@@ -256,22 +256,22 @@ body.sin-scroll {
   transition: background-color 0.2s ease, transform 0.15s ease;
 }
 
-.anuncios__punto:hover {
+.ads__dot:hover {
   background-color: rgba(255, 255, 255, 0.7);
 }
 
-.anuncios__punto.activo {
+.ads__dot.active {
   background-color: var(--color-primario);
   transform: scale(1.15);
 }
 
-.anuncios--unico .anuncios__flecha,
-.anuncios--unico .anuncios__indicadores {
+.ads--single .ads__arrow,
+.ads--single .ads__dots {
   display: none;
 }
 
-/* Grid de películas */
-.contenedor {
+/* Movie grid */
+.container {
   flex: 1;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -279,8 +279,8 @@ body.sin-scroll {
   padding: 2rem;
 }
 
-/* Tarjeta de película */
-.tarjeta {
+/* Movie card */
+.card {
   position: relative;
   background-color: var(--color-superficie);
   border-radius: var(--radio);
@@ -292,10 +292,10 @@ body.sin-scroll {
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  animation: tarjeta-aparece 0.4s ease both;
+  animation: card-appears 0.4s ease both;
 }
 
-@keyframes tarjeta-aparece {
+@keyframes card-appears {
   from {
     opacity: 0;
     transform: translateY(16px);
@@ -307,12 +307,12 @@ body.sin-scroll {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .tarjeta {
+  .card {
     animation: none;
   }
 }
 
-.tarjeta__imagen {
+.card__image {
   width: 100%;
   height: 240px;
   border-radius: var(--radio);
@@ -321,7 +321,7 @@ body.sin-scroll {
   flex-shrink: 0;
 }
 
-.tarjeta__favorito {
+.card__favorite {
   position: absolute;
   top: 0.75rem;
   right: 0.75rem;
@@ -340,20 +340,20 @@ body.sin-scroll {
   transition: color 0.2s ease, transform 0.15s ease;
 }
 
-.tarjeta__favorito:hover {
+.card__favorite:hover {
   transform: scale(1.1);
 }
 
-.tarjeta__favorito.activo,
-.tarjeta__favorito:hover {
+.card__favorite.active,
+.card__favorite:hover {
   color: var(--color-primario);
 }
 
-.tarjeta__favorito.animar {
-  animation: favorito-pop 0.4s ease;
+.card__favorite.animate {
+  animation: favorite-pop 0.4s ease;
 }
 
-@keyframes favorito-pop {
+@keyframes favorite-pop {
   0% {
     transform: scale(1);
   }
@@ -369,17 +369,17 @@ body.sin-scroll {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .tarjeta__favorito.animar {
+  .card__favorite.animate {
     animation: none;
   }
 }
 
-.tarjeta:hover {
+.card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
-.tarjeta__categoria {
+.card__category {
   align-self: flex-start;
   background-color: var(--color-primario);
   color: #fff;
@@ -390,14 +390,14 @@ body.sin-scroll {
   border-radius: 999px;
 }
 
-.tarjeta__titulo {
+.card__title {
   font-size: 1.15rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.tarjeta__info {
+.card__info {
   font-size: 0.9rem;
   color: var(--color-texto-secundario);
 }
@@ -418,7 +418,7 @@ body.sin-scroll {
   z-index: 100;
 }
 
-.modal-overlay.activo {
+.modal-overlay.active {
   opacity: 1;
   visibility: visible;
 }
@@ -437,11 +437,11 @@ body.sin-scroll {
   transition: transform 0.2s ease;
 }
 
-.modal-overlay.activo .modal {
+.modal-overlay.active .modal {
   transform: translateY(0);
 }
 
-.modal__cerrar {
+.modal__close {
   position: absolute;
   top: 0.75rem;
   right: 0.75rem;
@@ -458,11 +458,11 @@ body.sin-scroll {
   cursor: pointer;
 }
 
-.modal__cerrar:hover {
+.modal__close:hover {
   background-color: var(--color-primario);
 }
 
-.modal__imagen {
+.modal__image {
   width: 100%;
   height: 320px;
   border-radius: var(--radio);
@@ -470,7 +470,7 @@ body.sin-scroll {
   object-fit: contain;
 }
 
-.modal__categoria {
+.modal__category {
   align-self: flex-start;
   background-color: var(--color-primario);
   color: #fff;
@@ -481,17 +481,17 @@ body.sin-scroll {
   border-radius: 999px;
 }
 
-.modal__titulo {
+.modal__title {
   font-size: 1.4rem;
 }
 
-.modal__descripcion {
+.modal__description {
   font-size: 0.9rem;
   line-height: 1.5;
   color: var(--color-texto-secundario);
 }
 
-.modal__detalles {
+.modal__details {
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -499,12 +499,12 @@ body.sin-scroll {
   color: var(--color-texto-secundario);
 }
 
-.modal__detalles strong {
+.modal__details strong {
   color: var(--color-texto);
 }
 
-/* Reseñas flotantes, al lado del modal */
-.modal-resenas {
+/* Floating reviews, next to the modal */
+.modal-reviews {
   align-self: center;
   width: 260px;
   max-height: min(80vh, 600px);
@@ -519,27 +519,27 @@ body.sin-scroll {
   scrollbar-color: var(--color-primario) transparent;
 }
 
-.modal-resenas::-webkit-scrollbar {
+.modal-reviews::-webkit-scrollbar {
   width: 8px;
 }
 
-.modal-resenas::-webkit-scrollbar-track {
+.modal-reviews::-webkit-scrollbar-track {
   background: transparent;
 }
 
-.modal-resenas::-webkit-scrollbar-thumb {
+.modal-reviews::-webkit-scrollbar-thumb {
   background-color: var(--color-primario);
   border-radius: 999px;
   border: 2px solid transparent;
   background-clip: padding-box;
 }
 
-.modal-resenas::-webkit-scrollbar-thumb:hover {
+.modal-reviews::-webkit-scrollbar-thumb:hover {
   background-color: #ff5a68;
   background-clip: padding-box;
 }
 
-.modal-resenas__item {
+.modal-reviews__item {
   background-color: var(--color-superficie);
   border-radius: var(--radio);
   padding: 0.75rem 1rem;
@@ -547,23 +547,23 @@ body.sin-scroll {
   flex-direction: column;
   gap: 0.35rem;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55);
-  animation: resena-flota 0.5s ease both;
+  animation: review-float 0.5s ease both;
   transition: transform 0.2s ease;
 }
 
-.modal-resenas__item:nth-child(odd) {
+.modal-reviews__item:nth-child(odd) {
   transform: rotate(-2deg);
 }
 
-.modal-resenas__item:nth-child(even) {
+.modal-reviews__item:nth-child(even) {
   transform: rotate(2deg);
 }
 
-.modal-resenas__item:hover {
+.modal-reviews__item:hover {
   transform: rotate(0deg) scale(1.03);
 }
 
-@keyframes resena-flota {
+@keyframes review-float {
   from {
     opacity: 0;
     transform: translateX(16px);
@@ -574,18 +574,18 @@ body.sin-scroll {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .modal-resenas__item {
+  .modal-reviews__item {
     animation: none;
   }
 }
 
-.modal-resenas__comentario {
+.modal-reviews__comment {
   font-size: 0.85rem;
   font-style: italic;
   color: var(--color-texto);
 }
 
-.modal-resenas__autor {
+.modal-reviews__author {
   font-size: 0.75rem;
   color: var(--color-texto-secundario);
 }
@@ -599,7 +599,7 @@ body.sin-scroll {
   font-size: 0.85rem;
 }
 
-/* Responsivo */
+/* Responsive */
 @media (max-width: 768px) {
   .header {
     flex-wrap: nowrap;
@@ -607,7 +607,7 @@ body.sin-scroll {
     gap: 0.5rem;
   }
 
-  .header__marca {
+  .header__brand {
     gap: 0.5rem;
     min-width: 0;
   }
@@ -616,50 +616,50 @@ body.sin-scroll {
     height: 32px;
   }
 
-  .header__titulo-imagen {
+  .header__title-image {
     height: 20px;
   }
 
-  .header__filtros {
+  .header__filters {
     flex-wrap: nowrap;
     flex-shrink: 0;
     gap: 0.5rem;
   }
 
-  .contador-favoritos {
+  .favorites-counter {
     padding: 0.4rem 0.5rem;
     font-size: 0.8rem;
   }
 
-  .filtros__boton-idioma {
+  .filters__language-button {
     padding: 0.4rem 0.6rem;
     font-size: 0.8rem;
   }
 
-  .barra-busqueda {
+  .search-bar {
     flex-direction: column;
     padding: 1rem 1.5rem;
   }
 
-  .contenedor {
+  .container {
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     padding: 1.5rem;
     gap: 1rem;
   }
 
-  .anuncios {
+  .ads {
     min-height: 200px;
   }
 
-  .anuncios__slide {
+  .ads__slide {
     padding: 1.25rem 3.25rem;
   }
 
-  .anuncios__titulo {
+  .ads__title {
     font-size: 1.25rem;
   }
 
-  .anuncios__flecha {
+  .ads__arrow {
     width: 1.9rem;
     height: 1.9rem;
     font-size: 1.1rem;
@@ -671,7 +671,7 @@ body.sin-scroll {
     padding: 1rem;
   }
 
-  .modal-resenas {
+  .modal-reviews {
     width: 100%;
     max-width: 420px;
     max-height: 200px;
@@ -679,7 +679,7 @@ body.sin-scroll {
 }
 
 @media (max-width: 420px) {
-  .contenedor {
+  .container {
     grid-template-columns: 1fr;
   }
 }

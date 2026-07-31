@@ -1,37 +1,37 @@
-const CLAVE_ALMACENAMIENTO = "peliculas-favoritas";
+const STORAGE_KEY = "favorite-movies";
 
-function cargarFavoritos(): Set<number> {
-  const guardados = localStorage.getItem(CLAVE_ALMACENAMIENTO);
-  return new Set(guardados ? (JSON.parse(guardados) as number[]) : []);
+function loadFavorites(): Set<number> {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  return new Set(saved ? (JSON.parse(saved) as number[]) : []);
 }
 
-const favoritos = cargarFavoritos();
+const favorites = loadFavorites();
 
-function guardarFavoritos(): void {
-  localStorage.setItem(CLAVE_ALMACENAMIENTO, JSON.stringify([...favoritos]));
+function saveFavorites(): void {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify([...favorites]));
 }
 
-export function esFavorito(id: number): boolean {
-  return favoritos.has(id);
+export function isFavorite(id: number): boolean {
+  return favorites.has(id);
 }
 
-export function alternarFavorito(id: number): boolean {
-  if (favoritos.has(id)) {
-    favoritos.delete(id);
+export function toggleFavorite(id: number): boolean {
+  if (favorites.has(id)) {
+    favorites.delete(id);
   } else {
-    favoritos.add(id);
+    favorites.add(id);
   }
-  guardarFavoritos();
-  return favoritos.has(id);
+  saveFavorites();
+  return favorites.has(id);
 }
 
-export function contarFavoritos(): number {
-  return favoritos.size;
+export function countFavorites(): number {
+  return favorites.size;
 }
 
-export function actualizarContadorFavoritos(): void {
-  const elementoContador = document.getElementById("contador-favoritos-numero");
-  if (elementoContador) {
-    elementoContador.textContent = String(contarFavoritos());
+export function updateFavoritesCounter(): void {
+  const counterElement = document.getElementById("favorites-counter-number");
+  if (counterElement) {
+    counterElement.textContent = String(countFavorites());
   }
 }

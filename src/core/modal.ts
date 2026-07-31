@@ -1,46 +1,46 @@
-import { obtenerElemento } from "./dom.js";
+import { getElement } from "./dom.js";
 
-const modalOverlay = obtenerElemento("modal-overlay");
-const modalCerrar = obtenerElemento("modal-cerrar");
-const modalImagen = obtenerElemento<HTMLImageElement>("modal-imagen");
-const modalCategoria = obtenerElemento("modal-categoria");
-const modalTitulo = obtenerElemento("modal-titulo");
-const modalDescripcion = obtenerElemento("modal-descripcion");
-const modalAnio = obtenerElemento("modal-anio");
-const modalDirector = obtenerElemento("modal-director");
-const modalDuracion = obtenerElemento("modal-duracion");
-const modalCalificacion = obtenerElemento("modal-calificacion");
+const modalOverlay = getElement("modal-overlay");
+const modalClose = getElement("modal-close");
+const modalImage = getElement<HTMLImageElement>("modal-image");
+const modalCategory = getElement("modal-category");
+const modalTitle = getElement("modal-title");
+const modalDescription = getElement("modal-description");
+const modalYear = getElement("modal-year");
+const modalDirector = getElement("modal-director");
+const modalDuration = getElement("modal-duration");
+const modalRating = getElement("modal-rating");
 
-export function abrirModal(datos: DOMStringMap): void {
-  const { titulo, anio, director, categoria, duracion, calificacion, descripcion, imagen } = datos;
+export function openModal(data: DOMStringMap): void {
+  const { title, year, director, category, duration, rating, description, image } = data;
 
-  modalImagen.src = imagen ?? "";
-  modalImagen.alt = `Póster de ${titulo ?? ""}`;
-  modalCategoria.textContent = categoria ?? "";
-  modalTitulo.textContent = titulo ?? "";
-  modalDescripcion.textContent = descripcion ?? "";
-  modalAnio.textContent = anio ?? "";
+  modalImage.src = image ?? "";
+  modalImage.alt = `Poster of ${title ?? ""}`;
+  modalCategory.textContent = category ?? "";
+  modalTitle.textContent = title ?? "";
+  modalDescription.textContent = description ?? "";
+  modalYear.textContent = year ?? "";
   modalDirector.textContent = director ?? "";
-  modalDuracion.textContent = duracion ?? "";
-  modalCalificacion.textContent = calificacion ?? "";
+  modalDuration.textContent = duration ?? "";
+  modalRating.textContent = rating ?? "";
 
-  modalOverlay.classList.add("activo");
-  document.body.classList.add("sin-scroll");
+  modalOverlay.classList.add("active");
+  document.body.classList.add("no-scroll");
 }
 
-export function cerrarModal(): void {
-  modalOverlay.classList.remove("activo");
-  document.body.classList.remove("sin-scroll");
+export function closeModal(): void {
+  modalOverlay.classList.remove("active");
+  document.body.classList.remove("no-scroll");
 }
 
-export function inicializarModal(): void {
-  modalCerrar.addEventListener("click", cerrarModal);
+export function initializeModal(): void {
+  modalClose.addEventListener("click", closeModal);
 
-  modalOverlay.addEventListener("click", (evento) => {
-    if (evento.target === modalOverlay) cerrarModal();
+  modalOverlay.addEventListener("click", (event) => {
+    if (event.target === modalOverlay) closeModal();
   });
 
-  document.addEventListener("keydown", (evento) => {
-    if (evento.key === "Escape") cerrarModal();
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeModal();
   });
 }

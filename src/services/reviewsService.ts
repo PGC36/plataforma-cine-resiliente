@@ -1,37 +1,37 @@
-import { mapResenasDtoToEntities } from "../mappers/reviewMapper.js";
-import type { Resena } from "../entities/Review.js";
-import type { ResenaDTO } from "../dtos/Review.DTO.js";
-import type { ResenasResponseDTO } from "../dtos/ReviewsResponse.DTO.js";
+import { mapReviewsDtoToEntities } from "../mappers/reviewMapper.js";
+import type { Review } from "../entities/Review.js";
+import type { ReviewDTO } from "../dtos/Review.DTO.js";
+import type { ReviewsResponseDTO } from "../dtos/ReviewsResponse.DTO.js";
 
-const PROBABILIDAD_FALLO = 0;
+const PROBABILITY_OF_FAILURE = 0;
 const DELAY_MS = 700;
 
-const parametros = new URLSearchParams(window.location.search);
+const params = new URLSearchParams(window.location.search);
 
-function debeFallarForzado(): boolean {
-  const valor = parametros.get("forzarFallo");
-  return valor === "resenas" || valor === "todos";
+function shouldForceFail(): boolean {
+  const value = params.get("forceFail");
+  return value === "reviews" || value === "all";
 }
 
-async function cargarResenasDesdeJSON(): Promise<ResenaDTO[]> {
-  const respuesta = await fetch("resenas.json");
+async function loadReviewsFromJSON(): Promise<ReviewDTO[]> {
+  const response = await fetch("reviews.json");
 
-  if (!respuesta.ok) {
-    throw new Error("No se pudo cargar el archivo de reseñas");
+  if (!response.ok) {
+    throw new Error("Could not load the reviews file");
   }
 
-  const datos: ResenasResponseDTO = await respuesta.json();
-  return datos.resenas;
+  const data: ReviewsResponseDTO = await response.json();
+  return data.reviews;
 }
 
-export function obtenerResenas(): Promise<Resena[]> {
+export function getReviews(): Promise<Review[]> {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (debeFallarForzado() || Math.random() < PROBABILIDAD_FALLO) {
-        reject(new Error("Servicio de reseñas no disponible"));
+      if (shouldForceFail() || Math.random() < PROBABILITY_OF_FAILURE) {
+        reject(new Error("Reviews service unavailable"));
         return;
       }
-      cargarResenasDesdeJSON().then((dtos) => resolve(mapResenasDtoToEntities(dtos)), reject);
+      loadReviewsFromJSON().then((dtos) => resolve(mapReviewsDtoToEntities(dtos)), reject);
     }, DELAY_MS);
   });
 }

@@ -1,15 +1,15 @@
-import type { Resena } from "../entities/Review.js";
-import type { ResenaDTO } from "../dtos/Review.DTO.js";
+import type { Review } from "../entities/Review.js";
+import type { ReviewDTO } from "../dtos/Review.DTO.js";
 
-export function mapResenaDtoToEntity(dto: ResenaDTO): Resena {
+export function mapReviewDtoToEntity(dto: ReviewDTO): Review {
   return {
-    peliculaId: dto.peliculaId,
-    autor: dto.autor,
-    comentario: dto.comentario,
-    puntuacion: dto.puntuacion,
+    movieId: dto.movieId,
+    author: dto.author,
+    comment: dto.comment,
+    rating: dto.rating,
   };
 }
 
-export function mapResenasDtoToEntities(dtos: ResenaDTO[]): Resena[] {
-  return dtos.map(mapResenaDtoToEntity);
+export function mapReviewsDtoToEntities(dtos: ReviewDTO[]): Review[] {
+  return dtos.map(mapReviewDtoToEntity);
 }

@@ -1,14 +1,14 @@
-export interface Pelicula {
+export interface Movie {
   id: number;
-  titulo: string;
-  tituloEn: string;
-  anio: number;
+  title: string;
+  titleEn: string;
+  year: number;
   director: string;
-  categoria: string;
-  categoriaEn: string;
-  duracion: number;
-  calificacion: number;
-  descripcion: string;
-  descripcionEn: string;
-  imagen: string;
+  category: string;
+  categoryEn: string;
+  duration: number;
+  rating: number;
+  description: string;
+  descriptionEn: string;
+  image: string;
 }

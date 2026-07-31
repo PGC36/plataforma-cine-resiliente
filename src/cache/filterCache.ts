@@ -1,46 +1,46 @@
-import type { Pelicula } from "../entities/Movie.js";
+import type { Movie } from "../entities/Movie.js";
 
 const DELAY_MS = 500;
 
-export interface FiltroPeliculas {
-  filtrarPorGenero(genero: string): Promise<Pelicula[]>;
+export interface MovieFilter {
+  filterByGenre(genre: string): Promise<Movie[]>;
 }
 
-export function crearFiltroPeliculas(peliculas: Pelicula[]): FiltroPeliculas {
-  const cache: Record<string, Promise<Pelicula[]> | Pelicula[]> = {};
-  const mapaCategoriaACanonica: Record<string, string> = {};
+export function createMovieFilter(movies: Movie[]): MovieFilter {
+  const cache: Record<string, Promise<Movie[]> | Movie[]> = {};
+  const genreToCanonicalMap: Record<string, string> = {};
 
-  peliculas.forEach((pelicula) => {
-    mapaCategoriaACanonica[pelicula.categoria] = pelicula.categoria;
-    mapaCategoriaACanonica[pelicula.categoriaEn] = pelicula.categoria;
+  movies.forEach((movie) => {
+    genreToCanonicalMap[movie.category] = movie.category;
+    genreToCanonicalMap[movie.categoryEn] = movie.category;
   });
 
-  function simularConsultaDeGenero(categoriaCanonica: string): Promise<Pelicula[]> {
+  function simulateGenreQuery(canonicalCategory: string): Promise<Movie[]> {
     return new Promise((resolve) => {
       setTimeout(() => {
-        resolve(peliculas.filter((pelicula) => pelicula.categoria === categoriaCanonica));
+        resolve(movies.filter((movie) => movie.category === canonicalCategory));
       }, DELAY_MS);
     });
   }
 
-  async function filtrarPorGenero(generoMostrado: string): Promise<Pelicula[]> {
-    if (generoMostrado === "todas") {
-      return peliculas;
+  async function filterByGenre(displayedGenre: string): Promise<Movie[]> {
+    if (displayedGenre === "all") {
+      return movies;
     }
 
-    const categoriaCanonica = mapaCategoriaACanonica[generoMostrado] ?? generoMostrado;
+    const canonicalCategory = genreToCanonicalMap[displayedGenre] ?? displayedGenre;
 
-    const cacheado = cache[categoriaCanonica];
-    if (cacheado) {
-      return cacheado;
+    const cached = cache[canonicalCategory];
+    if (cached) {
+      return cached;
     }
 
-    const promesa = simularConsultaDeGenero(categoriaCanonica);
-    cache[categoriaCanonica] = promesa;
-    const resultado = await promesa;
-    cache[categoriaCanonica] = resultado;
-    return resultado;
+    const promise = simulateGenreQuery(canonicalCategory);
+    cache[canonicalCategory] = promise;
+    const result = await promise;
+    cache[canonicalCategory] = result;
+    return result;
   }
 
-  return { filtrarPorGenero };
+  return { filterByGenre };
 }

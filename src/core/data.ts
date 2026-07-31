@@ -1,13 +1,13 @@
-import type { PeliculaDTO } from "../dtos/Movie.DTO.js";
-import type { PeliculasResponseDTO } from "../dtos/MoviesResponse.DTO.js";
+import type { MovieDTO } from "../dtos/Movie.DTO.js";
+import type { MoviesResponseDTO } from "../dtos/MoviesResponse.DTO.js";
 
-export async function obtenerPeliculas(): Promise<PeliculaDTO[]> {
-  const respuesta = await fetch("peliculas.json");
+export async function getMovies(): Promise<MovieDTO[]> {
+  const response = await fetch("movies.json");
 
-  if (!respuesta.ok) {
-    throw new Error("No se pudo cargar el archivo de películas");
+  if (!response.ok) {
+    throw new Error("Could not load the movies file");
   }
 
-  const datos: PeliculasResponseDTO = await respuesta.json();
-  return datos.peliculas;
+  const data: MoviesResponseDTO = await response.json();
+  return data.movies;
 }

@@ -1,11 +1,11 @@
 /**
- * Helper mínimo para tipar getElementById sin repetir aserciones non-null:
- * los ids que usa el proyecto están garantizados por index.html.
+ * Minimal helper to type getElementById without repeating non-null
+ * assertions: the ids used by the project are guaranteed by index.html.
  */
-export function obtenerElemento<T extends HTMLElement = HTMLElement>(id: string): T {
-  const elemento = document.getElementById(id);
-  if (!elemento) {
-    throw new Error(`No se encontró el elemento #${id}`);
+export function getElement<T extends HTMLElement = HTMLElement>(id: string): T {
+  const element = document.getElementById(id);
+  if (!element) {
+    throw new Error(`Element #${id} was not found`);
   }
-  return elemento as T;
+  return element as T;
 }

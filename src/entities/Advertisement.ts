@@ -1,6 +1,6 @@
-export interface Anuncio {
-  titulo: string;
-  texto: string;
-  imagenFondo: string;
-  textoCta: string;
+export interface Advertisement {
+  title: string;
+  text: string;
+  backgroundImage: string;
+  ctaText: string;
 }

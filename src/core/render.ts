@@ -1,40 +1,40 @@
-import { esFavorito } from "./favorites.js";
-import { obtenerTraduccion, traducirPelicula } from "./language.js";
-import { calcularRetrasoEntrada } from "./animations.js";
-import type { Pelicula } from "../entities/Movie.js";
+import { isFavorite } from "./favorites.js";
+import { getTranslation, translateMovie } from "./language.js";
+import { calculateEntryDelay } from "./animations.js";
+import type { Movie } from "../entities/Movie.js";
 
-function crearTarjeta(peliculaOriginal: Pelicula, indice: number): HTMLElement {
-  const pelicula = traducirPelicula(peliculaOriginal);
-  const articulo = document.createElement("article");
-  articulo.className = "tarjeta";
-  articulo.style.animationDelay = calcularRetrasoEntrada(indice);
-  articulo.dataset.id = String(pelicula.id);
-  articulo.dataset.titulo = pelicula.titulo;
-  articulo.dataset.anio = String(pelicula.anio);
-  articulo.dataset.director = pelicula.director;
-  articulo.dataset.categoria = pelicula.categoria;
-  articulo.dataset.duracion = String(pelicula.duracion);
-  articulo.dataset.calificacion = String(pelicula.calificacion);
-  articulo.dataset.descripcion = pelicula.descripcion;
-  articulo.dataset.imagen = pelicula.imagen;
+function createCard(originalMovie: Movie, index: number): HTMLElement {
+  const movie = translateMovie(originalMovie);
+  const article = document.createElement("article");
+  article.className = "card";
+  article.style.animationDelay = calculateEntryDelay(index);
+  article.dataset.id = String(movie.id);
+  article.dataset.title = movie.title;
+  article.dataset.year = String(movie.year);
+  article.dataset.director = movie.director;
+  article.dataset.category = movie.category;
+  article.dataset.duration = String(movie.duration);
+  article.dataset.rating = String(movie.rating);
+  article.dataset.description = movie.description;
+  article.dataset.image = movie.image;
 
-  const claseActiva = esFavorito(pelicula.id) ? "activo" : "";
+  const activeClass = isFavorite(movie.id) ? "active" : "";
 
-  articulo.innerHTML = `
-    <button class="tarjeta__favorito ${claseActiva}" aria-label="${obtenerTraduccion("favorito")}">♥</button>
-    <img class="tarjeta__imagen" src="${pelicula.imagen}" alt="Póster de ${pelicula.titulo}" loading="lazy" />
-    <div class="tarjeta__categoria">${pelicula.categoria}</div>
-    <h2 class="tarjeta__titulo">${pelicula.titulo}</h2>
-    <p class="tarjeta__info"><span>${pelicula.anio}</span> · <span>${pelicula.director}</span></p>
-    <p class="tarjeta__info">${pelicula.duracion} ${obtenerTraduccion("min")} · ⭐ ${pelicula.calificacion}</p>
+  article.innerHTML = `
+    <button class="card__favorite ${activeClass}" aria-label="${getTranslation("favorite")}">♥</button>
+    <img class="card__image" src="${movie.image}" alt="Poster of ${movie.title}" loading="lazy" />
+    <div class="card__category">${movie.category}</div>
+    <h2 class="card__title">${movie.title}</h2>
+    <p class="card__info"><span>${movie.year}</span> · <span>${movie.director}</span></p>
+    <p class="card__info">${movie.duration} ${getTranslation("min")} · ⭐ ${movie.rating}</p>
   `;
 
-  return articulo;
+  return article;
 }
 
-export function renderizarPeliculas(peliculas: Pelicula[], contenedor: HTMLElement): void {
-  contenedor.innerHTML = "";
-  const fragmento = document.createDocumentFragment();
-  peliculas.forEach((pelicula, indice) => fragmento.appendChild(crearTarjeta(pelicula, indice)));
-  contenedor.appendChild(fragmento);
+export function renderMovies(movies: Movie[], container: HTMLElement): void {
+  container.innerHTML = "";
+  const fragment = document.createDocumentFragment();
+  movies.forEach((movie, index) => fragment.appendChild(createCard(movie, index)));
+  container.appendChild(fragment);
 }

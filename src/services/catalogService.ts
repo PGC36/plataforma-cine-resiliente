@@ -1,8 +1,8 @@
-import { obtenerPeliculas } from "../core/data.js";
-import { mapPeliculasDtoToEntities } from "../mappers/movieMapper.js";
-import type { Pelicula } from "../entities/Movie.js";
+import { getMovies } from "../core/data.js";
+import { mapMoviesDtoToEntities } from "../mappers/movieMapper.js";
+import type { Movie } from "../entities/Movie.js";
 
-export async function obtenerCatalogo(): Promise<Pelicula[]> {
-  const dtos = await obtenerPeliculas();
-  return mapPeliculasDtoToEntities(dtos);
+export async function getCatalog(): Promise<Movie[]> {
+  const dtos = await getMovies();
+  return mapMoviesDtoToEntities(dtos);
 }

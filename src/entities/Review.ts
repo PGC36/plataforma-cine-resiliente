@@ -1,6 +1,6 @@
-export interface Resena {
-  peliculaId: number;
-  autor: string;
-  comentario: string;
-  puntuacion: number;
+export interface Review {
+  movieId: number;
+  author: string;
+  comment: string;
+  rating: number;
 }

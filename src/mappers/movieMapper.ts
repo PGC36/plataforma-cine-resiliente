@@ -1,27 +1,28 @@
-import type { Pelicula } from "../entities/Movie.js";
-import type { PeliculaDTO } from "../dtos/Movie.DTO.js";
+import type { Movie } from "../entities/Movie.js";
+import type { MovieDTO } from "../dtos/Movie.DTO.js";
 
 /**
- * Sanea un PeliculaDTO crudo antes de que llegue a la UI: si falta un campo
- * *En (ver AGENTS.md), cae al valor en español en vez de mostrar "undefined".
+ * Sanitizes a raw MovieDTO before it reaches the UI: if an *En field is
+ * missing (see AGENTS.md), falls back to the default-language value instead
+ * of showing "undefined".
  */
-export function mapPeliculaDtoToEntity(dto: PeliculaDTO): Pelicula {
+export function mapMovieDtoToEntity(dto: MovieDTO): Movie {
   return {
     id: dto.id,
-    titulo: dto.titulo,
-    tituloEn: dto.tituloEn ?? dto.titulo,
-    anio: dto.anio,
+    title: dto.title,
+    titleEn: dto.titleEn ?? dto.title,
+    year: dto.year,
     director: dto.director,
-    categoria: dto.categoria,
-    categoriaEn: dto.categoriaEn ?? dto.categoria,
-    duracion: dto.duracion,
-    calificacion: dto.calificacion,
-    descripcion: dto.descripcion,
-    descripcionEn: dto.descripcionEn ?? dto.descripcion,
-    imagen: dto.imagen,
+    category: dto.category,
+    categoryEn: dto.categoryEn ?? dto.category,
+    duration: dto.duration,
+    rating: dto.rating,
+    description: dto.description,
+    descriptionEn: dto.descriptionEn ?? dto.description,
+    image: dto.image,
   };
 }
 
-export function mapPeliculasDtoToEntities(dtos: PeliculaDTO[]): Pelicula[] {
-  return dtos.map(mapPeliculaDtoToEntity);
+export function mapMoviesDtoToEntities(dtos: MovieDTO[]): Movie[] {
+  return dtos.map(mapMovieDtoToEntity);
 }

@@ -1,46 +1,46 @@
-import { mapAnunciosDtoToEntities } from "../mappers/advertisementMapper.js";
-import type { Anuncio } from "../entities/Advertisement.js";
-import type { AnuncioDTO } from "../dtos/Advertisement.DTO.js";
+import { mapAdvertisementsDtoToEntities } from "../mappers/advertisementMapper.js";
+import type { Advertisement } from "../entities/Advertisement.js";
+import type { AdvertisementDTO } from "../dtos/Advertisement.DTO.js";
 
-const PROBABILIDAD_FALLO = 0;
+const PROBABILITY_OF_FAILURE = 0;
 const DELAY_MS = 500;
 
-const ANUNCIOS_MOCK: AnuncioDTO[] = [
+const ADVERTISEMENTS_MOCK: AdvertisementDTO[] = [
   {
-    titulo: "Semana del Cine Clásico",
-    texto: "20% de descuento en funciones seleccionadas de nuestros clásicos favoritos.",
-    imagenFondo: "banners/SemanaCineClasico.webp",
-    textoCta: "Ver Cartelera",
+    title: "Semana del Cine Clásico",
+    text: "20% de descuento en funciones seleccionadas de nuestros clásicos favoritos.",
+    backgroundImage: "banners/SemanaCineClasico.webp",
+    ctaText: "Ver Cartelera",
   },
   {
-    titulo: "Estrenos de Ciencia Ficción",
-    texto: "Anotate para la preventa de la próxima saga antes que se agote.",
-    imagenFondo: "banners/EstrenosCienciaFiccion.webp",
-    textoCta: "Reservar Preventa",
+    title: "Estrenos de Ciencia Ficción",
+    text: "Anotate para la preventa de la próxima saga antes que se agote.",
+    backgroundImage: "banners/EstrenosCienciaFiccion.webp",
+    ctaText: "Reservar Preventa",
   },
   {
-    titulo: "Maratón de Terror",
-    texto: "Funciones a mitad de precio todas las noches de la semana.",
-    imagenFondo: "banners/MaratonDeTerror.webp",
-    textoCta: "Comprar Entradas",
+    title: "Maratón de Terror",
+    text: "Funciones a mitad de precio todas las noches de la semana.",
+    backgroundImage: "banners/MaratonDeTerror.webp",
+    ctaText: "Comprar Entradas",
   },
 ];
 
-const parametros = new URLSearchParams(window.location.search);
+const params = new URLSearchParams(window.location.search);
 
-function debeFallarForzado(): boolean {
-  const valor = parametros.get("forzarFallo");
-  return valor === "anuncios" || valor === "todos";
+function shouldForceFail(): boolean {
+  const value = params.get("forceFail");
+  return value === "advertisements" || value === "all";
 }
 
-export function obtenerAnuncios(): Promise<Anuncio[]> {
+export function getAdvertisements(): Promise<Advertisement[]> {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (debeFallarForzado() || Math.random() < PROBABILIDAD_FALLO) {
-        reject(new Error("Servicio de anuncios no disponible"));
+      if (shouldForceFail() || Math.random() < PROBABILITY_OF_FAILURE) {
+        reject(new Error("Advertisements service unavailable"));
         return;
       }
-      resolve(mapAnunciosDtoToEntities(ANUNCIOS_MOCK));
+      resolve(mapAdvertisementsDtoToEntities(ADVERTISEMENTS_MOCK));
     }, DELAY_MS);
   });
 }

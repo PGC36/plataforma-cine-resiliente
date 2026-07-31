@@ -1,104 +1,104 @@
-import type { Pelicula } from "../entities/Movie.js";
+import type { Movie } from "../entities/Movie.js";
 
-type Idioma = "es" | "en";
+type Language = "es" | "en";
 
-interface Traduccion {
-  buscar: string;
-  todas: string;
-  favorito: string;
-  cerrar: string;
-  anio: string;
+interface Translation {
+  search: string;
+  all: string;
+  favorite: string;
+  close: string;
+  year: string;
   director: string;
-  duracion: string;
-  calificacion: string;
+  duration: string;
+  rating: string;
   min: string;
   footer: string;
   error: string;
 }
 
-type ClaveTraduccion = keyof Traduccion;
+type TranslationKey = keyof Translation;
 
-const CLAVE_ALMACENAMIENTO = "idioma-preferido";
+const STORAGE_KEY = "preferred-language";
 
-const traducciones: Record<Idioma, Traduccion> = {
+const translations: Record<Language, Translation> = {
   es: {
-    buscar: "Buscar película...",
-    todas: "Todas las categorías",
-    favorito: "Agregar a favoritos",
-    cerrar: "Cerrar",
-    anio: "Año:",
+    search: "Buscar película...",
+    all: "Todas las categorías",
+    favorite: "Agregar a favoritos",
+    close: "Cerrar",
+    year: "Año:",
     director: "Director:",
-    duracion: "Duración:",
-    calificacion: "Calificación:",
+    duration: "Duración:",
+    rating: "Calificación:",
     min: "min",
     footer: "Catálogo de películas — CapyFilms",
     error: "No se pudieron cargar las películas.",
   },
   en: {
-    buscar: "Search movie...",
-    todas: "All categories",
-    favorito: "Add to favorites",
-    cerrar: "Close",
-    anio: "Year:",
+    search: "Search movie...",
+    all: "All categories",
+    favorite: "Add to favorites",
+    close: "Close",
+    year: "Year:",
     director: "Director:",
-    duracion: "Duration:",
-    calificacion: "Rating:",
+    duration: "Duration:",
+    rating: "Rating:",
     min: "min",
     footer: "Movie catalog — CapyFilms",
     error: "Movies could not be loaded.",
   },
 };
 
-export function obtenerIdioma(): Idioma {
-  return (localStorage.getItem(CLAVE_ALMACENAMIENTO) as Idioma | null) || "es";
+export function getLanguage(): Language {
+  return (localStorage.getItem(STORAGE_KEY) as Language | null) || "es";
 }
 
-export function obtenerTraduccion(clave: ClaveTraduccion): string {
-  const idioma = obtenerIdioma();
-  return traducciones[idioma][clave];
+export function getTranslation(key: TranslationKey): string {
+  const language = getLanguage();
+  return translations[language][key];
 }
 
-export function establecerIdioma(idioma: Idioma): void {
-  localStorage.setItem(CLAVE_ALMACENAMIENTO, idioma);
+export function setLanguage(language: Language): void {
+  localStorage.setItem(STORAGE_KEY, language);
 }
 
-export function traducirPelicula(pelicula: Pelicula): Pelicula {
-  if (obtenerIdioma() === "en") {
+export function translateMovie(movie: Movie): Movie {
+  if (getLanguage() === "en") {
     return {
-      ...pelicula,
-      titulo: pelicula.tituloEn,
-      categoria: pelicula.categoriaEn,
-      descripcion: pelicula.descripcionEn,
+      ...movie,
+      title: movie.titleEn,
+      category: movie.categoryEn,
+      description: movie.descriptionEn,
     };
   }
-  return pelicula;
+  return movie;
 }
 
-export function aplicarIdioma(): void {
-  const idioma = obtenerIdioma();
-  const diccionario = traducciones[idioma];
+export function applyLanguage(): void {
+  const language = getLanguage();
+  const dictionary = translations[language];
 
-  document.querySelectorAll<HTMLElement>("[data-i18n]").forEach((elemento) => {
-    const clave = elemento.dataset.i18n as ClaveTraduccion;
-    elemento.textContent = diccionario[clave];
+  document.querySelectorAll<HTMLElement>("[data-i18n]").forEach((element) => {
+    const key = element.dataset.i18n as TranslationKey;
+    element.textContent = dictionary[key];
   });
 
-  document.querySelectorAll<HTMLElement>("[data-i18n-placeholder]").forEach((elemento) => {
-    if (elemento instanceof HTMLInputElement) {
-      const clave = elemento.dataset.i18nPlaceholder as ClaveTraduccion;
-      elemento.placeholder = diccionario[clave];
+  document.querySelectorAll<HTMLElement>("[data-i18n-placeholder]").forEach((element) => {
+    if (element instanceof HTMLInputElement) {
+      const key = element.dataset.i18nPlaceholder as TranslationKey;
+      element.placeholder = dictionary[key];
     }
   });
 
-  document.querySelectorAll<HTMLElement>("[data-i18n-aria]").forEach((elemento) => {
-    const clave = elemento.dataset.i18nAria as ClaveTraduccion;
-    elemento.setAttribute("aria-label", diccionario[clave]);
+  document.querySelectorAll<HTMLElement>("[data-i18n-aria]").forEach((element) => {
+    const key = element.dataset.i18nAria as TranslationKey;
+    element.setAttribute("aria-label", dictionary[key]);
   });
 
-  document.documentElement.lang = idioma;
+  document.documentElement.lang = language;
 
-  const botonIdioma = document.getElementById("boton-idioma");
-  if (botonIdioma) {
-    botonIdioma.textContent = idioma === "es" ? "EN" : "ES";
+  const languageButton = document.getElementById("language-button");
+  if (languageButton) {
+    languageButton.textContent = language === "es" ? "EN" : "ES";
   }
 }

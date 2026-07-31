@@ -1,15 +1,15 @@
-import type { Anuncio } from "../entities/Advertisement.js";
-import type { AnuncioDTO } from "../dtos/Advertisement.DTO.js";
+import type { Advertisement } from "../entities/Advertisement.js";
+import type { AdvertisementDTO } from "../dtos/Advertisement.DTO.js";
 
-export function mapAnuncioDtoToEntity(dto: AnuncioDTO): Anuncio {
+export function mapAdvertisementDtoToEntity(dto: AdvertisementDTO): Advertisement {
   return {
-    titulo: dto.titulo,
-    texto: dto.texto,
-    imagenFondo: dto.imagenFondo,
-    textoCta: dto.textoCta,
+    title: dto.title,
+    text: dto.text,
+    backgroundImage: dto.backgroundImage,
+    ctaText: dto.ctaText,
   };
 }
 
-export function mapAnunciosDtoToEntities(dtos: AnuncioDTO[]): Anuncio[] {
-  return dtos.map(mapAnuncioDtoToEntity);
+export function mapAdvertisementsDtoToEntities(dtos: AdvertisementDTO[]): Advertisement[] {
+  return dtos.map(mapAdvertisementDtoToEntity);
 }
