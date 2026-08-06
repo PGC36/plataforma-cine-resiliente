@@ -1,5 +1,5 @@
-import type { Movie } from "../entities/Movie.js";
-import type { MovieDTO } from "../dtos/Movie.DTO.js";
+import type { Movie } from "../entities/Movie";
+import type { MovieDTO } from "../dtos/Movie.DTO";
 
 /**
  * Sanitizes a raw MovieDTO before it reaches the UI: if an *En field is

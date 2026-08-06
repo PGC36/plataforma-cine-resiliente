@@ -1,5 +1,5 @@
-import type { Advertisement } from "../entities/Advertisement.js";
-import type { AdvertisementDTO } from "../dtos/Advertisement.DTO.js";
+import type { Advertisement } from "../entities/Advertisement";
+import type { AdvertisementDTO } from "../dtos/Advertisement.DTO";
 
 export function mapAdvertisementDtoToEntity(dto: AdvertisementDTO): Advertisement {
   return {

@@ -1,5 +1,5 @@
-import type { Review } from "../entities/Review.js";
-import type { ReviewDTO } from "../dtos/Review.DTO.js";
+import type { Review } from "../entities/Review";
+import type { ReviewDTO } from "../dtos/Review.DTO";
 
 export function mapReviewDtoToEntity(dto: ReviewDTO): Review {
   return {

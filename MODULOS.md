@@ -1,10 +1,10 @@
-# Módulos y servicios
+# Módulos, hooks y componentes
 
-Detalle de cada archivo `.ts` del proyecto: responsabilidad, qué expone (`export`) y de qué depende (`import`). Para el flujo completo entre módulos y las convenciones generales, ver [AGENTS.md](./AGENTS.md). Para el historial de la migración a TypeScript y la traducción de identificadores/datos a inglés, ver [MIGRACION-TYPESCRIPT.md](./MIGRACION-TYPESCRIPT.md).
+Detalle de cada archivo del proyecto: responsabilidad, qué expone (`export`) y de qué depende (`import`). Para el flujo completo entre piezas y las convenciones generales, ver [AGENTS.md](./AGENTS.md). Para el historial de las dos migraciones (JS vanilla → TypeScript, y TypeScript vanilla → React + Next.js), ver [MIGRACION-TYPESCRIPT.md](./MIGRACION-TYPESCRIPT.md) y [MIGRACION-REACT-NEXTJS.md](./MIGRACION-REACT-NEXTJS.md).
 
 ## `src/entities/` — modelo de dominio
 
-Interfaces puras, sin lógica. Es lo único que ven `core/`, `services/`, `cache/`, `orchestrator/` y `main.ts` — nunca un DTO.
+Interfaces puras, sin lógica. Sin cambios respecto a la versión TypeScript vanilla.
 
 ### `Movie.ts`
 - **Exports:** `interface Movie { id, title, titleEn, year, director, category, categoryEn, duration, rating, description, descriptionEn, image }`.
@@ -19,149 +19,143 @@ Interfaces puras, sin lógica. Es lo único que ven `core/`, `services/`, `cache
 
 ## `src/dtos/` — forma cruda de cada endpoint
 
+Sin cambios de fondo (solo los imports internos perdieron la extensión `.js`, ya no hace falta con la resolución de módulos de Next).
+
 ### `Movie.DTO.ts` / `MoviesResponse.DTO.ts`
-- **Responsabilidad:** modelar `movies.json` tal como llega, antes de mapear. `titleEn`/`categoryEn`/`descriptionEn` son opcionales acá (pueden faltar en el JSON).
 - **Exports:** `interface MovieDTO`, `interface MoviesResponseDTO { movies: MovieDTO[] }`.
 
 ### `Review.DTO.ts` / `ReviewsResponse.DTO.ts`
-- **Responsabilidad:** modelar `reviews.json` tal como llega.
 - **Exports:** `interface ReviewDTO`, `interface ReviewsResponseDTO { reviews: ReviewDTO[] }`.
 
 ### `Advertisement.DTO.ts`
-- **Responsabilidad:** modelar el mock de `Advertisements.Service.ts` tal como está hardcodeado (no viene de un `.json`).
 - **Exports:** `interface AdvertisementDTO`.
 
 ---
 
 ## `src/mappers/` — funciones puras DTO → Entity
 
-Sin DOM, sin `fetch`, sin side effects. Se llaman desde `services/`, nunca desde `core/`/`main.ts` directamente.
+Sin cambios de lógica. Se llaman desde `services/`.
 
 ### `Movie.Mapper.ts`
-- **Exports:** `mapMovieDtoToEntity(dto: MovieDTO): Movie`, `mapMoviesDtoToEntities(dtos: MovieDTO[]): Movie[]`.
-- **Lógica:** copia campo a campo; si falta `titleEn`/`categoryEn`/`descriptionEn` en el DTO, cae al valor por defecto (`dto.titleEn ?? dto.title`, etc.) en vez de propagar `undefined`.
+- **Exports:** `mapMovieDtoToEntity(dto): Movie`, `mapMoviesDtoToEntities(dtos): Movie[]`. Cae a los valores en español si faltan los campos `*En` del DTO.
 
 ### `Review.Mapper.ts`
-- **Exports:** `mapReviewDtoToEntity(dto: ReviewDTO): Review`, `mapReviewsDtoToEntities(dtos: ReviewDTO[]): Review[]`.
-- **Lógica:** copia directa, sin fallback (todos los campos de `ReviewDTO` son obligatorios).
+- **Exports:** `mapReviewDtoToEntity(dto): Review`, `mapReviewsDtoToEntities(dtos): Review[]`.
 
 ### `Advertisement.Mapper.ts`
-- **Exports:** `mapAdvertisementDtoToEntity(dto: AdvertisementDTO): Advertisement`, `mapAdvertisementsDtoToEntities(dtos: AdvertisementDTO[]): Advertisement[]`.
-- **Lógica:** copia directa.
+- **Exports:** `mapAdvertisementDtoToEntity(dto): Advertisement`, `mapAdvertisementsDtoToEntities(dtos): Advertisement[]`.
 
 ---
 
-## `src/core/` — módulos originales (misma lógica del live coding, tipada)
+## `src/services/` — tres "backends" simulados
 
-### `data.ts`
-- **Responsabilidad:** `fetch()` de `movies.json`.
-- **Exports:** `getMovies(): Promise<MovieDTO[]>` — lanza error si la respuesta no es `ok`. Devuelve DTOs crudos, sin mapear (el mapeo lo hace `Catalog.Service.ts`).
-- **Imports:** `MovieDTO`, `MoviesResponseDTO` (`../dtos/`).
-
-### `render.ts`
-- **Responsabilidad:** construir las cards del DOM a partir de una lista de películas.
-- **Exports:** `renderMovies(movies: Movie[], container: HTMLElement): void`.
-- **Imports:** `isFavorite` (`favorites.ts`), `getTranslation`/`translateMovie` (`language.ts`), `calculateEntryDelay` (`animations.ts`), `Movie` (`../entities/`).
-- **Nota:** traduce cada película en el momento de pintar (`translateMovie`), no antes — por eso el caché de género (`cache/Filter.Cache.ts`) puede guardar objetos sin traducir sin que se rompa nada.
-
-### `modal.ts`
-- **Responsabilidad:** abrir/cerrar el modal de detalle y rellenarlo con los `data-*` de una card.
-- **Exports:** `openModal(data: DOMStringMap)`, `closeModal()`, `initializeModal()`.
-- **Imports:** `getElement` (`dom.ts`).
-
-### `favorites.ts`
-- **Responsabilidad:** estado de favoritos en `localStorage` (clave `favorite-movies`) y contador del header.
-- **Exports:** `isFavorite(id)`, `toggleFavorite(id)`, `countFavorites()`, `updateFavoritesCounter()`.
-- **Imports:** ninguno.
-
-### `filters.ts`
-- **Responsabilidad:** poblar el `<select>` de categorías y filtrar por texto + categoría.
-- **Exports:** `populateCategories(movies, selectElement)`, `filterMovies(movies, text, category)`.
-- **Imports:** `translateMovie` (`language.ts`), `Movie` (`../entities/`).
-- **Nota de integración:** `main.ts` siempre le pasa `"all"` como `category`, porque el filtro por género real ya lo resolvió `cache/Filter.Cache.ts` antes de llegar acá — evita el doble filtrado (ver sección de la caché más abajo).
-
-### `language.ts`
-- **Responsabilidad:** diccionario ES/EN y traducción de textos estáticos y de datos.
-- **Exports:** `getLanguage()`, `getTranslation(key)`, `setLanguage(language)`, `translateMovie(movie)`, `applyLanguage()`.
-- **Imports:** `Movie` (`../entities/`).
-- **Persistencia:** `localStorage` bajo `preferred-language`.
-- **Nota:** las **claves** del diccionario (`search`, `all`, `favorite`, `close`, `year`, `director`, `duration`, `rating`, `min`, `footer`, `error`) están en inglés (son identificadores); los **valores** de cada idioma se mantienen en español (`es`) e inglés (`en`) como contenido real de la UI.
-
-### `animations.ts`
-- **Responsabilidad:** retraso escalonado de entrada de las cards y retrigger del pop de favoritos.
-- **Exports:** `calculateEntryDelay(index)`, `animateFavorite(button)`.
-- **Imports:** ninguno.
-
-### `dom.ts`
-- **Responsabilidad:** tipar `document.getElementById` sin repetir aserciones non-null en cada módulo.
-- **Exports:** `getElement<T extends HTMLElement = HTMLElement>(id: string): T` — tira `Error` si el id no existe.
-- **Imports:** ninguno.
-
----
-
-## `src/services/` — tres "backends" simulados, pensados para `Promise.allSettled`
-
-Cada uno hace: obtener datos crudos → mapear DTO→Entity → resolver/rechazar con `Entity[]`.
+Cada uno hace: obtener datos crudos → mapear DTO→Entity → resolver/rechazar con `Entity[]`. Consumidos desde `src/hooks/`, no hay orquestador central (ver AGENTS.md).
 
 ### `Catalog.Service.ts`
-- **Responsabilidad:** exponer el catálogo con la misma interfaz que los otros dos servicios, delegando en `data.ts` + `Movie.Mapper.ts`. Nunca falla a propósito.
+- **Responsabilidad:** `fetch("/movies.json")` + `Movie.Mapper.ts`. Nunca falla a propósito. Antes vivía repartido entre `core/data.ts` (fetch) y `services/Catalog.Service.ts` (mapeo); ahora está todo en un solo archivo, ya que `core/` no existe más.
 - **Exports:** `getCatalog(): Promise<Movie[]>`.
-- **Imports:** `getMovies` (`../core/data.ts`), `mapMoviesDtoToEntities` (`../mappers/Movie.Mapper.ts`), `Movie` (`../entities/`).
-- **Lógica:** wrapper directo, sin `try/catch` propio — si el `fetch` real falla, el rechazo se propaga tal cual.
 
 ### `Reviews.Service.ts`
-- **Responsabilidad:** simular un servicio externo de reseñas de usuarios, con fallo aleatorio o forzado.
+- **Responsabilidad:** simular un servicio externo de reseñas, con fallo aleatorio o forzado.
 - **Exports:** `getReviews(): Promise<Review[]>`.
-- **Imports:** `mapReviewsDtoToEntities` (`../mappers/Review.Mapper.ts`), `Review`/`ReviewDTO`/`ReviewsResponseDTO`. Hace su propio `fetch()` de `reviews.json`, igual que `core/data.ts` hace con `movies.json`.
-- **Parámetros de simulación:** `DELAY_MS = 700`, `PROBABILITY_OF_FAILURE = 0` (dejado en `0` a propósito; subir el valor para volver a ver fallos aleatorios). Primero se cumple el delay/fallo simulado (`setTimeout`); solo si no le tocó fallar, recién ahí dispara el `fetch()` real de `reviews.json`.
-- **Fallo forzado:** `?forceFail=reviews` o `?forceFail=all` en la URL saltea el `Math.random()` y siempre rechaza (sin llegar a pedir el JSON).
-- **Fuente de datos (`reviews.json`, raíz del proyecto):** `{ "reviews": [{ movieId, author, comment, rating }, ...] }`, 187 reseñas repartidas sobre las 30 películas de `movies.json` con esta distribución (pedida explícitamente, no arbitraria): 3 películas (10%) con más de 10 reseñas — incluye Matrix (id 2) con 15, a propósito para poder demostrar el scroll de `#modal-reviews` —, 9 (30%) con exactamente 9, 9 (30%) entre 5 y 8, 4 (15%, redondeando 4.5 hacia abajo) entre 1 y 4, y 5 (15%, redondeando hacia arriba) sin ninguna reseña. `main.ts` consume el array completo tal cual y filtra por `movieId` recién al abrir el modal de una película. Si se agregan películas nuevas a `movies.json`, `reviews.json` no se actualiza solo — hay que sumarle sus reseñas a mano (o dejarla en el bucket "sin reseñas" si no aplica).
+- **Parámetros de simulación:** `DELAY_MS = 700`, `PROBABILITY_OF_FAILURE = 0`.
+- **Detalle importante:** `shouldForceFail()` construye `new URLSearchParams(window.location.search)` **dentro de la función**, no a nivel de módulo — el módulo se evalúa también durante el prerender de Next en el servidor (donde `window` no existe), así que leer `window` a nivel de módulo rompe el build.
+- **Fuente de datos (`public/reviews.json`):** sin cambios, 187 reseñas repartidas sobre las 30 películas.
 
 ### `Advertisements.Service.ts`
-- **Responsabilidad:** simular el servicio de anuncios promocionales, mismo patrón que reviews pero independiente (para que no fallen/resuelvan en sincronía).
+- **Responsabilidad:** simular el servicio de anuncios promocionales, mismo patrón que reviews pero independiente.
 - **Exports:** `getAdvertisements(): Promise<Advertisement[]>`.
-- **Imports:** `mapAdvertisementsDtoToEntities` (`../mappers/Advertisement.Mapper.ts`), `Advertisement`/`AdvertisementDTO`.
-- **Parámetros de simulación:** `DELAY_MS = 500`, `PROBABILITY_OF_FAILURE = 0`, independiente de `Reviews.Service.ts`.
-- **Fallo forzado:** `?forceFail=advertisements` o `?forceFail=all`.
-- **Mock:** 3 anuncios (`title`, `text`, `backgroundImage`, `ctaText`) — el copy (`Semana del Cine Clásico`, etc.) se mantiene en español a propósito, es contenido — cada uno con su imagen de fondo en `banners/` (`SemanaCineClasico.webp`, `EstrenosCienciaFiccion.webp`, `MaratonDeTerror.webp`) y su propio texto de botón. Se consumen desde `main.ts` como un carrusel (ver más abajo), no como una lista fija.
+- **Parámetros de simulación:** `DELAY_MS = 500`, `PROBABILITY_OF_FAILURE = 0`.
+- **Mock:** 3 anuncios con imagen en `public/banners/` — mismas rutas que antes, con `/` inicial (`/banners/SemanaCineClasico.webp`, etc.) porque ahora se sirven desde `public/`.
 
 ---
 
-## `src/orchestrator/orchestrateServices.ts`
+## `src/hooks/` — estado y efectos de React
 
-- **Responsabilidad:** disparar los tres servicios en paralelo con `Promise.allSettled` y devolver un resultado consolidado.
-- **Exports:** `orchestrateServices(): Promise<OrchestrationResult>` donde `OrchestrationResult = { movies: Movie[], reviews: Review[] | null, advertisements: Advertisement[] | null }`.
-- **Imports:** `getCatalog` (`../services/Catalog.Service.ts`), `getReviews` (`../services/Reviews.Service.ts`), `getAdvertisements` (`../services/Advertisements.Service.ts`).
-- **Lógica:**
-  - Si `catalog` rechaza → propaga el error (fatal; lo atrapa el `catch` de `start()` en `main.ts`).
-  - Si `reviews`/`advertisements` rechazan → se devuelven como `null` (con `console.warn` del motivo), sin romper el resto del flujo.
+### `useCatalog.ts`
+- **Responsabilidad:** dispara `getCatalog()` en un `useEffect` al montar.
+- **Exports:** `useCatalog(): { movies: Movie[], loading: boolean, error: Error | null }`.
 
----
+### `useReviews.ts`
+- **Responsabilidad:** dispara `getReviews()`. Si falla, no propaga el error — lo loguea con `console.warn` y devuelve `reviews: null` (no fatal, ver AGENTS.md).
+- **Exports:** `useReviews(): { reviews: Review[] | null, loading: boolean }`.
 
-## `src/cache/Filter.Cache.ts`
+### `useAdvertisements.ts`
+- **Responsabilidad:** igual que `useReviews.ts` pero para `getAdvertisements()`; si falla devuelve `advertisements: []`.
+- **Exports:** `useAdvertisements(): { advertisements: Advertisement[], loading: boolean }`.
 
-- **Responsabilidad:** filtrar películas por género con un caché privado por closure, para no repetir la simulación de latencia en géneros ya consultados.
-- **Exports:** `createMovieFilter(movies: Movie[]): MovieFilter` donde `MovieFilter = { filterByGenre(genre): Promise<Movie[]> }`.
-- **Imports:** `Movie` (`../entities/`).
+### `useFavorites.ts`
+- **Responsabilidad:** estado de favoritos en `localStorage` (clave `favorite-movies`). El estado real vive en un `useState<Set<number>>`; se hidrata desde `localStorage` en un `useEffect` al montar (no se puede leer `localStorage` durante el render en el servidor).
+- **Exports:** `useFavorites(): { isFavorite(id), toggleFavorite(id): boolean, count: number }`.
+- **Nota:** `toggleFavorite` calcula el nuevo valor a partir del estado ya conocido en el cuerpo del hook (no de un *updater* de `setState`), para poder devolver el booleano `willBeFavorite` de forma síncrona, como hacía la versión vanilla.
+
+### `useLanguage.tsx`
+- **Responsabilidad:** diccionario ES/EN + traducción de datos, expuesto como Context (`LanguageProvider`) porque lo consumen muchos componentes (`Header`, `SearchBar`, `MovieCard`, `MovieModal`, `Footer`). Arranca en `"es"` y sincroniza la preferencia guardada en `localStorage` (`preferred-language`) en un `useEffect` al montar, por la misma razón que `useFavorites.ts`.
+- **Exports:** `LanguageProvider` (envuelve `app/layout.tsx`), `useLanguage(): { language, t(key), toggleLanguage(), translateMovie(movie) }`.
+- **Nota:** las **claves** del diccionario están en inglés; los **valores** de cada idioma se mantienen en español/inglés como contenido real de la UI — igual que `core/language.ts` en la versión vanilla.
+
+### `useGenreFilter.ts`
+- **Responsabilidad:** ex `cache/Filter.Cache.ts`. Filtra películas por género con un caché privado (`useRef<Map>`), para no repetir la simulación de latencia en géneros ya consultados.
+- **Exports:** `useGenreFilter(movies: Movie[]): { filterByGenre(genre): Promise<Movie[]> }`.
 - **Parámetros de simulación:** `DELAY_MS = 500`.
-- **Detalles clave del diseño:**
-  - El caché se indexa por la **categoría canónica** (`movie.category`), no por el texto que muestra el `<select>` — así no se invalida al cambiar de idioma ("Acción" en ES y "Action" en EN resuelven a la misma clave, vía un mapa `category`/`categoryEn` → clave canónica construido una sola vez, de forma sincrónica, al crear la instancia).
+- **Detalles clave:**
+  - El caché se indexa por **categoría canónica** (`movie.category`), no por el texto del `<select>` — igual que antes, vía un mapa `category`/`categoryEn` → clave canónica construido con `useMemo`.
+  - El `Map` del caché se **resetea en un `useEffect`** cuando `movies` cambia de identidad (solo pasa una vez, cuando el catálogo termina de cargar) — no se resetea durante el render, porque las reglas de `react-hooks/refs` de este proyecto no permiten mutar un ref en el cuerpo del componente (ver AGENTS.md).
   - `"all"` devuelve el array completo sin tocar el caché.
-  - La promesa se guarda en el caché **antes** de esperarla, así dos llamadas simultáneas al mismo género comparten la misma promesa en vez de disparar dos simulaciones.
-  - Los objetos que cachea son siempre los **originales sin traducir** (nunca copias de `translateMovie`), para que `render.ts` los traduzca correctamente sin importar en qué idioma se cacheó el resultado.
+  - La promesa se guarda en el caché **antes** de esperarla, así dos llamadas simultáneas al mismo género comparten la misma promesa.
+
+### `useDebouncedValue.ts`
+- **Responsabilidad:** debounce genérico (`useEffect` + `setTimeout`), usado por `CatalogPage` para el buscador (300ms) — reemplaza el `applyFiltersWithDelay`/`searchTimer` que vivía suelto en `main.ts`.
+- **Exports:** `useDebouncedValue<T>(value: T, delayMs: number): T`.
 
 ---
 
-## `src/main.ts`
+## `src/lib/` — utilidades puras
 
-- **Responsabilidad:** único punto de entrada; orquesta `orchestrateServices()`, crea el filtro de género, conecta todos los eventos delegados y arma el panel de reseñas del modal.
-- **No exporta nada** (se autoejecuta con `start()` al final del archivo).
-- **Imports:** todos los `core/*` necesarios (incluye `calculateEntryDelay` de `animations.ts`, reutilizado para el delay escalonado de las reseñas), `orchestrateServices` (`./orchestrator/orchestrateServices.ts`), `createMovieFilter` (`./cache/Filter.Cache.ts`).
-- **Flujo relevante:**
-  - `start()`: llama a `orchestrateServices()`, guarda `movies` y `reviews` (esta última puede quedar en `null` si el servicio falló), crea `movieFilter = createMovieFilter(movies)`, renderiza catálogo + banner de anuncios (solo si `advertisements` no es `null`).
-  - **Carrusel de anuncios:** `renderAds(data)` no pinta una lista fija — guarda `data` en la variable de módulo `advertisements`, arma los puntos indicadores (`#ads-dots`) y pinta el primer slide (`paintCurrentAdSlide()`), que setea `adsSlide.style.backgroundImage` (degradado + `backgroundImage` del anuncio) y el HTML del título/texto/CTA. `goToAd(index)` navega circularmente (`(index + advertisements.length) % advertisements.length`) y reinicia el autoplay; `restartAdsAutoplay()` limpia el `setInterval` anterior y arma uno nuevo cada `AUTOPLAY_INTERVAL_MS` (6000ms) — solo si hay más de un anuncio. Las flechas (`#ads-prev`/`#ads-next`) y el click delegado en `#ads-dots` llaman a `goToAd()`. Si solo hay un anuncio, se agrega la clase `ads--single` para ocultar flechas/indicadores por CSS.
-  - `applyFilters()` (async): deshabilita `#category-filter`, resuelve el género vía `movieFilter.filterByGenre(...)`, aplica `filterMovies(result, text, "all")`, renderiza, y rehabilita el select en un `finally` (evita condiciones de carrera si el usuario cambia de género rápido).
-  - `handleContainerClick()`: al hacer click en una card (fuera del botón de favorito), llama a `openModal(card.dataset)` y, a continuación, a `renderModalReviews(Number(card.dataset.id))`.
-  - `renderModalReviews(movieId)`: siempre arranca ocultando y vaciando `#modal-reviews`; si `reviews` es `null` (el servicio falló) o no hay ninguna reseña con ese `movieId`, no hace nada más — `#modal-reviews` queda con `display: none` (no ocupa espacio) y el modal se centra solo. Si hay reseñas para esa película, las pinta dentro de `#modal-reviews` (una `animation-delay` por índice vía `calculateEntryDelay`) y le saca la clase `hidden`. Como `#modal-reviews` es hijo del mismo `#modal-overlay` que `.modal`, se abre y cierra junto con el modal sin necesidad de tocar `core/modal.ts`.
-- **Estilo visual (`styles.css`):** `#modal-reviews` es transparente (sin fondo/borde/sombra propios); el efecto "flotante" está en cada `.modal-reviews__item`: sombra individual, rotación alterna por `nth-child` (impar/par) que se endereza al hover, y `@keyframes review-float` (entrada deslizando desde la derecha) combinada con el `animation-delay` que pone `main.ts`. El scrollbar de `#modal-reviews` está reestilado a mano (`scrollbar-color`/`scrollbar-width` para Firefox, `::-webkit-scrollbar*` para Chrome/Edge/Safari) con pista transparente y "thumb" en `--color-primario`, en vez del scrollbar gris por defecto del navegador.
-- **`.hidden` necesita `!important` (`styles.css`):** `.modal-reviews` y `.ads` declaran su propio `display: flex`. Como `.hidden { display: none; }` estaba definida antes que esas reglas en el archivo y todas tienen la misma especificidad (una sola clase), le ganarían por orden de aparición si no fuera por `!important` — el panel de reseñas vacío quedaría ocupando 260px en el `flex` de `#modal-overlay` y correría el modal hacia la izquierda en vez de centrarlo solo. Fix: `.hidden { display: none !important; }`. Cualquier elemento nuevo que se oculte con esta clase y también declare `display` queda cubierto sin tocar nada más.
+### `animations.ts`
+- **Responsabilidad:** igual que `core/animations.ts`, menos `animateFavorite` (que ahora es un patrón de estado local dentro de `MovieCard.tsx`, ver más abajo).
+- **Exports:** `calculateEntryDelay(index): string`.
+
+### `filterMovies.ts`
+- **Responsabilidad:** ex `core/filters.ts` `filterMovies()`, sin el parámetro de categoría (el género ya lo resuelve `useGenreFilter`, así que siempre se filtra solo por texto). Traduce cada película para comparar contra el título mostrado, pero devuelve los objetos originales sin traducir — igual que antes, para que quien renderice pueda traducir de nuevo sin duplicar lógica de idioma en dos lugares.
+- **Exports:** `filterMoviesByText(movies, text, translateMovie): Movie[]`.
+
+---
+
+## `src/components/`
+
+### `CatalogPage.tsx`
+- **Responsabilidad:** único componente con estado real de la página. Llama a todos los hooks de arriba, arma `visibleMovies` (género + texto) en un `useEffect` envuelto en `useTransition`, y renderiza el resto de los componentes en el mismo orden que tenía `index.html` (`Header` → `AdsCarousel` → `SearchBar` → `MovieGrid` → `Footer` → `MovieModal`).
+- **Detalle:** el reset de `category` a `"all"` cuando cambia `language` se hace **durante el render** (comparando contra un `useState` que guarda el último `language` visto), no en un `useEffect` — patrón "adjusting state when a prop changes" de React, exigido por las reglas de lint de este proyecto (ver AGENTS.md).
+- **No exporta nada más** que el componente.
+
+### `Header.tsx`
+- **Responsabilidad:** logo + título, contador de favoritos, botón de idioma.
+- **Props:** `{ favoritesCount: number }`. Lee `language`/`toggleLanguage` de `useLanguage()` directamente.
+
+### `AdsCarousel.tsx`
+- **Responsabilidad:** ex carrusel de anuncios de `main.ts` (`renderAds`/`paintCurrentAdSlide`/`goToAd`/`restartAdsAutoplay`).
+- **Props:** `{ advertisements: Advertisement[] }`. Si `advertisements.length === 0`, devuelve `null` (no se monta — no necesita la clase `.hidden`, a diferencia del modal).
+- **Detalle:** el autoplay (`setInterval` cada 6s) se reinicia solo porque el `useEffect` que lo arma depende de `currentIndex` — cualquier navegación, manual o automática, dispara el mismo `setCurrentIndex`, así que el efecto se limpia y se vuelve a armar sin necesitar una función `restartAdsAutoplay` separada.
+
+### `SearchBar.tsx`
+- **Responsabilidad:** input de búsqueda + `<select>` de categoría (controlados, `value`/`onChange`).
+- **Props:** `{ searchText, onSearchTextChange, category, onCategoryChange, categories, disabled }`. `categories` lo calcula `CatalogPage` con `useMemo` a partir de `movies` traducidas (reemplaza `populateCategories()` de `core/filters.ts`).
+
+### `MovieGrid.tsx`
+- **Responsabilidad:** el `<main class="container">` que antes llenaba `render.ts`. Mapea `movies` a `MovieCard`.
+- **Props:** `{ movies, isFavorite, onToggleFavorite, onSelectMovie }`.
+
+### `MovieCard.tsx`
+- **Responsabilidad:** ex `createCard()` de `core/render.ts`. Traduce la película que recibe (vía `useLanguage().translateMovie`) para mostrarla.
+- **Props:** `{ movie, index, isFavorite, onToggleFavorite, onSelect }`.
+- **Detalle:** el pop del botón de favoritos (`.card__favorite.animate`) se retriggerea con un estado local `isPopping` + `requestAnimationFrame` (para forzar un frame con la clase sacada antes de volver a ponerla) en vez del `classList.remove/offsetWidth/classList.add` manual que hacía `animateFavorite()` en la versión vanilla.
+
+### `MovieModal.tsx`
+- **Responsabilidad:** ex `core/modal.ts` + el panel de reseñas que armaba `renderModalReviews()` en `main.ts`, todo en un solo componente.
+- **Props:** `{ movie: Movie | null, reviews: Review[] | null, onClose }`.
+- **Detalle:** se renderiza **siempre** (nunca condicionalmente), alternando la clase `.active` en `.modal-overlay` — necesario para que la transición CSS de entrada/salida siga funcionando (si se montara/desmontara con `{selectedMovie && <MovieModal />}`, aparecería ya en su estado final, sin nada de qué transicionar). El cierre con Esc se maneja con un listener de `keydown` en un `useEffect` que solo se agrega mientras `movie` no es `null`; el scroll del body se bloquea (`document.body.classList.add("no-scroll")`) con el mismo patrón.
+- Filtra `reviews` por `movie.id` internamente (antes lo hacía `main.ts` con `renderModalReviews(movieId)`).
+
+### `Footer.tsx`
+- **Responsabilidad:** el `<footer>` con el texto traducido (`t("footer")`).

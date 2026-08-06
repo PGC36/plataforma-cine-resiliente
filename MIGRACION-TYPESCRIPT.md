@@ -1,5 +1,7 @@
     # Migración a TypeScript — 2026-07-30
 
+> Este proyecto tuvo una migración posterior, de este mismo TypeScript vanilla a React + Next.js — ver [MIGRACION-REACT-NEXTJS.md](./MIGRACION-REACT-NEXTJS.md). Lo que sigue es el registro histórico de la migración a TypeScript, ya superseded por esa migración en cuanto a estructura de archivos (el árbol `src/core/`, `src/orchestrator/`, `src/cache/` que describe abajo ya no existe).
+
 Registro de la migración del código JS vanilla del catálogo de películas a TypeScript, con arquitectura en capas (DTOs / mappers / entities), realizada para el Laboratorio 3 ("Inicialización Corporativa y Migración Arquitectónica por Capas"). Mantiene la arquitectura de módulos documentada en [AGENTS.md](./AGENTS.md) y [MODULOS.md](./MODULOS.md); esto es un registro de **qué cambió y por qué**, no la reemplaza.
 
 ## 1. `tsconfig.json`

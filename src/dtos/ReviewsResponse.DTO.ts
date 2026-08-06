@@ -1,4 +1,4 @@
-import type { ReviewDTO } from "./Review.DTO.js";
+import type { ReviewDTO } from "./Review.DTO";
 
 /** Raw envelope from the reviews endpoint (reviews.json). */
 export interface ReviewsResponseDTO {

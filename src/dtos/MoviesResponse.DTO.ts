@@ -1,4 +1,4 @@
-import type { MovieDTO } from "./Movie.DTO.js";
+import type { MovieDTO } from "./Movie.DTO";
 
 /** Raw envelope from the catalog endpoint (movies.json). */
 export interface MoviesResponseDTO {

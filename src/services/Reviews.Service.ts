@@ -1,20 +1,19 @@
-import { mapReviewsDtoToEntities } from "../mappers/Review.Mapper.js";
-import type { Review } from "../entities/Review.js";
-import type { ReviewDTO } from "../dtos/Review.DTO.js";
-import type { ReviewsResponseDTO } from "../dtos/ReviewsResponse.DTO.js";
+import { mapReviewsDtoToEntities } from "../mappers/Review.Mapper";
+import type { Review } from "../entities/Review";
+import type { ReviewDTO } from "../dtos/Review.DTO";
+import type { ReviewsResponseDTO } from "../dtos/ReviewsResponse.DTO";
 
 const PROBABILITY_OF_FAILURE = 0;
 const DELAY_MS = 700;
 
-const params = new URLSearchParams(window.location.search);
-
 function shouldForceFail(): boolean {
+  const params = new URLSearchParams(window.location.search);
   const value = params.get("forceFail");
   return value === "reviews" || value === "all";
 }
 
 async function loadReviewsFromJSON(): Promise<ReviewDTO[]> {
-  const response = await fetch("reviews.json");
+  const response = await fetch("/reviews.json");
 
   if (!response.ok) {
     throw new Error("Could not load the reviews file");
